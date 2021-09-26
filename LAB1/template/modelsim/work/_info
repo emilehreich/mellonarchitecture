@@ -1,0 +1,329 @@
+m255
+K4
+z2
+13
+!s112 1.1
+!i10d 8192
+!i10e 25
+!i10f 100
+cModel Technology
+dC:/Template/modelsim
+Eadd_sub
+Z0 w1506206628
+Z1 DPx4 ieee 11 numeric_std 0 22 :ASDNFgHXf_ih3J@9F3Ze1
+Z2 DPx3 std 6 textio 0 22 zE1`LPoLg^DX3Oz^4Fj1K3
+Z3 DPx4 ieee 14 std_logic_1164 0 22 eNV`TJ_GofJTzYa?f<@Oe1
+Z4 dC:/Users/HP PC/Downloads/alu-2/modelsim
+Z5 8C:/Users/HP PC/Downloads/alu-2/vhdl/add_sub.vhd
+Z6 FC:/Users/HP PC/Downloads/alu-2/vhdl/add_sub.vhd
+l0
+L5
+Vm1AZZBaQ<eh]J`diC=eE:3
+!s100 Ho^oT``GLJUNf<W@=D9Un1
+Z7 OV;C;10.4d;61
+32
+Z8 !s110 1506954014
+!i10b 1
+Z9 !s108 1506954014.000000
+Z10 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|C:/Users/HP PC/Downloads/alu-2/vhdl/add_sub.vhd|
+Z11 !s107 C:/Users/HP PC/Downloads/alu-2/vhdl/add_sub.vhd|
+!i113 1
+Z12 o-work work -2002 -explicit
+Z13 tExplicit 1
+Asynth
+R1
+R2
+R3
+DEx4 work 7 add_sub 0 22 m1AZZBaQ<eh]J`diC=eE:3
+l17
+L16
+V5]boSP83jbjd_KE6^TcE=2
+!s100 dAFPIQA;aX;G3a[HYOmjc2
+R7
+32
+R8
+!i10b 1
+R9
+R10
+R11
+!i113 1
+R12
+R13
+Ealu
+Z14 w1476133812
+R2
+R3
+R4
+Z15 8C:/Users/HP PC/Downloads/alu-2/vhdl/ALU.vhd
+Z16 FC:/Users/HP PC/Downloads/alu-2/vhdl/ALU.vhd
+l0
+L24
+V8<glFz8kcJeba`X[DIBDZ2
+!s100 O`l`Xc5c_V9`dzon<W_fQ2
+R7
+32
+R8
+!i10b 1
+R9
+Z17 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|C:/Users/HP PC/Downloads/alu-2/vhdl/ALU.vhd|
+Z18 !s107 C:/Users/HP PC/Downloads/alu-2/vhdl/ALU.vhd|
+!i113 1
+R12
+R13
+Abdf_type
+R2
+R3
+Z19 DEx4 work 3 alu 0 22 8<glFz8kcJeba`X[DIBDZ2
+l91
+L34
+VU9E`_SDlfczQ`b4gOL<zg1
+!s100 ao^@A8=RSg[FW?jY:[EXI0
+R7
+32
+R8
+!i10b 1
+R9
+R17
+R18
+!i113 1
+R12
+R13
+Ecomparator
+R0
+R2
+R3
+R4
+Z20 8C:/Users/HP PC/Downloads/alu-2/vhdl/comparator.vhd
+Z21 FC:/Users/HP PC/Downloads/alu-2/vhdl/comparator.vhd
+l0
+L4
+VXoW@XPARkkA_@WZF0O4AH2
+!s100 XTWoF>RX1>LcmLLBBo;N:0
+R7
+32
+R8
+!i10b 1
+R9
+Z22 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|C:/Users/HP PC/Downloads/alu-2/vhdl/comparator.vhd|
+Z23 !s107 C:/Users/HP PC/Downloads/alu-2/vhdl/comparator.vhd|
+!i113 1
+R12
+R13
+Asynth
+R2
+R3
+DEx4 work 10 comparator 0 22 XoW@XPARkkA_@WZF0O4AH2
+l17
+L16
+VjYVY4?HPh`j;V=C[[Tz9b3
+!s100 W_^:E1=WQ7kN:@Y9W>e1W2
+R7
+32
+R8
+!i10b 1
+R9
+R22
+R23
+!i113 1
+R12
+R13
+Elogic_unit
+R0
+R2
+R3
+R4
+Z24 8C:/Users/HP PC/Downloads/alu-2/vhdl/logic_unit.vhd
+Z25 FC:/Users/HP PC/Downloads/alu-2/vhdl/logic_unit.vhd
+l0
+L4
+V=9JZBX<Y1WVVb@j10:Izl1
+!s100 UJioXKUg8XUULGTSe2WE20
+R7
+32
+R8
+!i10b 1
+R9
+Z26 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|C:/Users/HP PC/Downloads/alu-2/vhdl/logic_unit.vhd|
+Z27 !s107 C:/Users/HP PC/Downloads/alu-2/vhdl/logic_unit.vhd|
+!i113 1
+R12
+R13
+Asynth
+R2
+R3
+DEx4 work 10 logic_unit 0 22 =9JZBX<Y1WVVb@j10:Izl1
+l14
+L13
+VN[@kzzbeSVhH`IGKV2Y@]1
+!s100 FS@WQdBIOeVUYhooVlH2K0
+R7
+32
+R8
+!i10b 1
+R9
+R26
+R27
+!i113 1
+R12
+R13
+Emultiplexer
+R0
+R2
+R3
+R4
+Z28 8C:/Users/HP PC/Downloads/alu-2/vhdl/multiplexer.vhd
+Z29 FC:/Users/HP PC/Downloads/alu-2/vhdl/multiplexer.vhd
+l0
+L4
+VD]4`eUA@LQVl]dPV?H7LA0
+!s100 UDM^5ga=kb9Z[=K^]bghV0
+R7
+32
+R8
+!i10b 1
+R9
+Z30 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|C:/Users/HP PC/Downloads/alu-2/vhdl/multiplexer.vhd|
+Z31 !s107 C:/Users/HP PC/Downloads/alu-2/vhdl/multiplexer.vhd|
+!i113 1
+R12
+R13
+Asynth
+R2
+R3
+Z32 DEx4 work 11 multiplexer 0 22 D]4`eUA@LQVl]dPV?H7LA0
+l16
+L15
+Z33 VN<nhOVJ_ZkI?gF9gIL8b;0
+Z34 !s100 KX<nS<K?;@a;0?GJm8`iR2
+R7
+32
+R8
+!i10b 1
+R9
+R30
+R31
+!i113 1
+R12
+R13
+Eshift_unit
+R0
+R1
+R2
+R3
+R4
+Z35 8C:/Users/HP PC/Downloads/alu-2/vhdl/shift_unit.vhd
+Z36 FC:/Users/HP PC/Downloads/alu-2/vhdl/shift_unit.vhd
+l0
+L5
+Vo?fcYD=jmkbNm<ezbP6bN2
+!s100 C4@E7NN0:UB89P^MW405S0
+R7
+32
+R8
+!i10b 1
+R9
+Z37 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|C:/Users/HP PC/Downloads/alu-2/vhdl/shift_unit.vhd|
+Z38 !s107 C:/Users/HP PC/Downloads/alu-2/vhdl/shift_unit.vhd|
+!i113 1
+R12
+R13
+Asynth
+R1
+R2
+R3
+DEx4 work 10 shift_unit 0 22 o?fcYD=jmkbNm<ezbP6bN2
+l15
+L14
+V8Z0?<Z?ahj7NV4eck4fPb0
+!s100 [321mfnCdb31EL<HVmGPL3
+R7
+32
+R8
+!i10b 1
+R9
+R37
+R38
+!i113 1
+R12
+R13
+Etb_alu
+R0
+R1
+R2
+R3
+R4
+Z39 8C:/Users/HP PC/Downloads/alu-2/testbench/tb_ALU.vhd
+Z40 FC:/Users/HP PC/Downloads/alu-2/testbench/tb_ALU.vhd
+l0
+L5
+Vn>BG8FNOTjd9j[=R@k4^@1
+!s100 h4gR^9UUSFUJBW2hl@TTO2
+R7
+32
+R8
+!i10b 1
+Z41 !s108 1506954013.000000
+Z42 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|C:/Users/HP PC/Downloads/alu-2/testbench/tb_ALU.vhd|
+Z43 !s107 C:/Users/HP PC/Downloads/alu-2/testbench/tb_ALU.vhd|
+!i113 1
+R12
+R13
+Abench
+R19
+R1
+R2
+R3
+DEx4 work 6 tb_alu 0 22 n>BG8FNOTjd9j[=R@k4^@1
+l12
+L8
+VY;_dgbT?zULTIC]hd;?X_0
+!s100 a_YPDh`0bQGE]Sh_f[D]j0
+R7
+32
+!s110 1506953442
+!i10b 1
+!s108 1506953442.000000
+R42
+R43
+!i113 1
+R12
+R13
+Etb_logic_unit
+R0
+R2
+R3
+R4
+Z44 8C:/Users/HP PC/Downloads/alu-2/testbench/tb_logic_unit.vhd
+Z45 FC:/Users/HP PC/Downloads/alu-2/testbench/tb_logic_unit.vhd
+l0
+L4
+VEgSTI:=LV<gWZI;^WB1H10
+!s100 I0S6Z^F^OTJKf4O?Ic>222
+R7
+32
+Z46 !s110 1506954013
+!i10b 1
+R41
+Z47 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|C:/Users/HP PC/Downloads/alu-2/testbench/tb_logic_unit.vhd|
+Z48 !s107 C:/Users/HP PC/Downloads/alu-2/testbench/tb_logic_unit.vhd|
+!i113 1
+R12
+R13
+Atestbench
+R2
+R3
+DEx4 work 13 tb_logic_unit 0 22 EgSTI:=LV<gWZI;^WB1H10
+l21
+L7
+Vn7h^[hR8KW2DDBkO2nQgc0
+!s100 Tk@k:O5YobmggeTA;0C:?1
+R7
+32
+R46
+!i10b 1
+R41
+R47
+R48
+!i113 1
+R12
+R13
