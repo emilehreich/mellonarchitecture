@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<com.sigasi.hdt.shared.librarymapping.model:LibraryMappings xmlns:com.sigasi.hdt.shared.librarymapping.model="com.sigasi.hdt.vhdl.scoping.librarymapping" Version="2">
+  <Mappings Location="Common Libraries/IEEE" Library="ieee"/>
+  <Mappings Location="Common Libraries/IEEE Synopsys" Library="ieee"/>
+  <Mappings Location="Common Libraries" Library="not mapped"/>
+  <Mappings Location="Common Libraries/STD" Library="std"/>
+  <Mappings Location="" Library="work"/>
+  <Mappings Location=".git" Library="work"/>
+  <Mappings Location=".git/hooks" Library="work"/>
+  <Mappings Location=".git/logs" Library="work"/>
+  <Mappings Location=".git/objects/pack" Library="work"/>
+  <Mappings Location="LAB1" Library="work"/>
+  <Mappings Location="LAB1/template/modelsim/work" Library="work"/>
+</com.sigasi.hdt.shared.librarymapping.model:LibraryMappings>

@@ -11,5 +11,28 @@ entity logic_unit is
 end logic_unit;
 
 architecture synth of logic_unit is
+    
+    signal result : std_logic_vector(31 downto 0);
+    
 begin
+    
+    --process that exectutes the logic operation given the op input
+    opreation : process(op, a, b)
+    begin
+        if op = "00" then
+            result <= a nor b;
+        elsif op = "01" then
+            result <= a and b;
+        elsif op = "10" then
+            result <= a or b;
+        elsif op = "11" then
+            result <= a xnor b;
+        end if;
+    end process;
+    
+    --outputs assignment
+    r <= result;
+    
+                
+    
 end synth;
