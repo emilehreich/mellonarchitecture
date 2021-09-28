@@ -14,4 +14,18 @@ end multiplexer;
 
 architecture synth of multiplexer is
 begin
+
+    output_result : process(sel, i0, i1, i2, i3):
+    BEGIN
+      Case sel is
+         When "00" => o <= i0;
+         When "01" => o <= i1;
+         When "10" => o <= i2;
+         When "11" => o <= i3;
+         -- defaut output value, choosed arbitrarely
+         -- to be a 32bits 0
+         When OTHERS => o <= (OTHERS => '0');
+      End case;
+    end process output_result;
+
 end synth;
