@@ -29,7 +29,7 @@ begin
         SUB <= (others => sub_mode);
         s_b <= SUB xor b;
 
-        s_result <= std_logic_vector(to_unsigned(s_b) + to_unsigned(a) + to_unsigned(sub_mode));
+        s_result <= std_logic_vector(unsigned(s_b) + unsigned(a) + unsigned(sub_mode));
 
     end process;
 
