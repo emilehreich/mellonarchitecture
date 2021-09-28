@@ -12,5 +12,26 @@ entity shift_unit is
 end shift_unit;
 
 architecture synth of shift_unit is
+  signal s_leastbits_ofB : unsigned(4 downto 0);
 begin
+
+  shift_rotate : process (op)
+
+  begin
+
+    if then
+
+    elsif then
+
+    elsif then
+
+    elsif then
+
+    elsif then
+
+    end if;
+
+
+  end process shift_rotate;
+
 end synth;
