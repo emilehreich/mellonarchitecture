@@ -16,24 +16,33 @@ end add_sub;
 architecture synth of add_sub is
 
     --signals
-    signal SUB : std_logic_vector(31 downto 0);
+    signal mask : std_logic_vector(31 downto 0);
     signal s_result : std_logic_vector(32 downto 0); --33 bits to get the carry out
-    signal s_b : std_logic_vector(31 downto 0);
+    signal s_b, s_a, s_subMode : std_logic_vector(32 downto 0);
 
 begin
 
     operation : process(a, b, sub_mode)
-    begin
-        SUB <= (others => sub_mode);
-        s_b <= SUB xor b;
 
-        s_result <= std_logic_vector(unsigned(s_b) + unsigned(a) + unsigned(sub_mode));
+    begin
+        -- compute inverse of b in case of substraction
+        mask <= (others => sub_mode);
+        s_b <= ('0'&(mask xor b));
+
+        -- prepare data for addition
+        -- 'a' -> 33 bits
+        s_a <= ('0'&a);
+        s_subMode <= (32 downto 1 => '0', others => sub_mode); --'1' or '0' in 33 bits
+
+        -- compute operation
+        s_result <= std_logic_vector(unsigned(s_b) + unsigned(a) + unsigned(s_subMode));
 
     end process;
 
     zero <= '1' WHEN s_result(31 downto 0) = x"0000" else '0';
 
     r <= s_result(31 downto 0);
+
     carry <= s_result(32);
 
 end synth;
