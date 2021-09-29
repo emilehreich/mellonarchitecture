@@ -14,5 +14,29 @@ entity comparator is
 end comparator;
 
 architecture synth of comparator is
+
+  signal s_r : std_logic;
+
 begin
+
+  operation : process (a_31, b_31, diff_31, carry, zero, op)
+  begin
+    if op = "011" then
+      s_r <= not zero;
+    elsif op = "100" then
+      s_r <= zero;
+    elsif op = "101" then
+      s_r <= not carry or zero;
+    elsif op = "110" then
+      s_r <= carry and not zero;
+    elsif op = "001" then
+      s_r <= (a_31 and not b_31) or ((a_31 xnor b_31) and (diff_31 or zero));
+    elsif op = "010" then
+      s_r <= (a_31 and not b_31) or ((a_31 xnor b_31) and (not diff_31 and not zero));
+    else
+      s_r <= zero; --default operation
+    end if;
+  end process;
+
+  r <= s_r;
 end synth;

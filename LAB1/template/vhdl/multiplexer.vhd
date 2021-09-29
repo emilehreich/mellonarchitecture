@@ -15,7 +15,7 @@ end multiplexer;
 architecture synth of multiplexer is
 begin
 
-    output_result : process(sel, i0, i1, i2, i3):
+    output_result : process(sel, i0, i1, i2, i3)
     BEGIN
       Case sel is
          When "00" => o <= i0;
