@@ -38,5 +38,9 @@ begin
     end if;
   end process;
 
-  r <= s_r;
+  assignment : process(s_r)
+  begin
+    r <= s_r;
+  end process;
+  
 end synth;

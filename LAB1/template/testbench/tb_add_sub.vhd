@@ -29,19 +29,22 @@ architecture sim of tb_add_sub is
   sim : process is
     -- testing procedure
     procedure check_result(a : in natural; b : in natural; operator : in std_logic) is
+          variable res : natural;
           begin
             -- input the operation choice
             s_mode <= operator;
             -- transform the numbers and input them
             s_a <= std_logic_vector(to_signed(a, 32));
             s_b <= std_logic_vector(to_signed(b, 32));
+
             assert false
                 report "================TEST================"
             severity note;
-
+            res := to_integer(unsigned(s_result));
             -- wait for a short time and output result
             wait for 20 ns;
             if operator = '1' then
+
               -- substraction
               assert false
                 report "addition : " --& std_logic_vector'image(s_result)

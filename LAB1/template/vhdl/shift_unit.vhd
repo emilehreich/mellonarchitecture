@@ -19,18 +19,6 @@ begin
 
   begin
 
-    if then
-
-    elsif then
-
-    elsif then
-
-    elsif then
-
-    elsif then
-
-    end if;
-
 
   end process shift_rotate;
 
