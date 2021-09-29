@@ -37,12 +37,22 @@ begin
         -- compute operation
         s_result <= std_logic_vector(unsigned(s_b) + unsigned(a) + unsigned(s_subMode));
 
+        -- zero <= '1' WHEN s_result(31 downto 0) = x"0000" else '0';
+        if s_result(31 downto 0) = x"0000" then
+          zero <= '1';
+        else
+          zero <= '0';
+        end if;
+
+        r <= s_result(31 downto 0);
+
+        carry <= s_result(32);
     end process;
 
-    zero <= '1' WHEN s_result(31 downto 0) = x"0000" else '0';
-
-    r <= s_result(31 downto 0);
-
-    carry <= s_result(32);
+    -- zero <= '1' WHEN s_result(31 downto 0) = x"0000" else '0';
+    --
+    -- r <= s_result(31 downto 0);
+    --
+    -- carry <= s_result(32);
 
 end synth;
