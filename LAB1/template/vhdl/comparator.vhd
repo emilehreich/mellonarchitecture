@@ -32,7 +32,7 @@ begin
     elsif op = "001" then
       s_r <= (a_31 and not b_31) or ((a_31 xnor b_31) and (diff_31 or zero));
     elsif op = "010" then
-      s_r <= (a_31 and not b_31) or ((a_31 xnor b_31) and (not diff_31 and not zero));
+      s_r <= (not a_31 and b_31) or ((a_31 xnor b_31) and (not diff_31 and not zero));
     else
       s_r <= zero; --default operation
     end if;
@@ -42,5 +42,5 @@ begin
   begin
     r <= s_r;
   end process;
-  
+
 end synth;
