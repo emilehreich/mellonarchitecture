@@ -30,17 +30,19 @@ begin
 					when "000" => v := v(31 - 2**i downto 0) & v(31 downto 31 + 1 - 2**i);	--seems to be correct
 					
 					-- "010" : shift left logical (incoming bits are 0)	
-					when "010" => v :=  v(31 - 2**i downto 0) & ((2**i - 1 downto 0) => '0'); --seems to be correct
+					when "010" => v :=  v(31 - 2**i downto 0) & (2**i - 1 downto 0 => '0'); --seems to be correct
 					
 					----------------------------------------- RIGHT -------------------------------------
 					-- "001" : rotate right (incoming bits are the out-coming bits : circular shift)
 					when "001" => v := v(2**i - 1 downto 0) & v(31 downto 2**i); --seems to be correct
 						
 					-- "011" : shift right logical (incoming bits are 0)
-					when "011" => v := ((31 downto 31 - 2**i + 1) => '0') & v(31 downto 2**i); --seems to be correct
+					when "011" => v := (31 downto 31 - 2**i + 1 => '0') & v(31 downto 2**i); --seems to be correct
 					
 					-- "111" : shift right arithmetic (incoming bits are 0 but the sign is conserved)
-					when "111" => v := v(31) & ((30 downto 30 + 1 - 2**i) => '0') & v(30 downto 2**i); -- what in this cases ??? 
+					when "111" => v := v(31) & (30 downto 30 + 1 - 2**i => '0') & v(30 downto 2**i); -- what in this cases ???
+						
+					when others => v := v;
 				end case;
 			end if;
 		end loop;

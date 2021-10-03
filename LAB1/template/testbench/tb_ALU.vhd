@@ -70,41 +70,15 @@ begin
 
                         case op(5 downto 3) is
                             -- add
-                            when "000" => expected := std_logic_vector(unsigned(a) + unsigned(b));
+                            when "000" => expected := std_logic_vector(signed(a) + signed(b));
                             -- sub
-                            when "001" => expected := std_logic_vector(unsigned(a) - unsigned(b));
+                            when "001" => expected := std_logic_vector(signed(a) - signed(b));
                             -- comparator
-                            when "011" =>
+                            --when "011" =>
 ---------------------------------------MODIFY HERE-------------------------------------------------------------
-                            success := TRUE;
-                            expected := s;
-                            case op(2 downto 0) is
-                               when "001" =>
-                          				ASSERT s = ""--to_integer(signed(a)) <= to_integer(signed(b))
-                          					REPORT "incorrect less or equal"
-                                          			SEVERITY ERROR;
-                                when "010" =>
-                                    REPORT "incorrect greater"
-                                              SEVERITY ERROR;
-                                when "011" =>
-                                  ASSERT to_integer(unsigned(a)) /= to_integer(unsigned(b))
-                                    REPORT "incorrect difference"
-                                              SEVERITY ERROR;
-                                when "100" =>
-                                  ASSERT to_integer(unsigned(a)) = to_integer(unsigned(b))
-                                    REPORT "incorrect equality"
-                                              SEVERITY ERROR;
-                                when "101" =>
-                                  ASSERT to_integer(unsigned(a)) <= to_integer(unsigned(b))
-                                    REPORT "incorrect inequality <= unsigned"
-                                              SEVERITY ERROR;
-                                when "110" =>
-                                  ASSERT to_integer(unsigned(a)) > to_integer(unsigned(b))
-                                    REPORT "incorrect inequality > unsigned"
-                                              SEVERITY ERROR;
-                                -- we don't care for the others => ignore
-                                when others => expected := s;
-                                end case;
+				-- ASSERT FALSE
+					-- REPORT "Replace this ASSERT with the code to test the comparator"
+                			-- SEVERITY ERROR;
 ---------------------------------------END MODIFY--------------------------------------------------------------
                             -- "010" is not valid -> ignore
                             -- logical unit
