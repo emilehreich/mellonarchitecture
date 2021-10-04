@@ -16,5 +16,13 @@ entity register_file is
 end register_file;
 
 architecture synth of register_file is
+
+  --creating an array of std_logic_vectors type of size 32 to represent the register register_file
+  type registers is array(0 to 31) of std_logic_vector(31 downto 0);
+
+  signal s_register : registers; -- an array of registers
+
 begin
+
+  
 end synth;
