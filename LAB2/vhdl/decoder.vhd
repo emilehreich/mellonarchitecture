@@ -29,7 +29,7 @@ begin
       s_cs_rom <= '0';
       s_cs_led <= '0';
       s_cs_ram <= '1';
-    elsif  unsigned(address) <= unsigned(to_stdlogicvector(x"2000")) and unsigned(address) >= unsigned(to_stdlogicvector(x"200C")) then
+    elsif  unsigned(address) <= unsigned(to_stdlogicvector(x"200C")) and unsigned(address) >= unsigned(to_stdlogicvector(x"2000")) then
       s_cs_rom <= '0';
       s_cs_led <= '1';
       s_cs_ram <= '0';

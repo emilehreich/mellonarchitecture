@@ -51,6 +51,8 @@ begin
     if rising_edge(clk) then
       if cs = '1' then
         rddata <= s_rddata;
+      else
+        rddata <= (others => 'Z');
       end if;
     end if;
   end process;
