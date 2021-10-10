@@ -46,14 +46,12 @@ begin
   end process;
 
   --output logic with tristate buffer
-  o : process(clk)
+  o : process(s_rddata, cs)
   begin
-    if rising_edge(clk) then
-      if cs = '1' then
-        rddata <= s_rddata;
-      else
-        rddata <= (others => 'Z');
-      end if;
+    if cs = '1' then
+      rddata <= s_rddata;
+    else
+      rddata <= (others => 'Z');
     end if;
   end process;
 
