@@ -22,7 +22,7 @@ begin
     if rising_edge(clk) then
       if flag = '1' then
           s_register <= D;
-          flag = '0';
+          flag <= '0';
       end if;
 
       if enable = '1' then

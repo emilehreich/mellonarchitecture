@@ -17,5 +17,28 @@ entity PC is
 end PC;
 
 architecture synth of PC is
+	constant moveNext : unsigned(15 downto 0) := to_unsigned(4, 16); 
+	
+	signal currentAddress : std_logic_vector(15 downto 0);
 begin
+	
+	nextAdress : process(reset_n, clk, en)
+	begin
+		if(reset_n = '0') then	--active low (perform its function when its
+								--logic level is 0)
+			currentAddress <= (others => '0');	
+		else
+			if(rising_edge(clk) and en='1') then
+				currentAddress <= (std_logic_vector(unsigned(currentAddress) + moveNext));
+			end if;			
+		end if;
+	end process;
+	
+	
+	affectationProcess : process(currentAddress)
+	begin
+		-- must be a valid address => two least significant bits
+	    -- should remains at '0'
+		addr <= (31 downto 16 => '0') & currentAddress(15 downto 2) & "00";
+	end process;	
 end synth;
