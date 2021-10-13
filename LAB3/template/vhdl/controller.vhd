@@ -109,11 +109,11 @@ begin
     end if;
   end process;
 
-  --output logic for FETCH1 cycle
-  FETCH1_output_logic : process(s_read)
-  begin
-    read <= s_read;
-  end process;
+  -- --output logic for FETCH1 cycle
+  -- FETCH1_output_logic : process(s_read)
+  -- begin
+  --   read <= s_read;
+  -- end process;
 
   --========================================================================
   --FETCH2 cycle
@@ -133,11 +133,11 @@ begin
   end process;
 
   --output logic for FETCH1 cycle
-  FETCH2_output_logic : process(s_en, s_ir_en)
-  begin
-    pc_en <= s_en;
-    ir_en <= s_ir_en;
-  end process;
+  -- FETCH2_output_logic : process(s_en, s_ir_en)
+  -- begin
+  --   pc_en <= s_en;
+  --   ir_en <= s_ir_en;
+  -- end process;
   --========================================================================
   --DECODE cycle
 
@@ -211,7 +211,7 @@ begin
     end if;
   end process;
 
-  DECODE_output_logic : process(s_op_alu, s_signed, s_sel_b, s_sel_rc, s_rf_wren, s_sel_addr, s_sel_mem, s_write)
+  DECODE_output_logic : process(s_op_alu, s_signed, s_sel_b, s_sel_rc, s_rf_wren, s_sel_addr, s_sel_mem, s_write, s_read, s_en, s_ir_en)
   begin
     op_alu <= s_op_alu;
     imm_signed <= s_signed;
@@ -221,6 +221,9 @@ begin
     sel_addr <= s_sel_addr;
     sel_mem <= s_sel_mem;
     write <= s_write;
+    read <= s_read;
+    pc_en <= s_en;
+    ir_en <= s_ir_en;
   end process;
 
 
