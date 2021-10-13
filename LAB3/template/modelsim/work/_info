@@ -8,129 +8,1133 @@ z2
 !i10f 100
 cModel Technology
 dC:/Users/HP PC/Google Drive/Teaching/ArchOrd Mirjana/3-multicycle_niosII-workinprogress/project_template/modelsim
-Pcheck_functions
-Z0 DPx4 ieee 16 std_logic_textio 0 22 V5TSK`;aJKC<l]CEg1>mz1
-Z1 DPx3 std 6 textio 0 22 zE1`LPoLg^DX3Oz^4Fj1K3
-Z2 DPx4 ieee 14 std_logic_1164 0 22 eNV`TJ_GofJTzYa?f<@Oe1
-Z3 w1473433240
-Z4 dC:/Users/HP PC/Google Drive/Teaching/ArchOrd Mirjana/3-multicycle_niosII/project_template/modelsim
-Z5 8../testbench/check_functions.vhd
-Z6 F../testbench/check_functions.vhd
+Eadd_sub
+Z0 w1632950131
+Z1 DPx4 ieee 11 numeric_std 0 22 :ASDNFgHXf_ih3J@9F3Ze1
+Z2 DPx3 std 6 textio 0 22 zE1`LPoLg^DX3Oz^4Fj1K3
+Z3 DPx4 ieee 14 std_logic_1164 0 22 eNV`TJ_GofJTzYa?f<@Oe1
+Z4 dC:/Users/emile/Desktop/Development/Directories/mellonarchitecture/LAB3/template/modelsim
+Z5 8C:/Users/emile/Desktop/Development/Directories/mellonarchitecture/LAB3/template/vhdl/add_sub.vhd
+Z6 FC:/Users/emile/Desktop/Development/Directories/mellonarchitecture/LAB3/template/vhdl/add_sub.vhd
 l0
-L6
-VRYe`2[4U73X[nK3nC6gei3
-!s100 eDnLHELO`V5ohl=5KQY@20
-Z7 OV;C;10.4d;61
-31
-b1
-Z8 !s110 1507121053
+L5
+V207_zj^V^3XmVFBkYPT0^3
+!s100 Ho^oT``GLJUNf<W@=D9Un1
+Z7 OV;C;10.5b;63
+32
+Z8 !s110 1634117586
 !i10b 1
-Z9 !s108 1507121053.000000
-Z10 !s90 -reportprogress|300|-93|../testbench/check_functions.vhd|
-Z11 !s107 ../testbench/check_functions.vhd|
+Z9 !s108 1634117586.000000
+Z10 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|C:/Users/emile/Desktop/Development/Directories/mellonarchitecture/LAB3/template/vhdl/add_sub.vhd|
+Z11 !s107 C:/Users/emile/Desktop/Development/Directories/mellonarchitecture/LAB3/template/vhdl/add_sub.vhd|
 !i113 1
-o-93
-Z12 tExplicit 1
-Bbody
-Z13 DPx4 work 15 check_functions 0 22 RYe`2[4U73X[nK3nC6gei3
-R0
+Z12 o-work work -2002 -explicit
+Z13 tExplicit 1 CvgOpt 0
+Asynth
 R1
 R2
-l0
-L40
-VoehS8`bKGCdlHBEzNX8R21
-!s100 ]Ul<gd[SNh_SV]VQVO[::0
+R3
+DEx4 work 7 add_sub 0 22 207_zj^V^3XmVFBkYPT0^3
+l23
+L16
+VXHbUOeLjjUE5_Gga=co[m1
+!s100 Co>96za?ZNhdMRLCb^3`e0
 R7
-31
+32
 R8
 !i10b 1
 R9
 R10
 R11
 !i113 1
-o-93
 R12
-Econtroller
-R3
-R1
+R13
+Ealu
+Z14 w1632903348
 R2
+R3
 R4
-Z14 8../vhdl/controller.vhd
-Z15 F../vhdl/controller.vhd
+Z15 8C:/Users/emile/Desktop/Development/Directories/mellonarchitecture/LAB3/template/vhdl/ALU.vhd
+Z16 FC:/Users/emile/Desktop/Development/Directories/mellonarchitecture/LAB3/template/vhdl/ALU.vhd
 l0
-L4
-V6FhG[9W_gPzHhLgmk`Tje2
-!s100 iLCb?>B5ja1L5iDVmAU]]0
+L24
+VLIV0?b]kCZ40<iPbTC=4:2
+!s100 O`l`Xc5c_V9`dzon<W_fQ2
 R7
-31
+32
 R8
 !i10b 1
 R9
-Z16 !s90 -reportprogress|300|-93|../vhdl/controller.vhd|
-Z17 !s107 ../vhdl/controller.vhd|
+Z17 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|C:/Users/emile/Desktop/Development/Directories/mellonarchitecture/LAB3/template/vhdl/ALU.vhd|
+Z18 !s107 C:/Users/emile/Desktop/Development/Directories/mellonarchitecture/LAB3/template/vhdl/ALU.vhd|
 !i113 1
-o-93
 R12
+R13
+Abdf_type
+R2
+R3
+DEx4 work 3 alu 0 22 LIV0?b]kCZ40<iPbTC=4:2
+l91
+L34
+Vn7Jhlm<g3=Igo4gAY0?Z=3
+!s100 ao^@A8=RSg[FW?jY:[EXI0
+R7
+32
+R8
+!i10b 1
+R9
+R17
+R18
+!i113 1
+R12
+R13
+Ebuttons
+Z19 w1633892806
+R1
+R2
+R3
+R4
+Z20 8C:/Users/emile/Desktop/Development/Directories/mellonarchitecture/LAB3/template/vhdl/buttons.vhd
+Z21 FC:/Users/emile/Desktop/Development/Directories/mellonarchitecture/LAB3/template/vhdl/buttons.vhd
+l0
+L5
+V6nKA>6XmzI`j>a@n4^6Pn2
+!s100 =22bV77NIHzbkEY31]2hQ2
+R7
+32
+Z22 !s110 1634117582
+!i10b 1
+Z23 !s108 1634117582.000000
+Z24 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|C:/Users/emile/Desktop/Development/Directories/mellonarchitecture/LAB3/template/vhdl/buttons.vhd|
+Z25 !s107 C:/Users/emile/Desktop/Development/Directories/mellonarchitecture/LAB3/template/vhdl/buttons.vhd|
+!i113 1
+R12
+R13
 Asynth
 R1
 R2
-DEx4 work 10 controller 0 22 6FhG[9W_gPzHhLgmk`Tje2
-l40
-L39
-VibgYYLcL07i7zeiJ8oam33
-!s100 I@5[7Rha<4mXjGXY?Ha]m2
+R3
+DEx4 work 7 buttons 0 22 6nKA>6XmzI`j>a@n4^6Pn2
+l31
+L22
+Vz=5DD3`[2T_e1Tj`RUBgR3
+!s100 l:Q7JXKFoP5Z9FQDUXG9]3
 R7
-31
+32
+R22
+!i10b 1
+R23
+R24
+R25
+!i113 1
+R12
+R13
+Pcheck_functions
+Z26 DPx4 ieee 16 std_logic_textio 0 22 V5TSK`;aJKC<l]CEg1>mz1
+R2
+R3
+R19
+R4
+Z27 8C:/Users/emile/Desktop/Development/Directories/mellonarchitecture/LAB3/template/testbench/check_functions.vhd
+Z28 FC:/Users/emile/Desktop/Development/Directories/mellonarchitecture/LAB3/template/testbench/check_functions.vhd
+l0
+L6
+V<W1[dk2LN3hi[c?7kCXRb3
+!s100 eDnLHELO`V5ohl=5KQY@20
+R7
+32
+b1
+Z29 !s110 1634117584
+!i10b 1
+Z30 !s108 1634117584.000000
+Z31 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|C:/Users/emile/Desktop/Development/Directories/mellonarchitecture/LAB3/template/testbench/check_functions.vhd|
+Z32 !s107 C:/Users/emile/Desktop/Development/Directories/mellonarchitecture/LAB3/template/testbench/check_functions.vhd|
+!i113 1
+R12
+R13
+Bbody
+Z33 DPx4 work 15 check_functions 0 22 <W1[dk2LN3hi[c?7kCXRb3
+R26
+R2
+R3
+l0
+L40
+VHlk0`BAAbR3d7A^]PlU5K0
+!s100 ]Ul<gd[SNh_SV]VQVO[::0
+R7
+32
+Z34 !s110 1634117585
+!i10b 1
+R30
+R31
+R32
+!i113 1
+R12
+R13
+Ecomparator
+Z35 w1633039206
+R2
+R3
+R4
+Z36 8C:/Users/emile/Desktop/Development/Directories/mellonarchitecture/LAB3/template/vhdl/comparator.vhd
+Z37 FC:/Users/emile/Desktop/Development/Directories/mellonarchitecture/LAB3/template/vhdl/comparator.vhd
+l0
+L4
+V3WXakLjKGIMC9fTC_zAJG3
+!s100 XTWoF>RX1>LcmLLBBo;N:0
+R7
+32
 R8
 !i10b 1
 R9
-R16
-R17
+Z38 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|C:/Users/emile/Desktop/Development/Directories/mellonarchitecture/LAB3/template/vhdl/comparator.vhd|
+Z39 !s107 C:/Users/emile/Desktop/Development/Directories/mellonarchitecture/LAB3/template/vhdl/comparator.vhd|
 !i113 1
-o-93
 R12
-Etb_controller
-R3
 R13
-R0
-Z18 DPx4 ieee 11 numeric_std 0 22 :ASDNFgHXf_ih3J@9F3Ze1
+Asynth
+R2
+R3
+DEx4 work 10 comparator 0 22 3WXakLjKGIMC9fTC_zAJG3
+l20
+L16
+VckFa3Wl19MbMQ02e7j2?W3
+!s100 c7Ihj9NXWlk[Mez^0G6LU3
+R7
+32
+R8
+!i10b 1
+R9
+R38
+R39
+!i113 1
+R12
+R13
+Econtroller
+Z40 w1634117524
+R2
+R3
+R4
+Z41 8C:/Users/emile/Desktop/Development/Directories/mellonarchitecture/LAB3/template/vhdl/controller.vhd
+Z42 FC:/Users/emile/Desktop/Development/Directories/mellonarchitecture/LAB3/template/vhdl/controller.vhd
+l0
+L4
+V_=HMC5nS7CFmjhkXoh^<L0
+!s100 iLCb?>B5ja1L5iDVmAU]]0
+R7
+32
+R22
+!i10b 1
+R23
+Z43 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|C:/Users/emile/Desktop/Development/Directories/mellonarchitecture/LAB3/template/vhdl/controller.vhd|
+Z44 !s107 C:/Users/emile/Desktop/Development/Directories/mellonarchitecture/LAB3/template/vhdl/controller.vhd|
+!i113 1
+R12
+R13
+Asynth
+R2
+R3
+DEx4 work 10 controller 0 22 _=HMC5nS7CFmjhkXoh^<L0
+l52
+L39
+V4D0]ECH@>AY?PNAf@D_=O1
+!s100 c240?QS46:FeIRi@lhW[82
+R7
+32
+R22
+!i10b 1
+R23
+R43
+R44
+!i113 1
+R12
+R13
+Ecpu
+R19
+R2
+R3
+R4
+Z45 8C:/Users/emile/Desktop/Development/Directories/mellonarchitecture/LAB3/template/vhdl/CPU.vhd
+Z46 FC:/Users/emile/Desktop/Development/Directories/mellonarchitecture/LAB3/template/vhdl/CPU.vhd
+l0
+L24
+VoN1Z@H62cOJ8j76FSZXfk0
+!s100 ?^3E^YkUK_jO8j=PLQg0X0
+R7
+32
+Z47 !s110 1634117583
+!i10b 1
+Z48 !s108 1634117583.000000
+Z49 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|C:/Users/emile/Desktop/Development/Directories/mellonarchitecture/LAB3/template/vhdl/CPU.vhd|
+Z50 !s107 C:/Users/emile/Desktop/Development/Directories/mellonarchitecture/LAB3/template/vhdl/CPU.vhd|
+!i113 1
+R12
+R13
+Abdf_type
+R2
+R3
+DEx4 work 3 cpu 0 22 oN1Z@H62cOJ8j76FSZXfk0
+l168
+L37
+VU_VbP>G_0>o[AHnGEJ`7A2
+!s100 nj]fOeJzKgV2QQoiYJ37e2
+R7
+32
+R47
+!i10b 1
+R48
+R49
+R50
+!i113 1
+R12
+R13
+Edecoder
+Z51 w1633969988
 R1
 R2
+R3
 R4
-Z19 8../testbench/tb_Controller.vhd
-Z20 F../testbench/tb_Controller.vhd
+Z52 8C:/Users/emile/Desktop/Development/Directories/mellonarchitecture/LAB3/template/vhdl/decoder.vhd
+Z53 FC:/Users/emile/Desktop/Development/Directories/mellonarchitecture/LAB3/template/vhdl/decoder.vhd
+l0
+L5
+VdVPPG90IhOIULClZ>dGSU3
+!s100 [=GD<ThUYhT?2dg2ooP7P1
+R7
+32
+R8
+!i10b 1
+R9
+Z54 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|C:/Users/emile/Desktop/Development/Directories/mellonarchitecture/LAB3/template/vhdl/decoder.vhd|
+Z55 !s107 C:/Users/emile/Desktop/Development/Directories/mellonarchitecture/LAB3/template/vhdl/decoder.vhd|
+!i113 1
+R12
+R13
+Asynth
+R1
+R2
+R3
+DEx4 work 7 decoder 0 22 dVPPG90IhOIULClZ>dGSU3
+l19
+L15
+VRSKXkXBDX7HM:>YLo=>k^0
+!s100 O14]<ZLO`KTPeZ>M@kK6J3
+R7
+32
+R8
+!i10b 1
+R9
+R54
+R55
+!i113 1
+R12
+R13
+Eextend
+Z56 w1634117575
+R2
+R3
+R4
+Z57 8C:/Users/emile/Desktop/Development/Directories/mellonarchitecture/LAB3/template/vhdl/extend.vhd
+Z58 FC:/Users/emile/Desktop/Development/Directories/mellonarchitecture/LAB3/template/vhdl/extend.vhd
+l0
+L4
+VUL_6DHeRdI@k7FglXE4m:2
+!s100 [OER<nle^Gzi[Q]KGKSL33
+R7
+32
+R47
+!i10b 1
+R48
+Z59 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|C:/Users/emile/Desktop/Development/Directories/mellonarchitecture/LAB3/template/vhdl/extend.vhd|
+Z60 !s107 C:/Users/emile/Desktop/Development/Directories/mellonarchitecture/LAB3/template/vhdl/extend.vhd|
+!i113 1
+R12
+R13
+Asynth
+R2
+R3
+DEx4 work 6 extend 0 22 UL_6DHeRdI@k7FglXE4m:2
+l13
+L12
+VNG_lAMSj2=GW_3b;aeYLS3
+!s100 oBHS<@ZBjEm4EmZ]UC12E0
+R7
+32
+R47
+!i10b 1
+R48
+R59
+R60
+!i113 1
+R12
+R13
+Egecko
+R19
+R2
+R3
+R4
+Z61 8C:/Users/emile/Desktop/Development/Directories/mellonarchitecture/LAB3/template/vhdl/GECKO.vhd
+Z62 FC:/Users/emile/Desktop/Development/Directories/mellonarchitecture/LAB3/template/vhdl/GECKO.vhd
+l0
+L25
+VUUo[=d8;JL2NUd?KL5z>W3
+!s100 LSB69=RnS?7B=e740[]>J0
+R7
+32
+R47
+!i10b 1
+R48
+Z63 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|C:/Users/emile/Desktop/Development/Directories/mellonarchitecture/LAB3/template/vhdl/GECKO.vhd|
+Z64 !s107 C:/Users/emile/Desktop/Development/Directories/mellonarchitecture/LAB3/template/vhdl/GECKO.vhd|
+!i113 1
+R12
+R13
+Abdf_type
+R2
+R3
+Z65 DEx4 work 5 gecko 0 22 UUo[=d8;JL2NUd?KL5z>W3
+l122
+L42
+VXW8hfda?:0fgXTELaMc<M2
+!s100 6_aIkK46>FzI3D:<OBG:Z1
+R7
+32
+R47
+!i10b 1
+R48
+R63
+R64
+!i113 1
+R12
+R13
+Eir
+Z66 w1634074095
+R2
+R3
+R4
+Z67 8C:/Users/emile/Desktop/Development/Directories/mellonarchitecture/LAB3/template/vhdl/IR.vhd
+Z68 FC:/Users/emile/Desktop/Development/Directories/mellonarchitecture/LAB3/template/vhdl/IR.vhd
+l0
+L4
+V^D0Sz[@@D76hLF6hc_Qm`1
+!s100 g>VC3<ZiU9SUL1eB^Hc9_3
+R7
+32
+R47
+!i10b 1
+R48
+Z69 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|C:/Users/emile/Desktop/Development/Directories/mellonarchitecture/LAB3/template/vhdl/IR.vhd|
+Z70 !s107 C:/Users/emile/Desktop/Development/Directories/mellonarchitecture/LAB3/template/vhdl/IR.vhd|
+!i113 1
+R12
+R13
+Asynth
+R2
+R3
+DEx4 work 2 ir 0 22 ^D0Sz[@@D76hLF6hc_Qm`1
+l18
+L13
+V3k_l1fWEmD=FHM=>0hTjN0
+!s100 oGUn8WB=c4V=>XX3jC?Z31
+R7
+32
+R47
+!i10b 1
+R48
+R69
+R70
+!i113 1
+R12
+R13
+Eleds
+Z71 w1633892807
+R1
+R2
+R3
+R4
+Z72 8C:/Users/emile/Desktop/Development/Directories/mellonarchitecture/LAB3/template/vhdl/LEDs.vhd
+Z73 FC:/Users/emile/Desktop/Development/Directories/mellonarchitecture/LAB3/template/vhdl/LEDs.vhd
+l0
+L5
+V82^IRfHNag^>;Yc>Z[nm>3
+!s100 LBhnQz<diU;5h1EbFfFEW1
+R7
+32
+R8
+!i10b 1
+R9
+Z74 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|C:/Users/emile/Desktop/Development/Directories/mellonarchitecture/LAB3/template/vhdl/LEDs.vhd|
+Z75 !s107 C:/Users/emile/Desktop/Development/Directories/mellonarchitecture/LAB3/template/vhdl/LEDs.vhd|
+!i113 1
+R12
+R13
+Asynth
+R1
+R2
+R3
+DEx4 work 4 leds 0 22 82^IRfHNag^>;Yc>Z[nm>3
+l35
+L22
+V>3f<EDDzh?fl>Y0i[ad233
+!s100 >nX>UXM`h;^[mnM>habSd1
+R7
+32
+R8
+!i10b 1
+R9
+R74
+R75
+!i113 1
+R12
+R13
+Elogic_unit
+Z76 w1632762940
+R2
+R3
+R4
+Z77 8C:/Users/emile/Desktop/Development/Directories/mellonarchitecture/LAB3/template/vhdl/logic_unit.vhd
+Z78 FC:/Users/emile/Desktop/Development/Directories/mellonarchitecture/LAB3/template/vhdl/logic_unit.vhd
+l0
+L4
+VfUEL39DQfcR_XLk:Hoe<f3
+!s100 UJioXKUg8XUULGTSe2WE20
+R7
+32
+Z79 !s110 1634117587
+!i10b 1
+Z80 !s108 1634117587.000000
+Z81 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|C:/Users/emile/Desktop/Development/Directories/mellonarchitecture/LAB3/template/vhdl/logic_unit.vhd|
+Z82 !s107 C:/Users/emile/Desktop/Development/Directories/mellonarchitecture/LAB3/template/vhdl/logic_unit.vhd|
+!i113 1
+R12
+R13
+Asynth
+R2
+R3
+DEx4 work 10 logic_unit 0 22 fUEL39DQfcR_XLk:Hoe<f3
+l17
+L13
+VHYXgZ:UXMhgb7[OkPXYB>1
+!s100 f45fJ6:ko>0N0oA^ePAJ71
+R7
+32
+R79
+!i10b 1
+R80
+R81
+R82
+!i113 1
+R12
+R13
+Emultiplexer
+Z83 w1632867022
+R2
+R3
+R4
+Z84 8C:/Users/emile/Desktop/Development/Directories/mellonarchitecture/LAB3/template/vhdl/multiplexer.vhd
+Z85 FC:/Users/emile/Desktop/Development/Directories/mellonarchitecture/LAB3/template/vhdl/multiplexer.vhd
+l0
+L4
+V4iH6`nZgBAHVia??bJk>G2
+!s100 UDM^5ga=kb9Z[=K^]bghV0
+R7
+32
+R79
+!i10b 1
+R80
+Z86 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|C:/Users/emile/Desktop/Development/Directories/mellonarchitecture/LAB3/template/vhdl/multiplexer.vhd|
+Z87 !s107 C:/Users/emile/Desktop/Development/Directories/mellonarchitecture/LAB3/template/vhdl/multiplexer.vhd|
+!i113 1
+R12
+R13
+Asynth
+R2
+R3
+DEx4 work 11 multiplexer 0 22 4iH6`nZgBAHVia??bJk>G2
+l16
+L15
+VeMWiUkVVT5@^m;Vjff^7h3
+!s100 i7=kO@Rn8ZoWenhkZ:68?0
+R7
+32
+R79
+!i10b 1
+R80
+R86
+R87
+!i113 1
+R12
+R13
+Emux2x16
+Z88 w1633970614
+R2
+R3
+R4
+Z89 8C:/Users/emile/Desktop/Development/Directories/mellonarchitecture/LAB3/template/vhdl/mux2x16.vhd
+Z90 FC:/Users/emile/Desktop/Development/Directories/mellonarchitecture/LAB3/template/vhdl/mux2x16.vhd
+l0
+L4
+VaHOL`3MF?g?d`[6<SJm^e1
+!s100 ]AkMHg3_OS9:k6cjVd[b:3
+R7
+32
+R29
+!i10b 1
+R30
+Z91 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|C:/Users/emile/Desktop/Development/Directories/mellonarchitecture/LAB3/template/vhdl/mux2x16.vhd|
+Z92 !s107 C:/Users/emile/Desktop/Development/Directories/mellonarchitecture/LAB3/template/vhdl/mux2x16.vhd|
+!i113 1
+R12
+R13
+Asynth
+R2
+R3
+DEx4 work 7 mux2x16 0 22 aHOL`3MF?g?d`[6<SJm^e1
+l15
+L13
+VLVhl`eO:j`nX4T6J3ZO5j1
+!s100 giZ^DOQXY?KAGa?T>ZD[h1
+R7
+32
+R29
+!i10b 1
+R30
+R91
+R92
+!i113 1
+R12
+R13
+Emux2x32
+Z93 w1633970624
+R2
+R3
+R4
+Z94 8C:/Users/emile/Desktop/Development/Directories/mellonarchitecture/LAB3/template/vhdl/mux2x32.vhd
+Z95 FC:/Users/emile/Desktop/Development/Directories/mellonarchitecture/LAB3/template/vhdl/mux2x32.vhd
+l0
+L4
+V5<9;E?13m3J1aF01KEAAR1
+!s100 Iab^5l@hZCaSi22IEjFiN0
+R7
+32
+R29
+!i10b 1
+R30
+Z96 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|C:/Users/emile/Desktop/Development/Directories/mellonarchitecture/LAB3/template/vhdl/mux2x32.vhd|
+Z97 !s107 C:/Users/emile/Desktop/Development/Directories/mellonarchitecture/LAB3/template/vhdl/mux2x32.vhd|
+!i113 1
+R12
+R13
+Asynth
+R2
+R3
+DEx4 work 7 mux2x32 0 22 5<9;E?13m3J1aF01KEAAR1
+l14
+L13
+V?e7^<La4QAENz1k62LELU3
+!s100 nH56cMQ_KBEnR`JnQdTXb3
+R7
+32
+R29
+!i10b 1
+R30
+R96
+R97
+!i113 1
+R12
+R13
+Emux2x5
+Z98 w1633970552
+R2
+R3
+R4
+Z99 8C:/Users/emile/Desktop/Development/Directories/mellonarchitecture/LAB3/template/vhdl/mux2x5.vhd
+Z100 FC:/Users/emile/Desktop/Development/Directories/mellonarchitecture/LAB3/template/vhdl/mux2x5.vhd
+l0
+L4
+VW@GMgb]B=<MlVOlGRRM2i3
+!s100 A96?gLbg3Wafg>1JToSDm3
+R7
+32
+R29
+!i10b 1
+R30
+Z101 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|C:/Users/emile/Desktop/Development/Directories/mellonarchitecture/LAB3/template/vhdl/mux2x5.vhd|
+Z102 !s107 C:/Users/emile/Desktop/Development/Directories/mellonarchitecture/LAB3/template/vhdl/mux2x5.vhd|
+!i113 1
+R12
+R13
+Asynth
+R2
+R3
+DEx4 work 6 mux2x5 0 22 W@GMgb]B=<MlVOlGRRM2i3
+l14
+L13
+VKi]GBm6Mz<1Yo>LighU^S1
+!s100 []eNdgdDkke^=I`ji<RmJ3
+R7
+32
+R29
+!i10b 1
+R30
+R101
+R102
+!i113 1
+R12
+R13
+Epc
+Z103 w1634106033
+R1
+R2
+R3
+R4
+Z104 8C:/Users/emile/Desktop/Development/Directories/mellonarchitecture/LAB3/template/vhdl/PC.vhd
+Z105 FC:/Users/emile/Desktop/Development/Directories/mellonarchitecture/LAB3/template/vhdl/PC.vhd
+l0
+L5
+VL1PS=`^7Dom5JHh`oiS8z0
+!s100 Vz;DIYb[AY;g5[laVME<e3
+R7
+32
+R29
+!i10b 1
+R30
+Z106 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|C:/Users/emile/Desktop/Development/Directories/mellonarchitecture/LAB3/template/vhdl/PC.vhd|
+Z107 !s107 C:/Users/emile/Desktop/Development/Directories/mellonarchitecture/LAB3/template/vhdl/PC.vhd|
+!i113 1
+R12
+R13
+Asynth
+R1
+R2
+R3
+DEx4 work 2 pc 0 22 L1PS=`^7Dom5JHh`oiS8z0
+l23
+L19
+V:K<IL0^U[iQOAVBFKH;TX3
+!s100 ?1DN1BYQl1GG;:H2kfM2U0
+R7
+32
+R29
+!i10b 1
+R30
+R106
+R107
+!i113 1
+R12
+R13
+Eram
+Z108 w1633511766
+R1
+R2
+R3
+R4
+Z109 8C:/Users/emile/Desktop/Development/Directories/mellonarchitecture/LAB3/template/vhdl/RAM.vhd
+Z110 FC:/Users/emile/Desktop/Development/Directories/mellonarchitecture/LAB3/template/vhdl/RAM.vhd
+l0
+L5
+VJiWAmLGUWmdVPB8L2QZ[D3
+!s100 9O>00CFElD4PLMkihiTWm3
+R7
+32
+R79
+!i10b 1
+R80
+Z111 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|C:/Users/emile/Desktop/Development/Directories/mellonarchitecture/LAB3/template/vhdl/RAM.vhd|
+Z112 !s107 C:/Users/emile/Desktop/Development/Directories/mellonarchitecture/LAB3/template/vhdl/RAM.vhd|
+!i113 1
+R12
+R13
+Asynth
+R1
+R2
+R3
+DEx4 work 3 ram 0 22 JiWAmLGUWmdVPB8L2QZ[D3
+l29
+L17
+V0=g8MXc5hUYP7`_LBXYXO0
+!s100 H:SbmB1BTZO6`R4CzLzQV0
+R7
+32
+R79
+!i10b 1
+R80
+R111
+R112
+!i113 1
+R12
+R13
+Eregister_file
+Z113 w1633369488
+R1
+R2
+R3
+R4
+Z114 8C:/Users/emile/Desktop/Development/Directories/mellonarchitecture/LAB3/template/vhdl/register_file.vhd
+Z115 FC:/Users/emile/Desktop/Development/Directories/mellonarchitecture/LAB3/template/vhdl/register_file.vhd
+l0
+L5
+VhQYRZ<6ijZW2:hk46k4IZ2
+!s100 _;mToXbZzY:WVO^oMIJ;J3
+R7
+32
+R79
+!i10b 1
+R80
+Z116 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|C:/Users/emile/Desktop/Development/Directories/mellonarchitecture/LAB3/template/vhdl/register_file.vhd|
+Z117 !s107 C:/Users/emile/Desktop/Development/Directories/mellonarchitecture/LAB3/template/vhdl/register_file.vhd|
+!i113 1
+R12
+R13
+Asynth
+R1
+R2
+R3
+DEx4 work 13 register_file 0 22 hQYRZ<6ijZW2:hk46k4IZ2
+l27
+L18
+VB^VV;JLV4=>BXZKi;c3j62
+!s100 ]4aDP?l<=;DKfnFGh:z431
+R7
+32
+R79
+!i10b 1
+R80
+R116
+R117
+!i113 1
+R12
+R13
+Erom
+Z118 w1633513393
+R2
+R3
+R4
+Z119 8C:/Users/emile/Desktop/Development/Directories/mellonarchitecture/LAB3/template/vhdl/ROM.vhd
+Z120 FC:/Users/emile/Desktop/Development/Directories/mellonarchitecture/LAB3/template/vhdl/ROM.vhd
+l0
+L4
+VLD>LKJh0<<KfR_G::f?6B1
+!s100 LzhnA0@bLeKPHkcXf<L3g3
+R7
+32
+Z121 !s110 1634117588
+!i10b 1
+R80
+Z122 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|C:/Users/emile/Desktop/Development/Directories/mellonarchitecture/LAB3/template/vhdl/ROM.vhd|
+Z123 !s107 C:/Users/emile/Desktop/Development/Directories/mellonarchitecture/LAB3/template/vhdl/ROM.vhd|
+!i113 1
+R12
+R13
+Asynth
+R2
+R3
+DEx4 work 3 rom 0 22 LD>LKJh0<<KfR_G::f?6B1
+l28
+L14
+VQNNbVjAVakeh>m@3a4?Ui1
+!s100 ;]4<d=844z_TcH`3^f=SO3
+R7
+32
+R121
+!i10b 1
+R80
+R122
+R123
+!i113 1
+R12
+R13
+Erom_block
+Z124 w1632903294
+R2
+R3
+R4
+Z125 8C:/Users/emile/Desktop/Development/Directories/mellonarchitecture/LAB3/template/vhdl/ROM_Block.vhd
+Z126 FC:/Users/emile/Desktop/Development/Directories/mellonarchitecture/LAB3/template/vhdl/ROM_Block.vhd
+l0
+L42
+VCf[gZ]hQBZigaT1P:e9O01
+!s100 Fb1^C3b1G3KcM]0dFoPHV2
+R7
+32
+R121
+!i10b 1
+Z127 !s108 1634117588.000000
+Z128 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|C:/Users/emile/Desktop/Development/Directories/mellonarchitecture/LAB3/template/vhdl/ROM_Block.vhd|
+Z129 !s107 C:/Users/emile/Desktop/Development/Directories/mellonarchitecture/LAB3/template/vhdl/ROM_Block.vhd|
+!i113 1
+R12
+R13
+Asyn
+R2
+R3
+DEx4 work 9 rom_block 0 22 Cf[gZ]hQBZigaT1P:e9O01
+l82
+L52
+VZKBR7P0EaE;PJMf_Ho4411
+!s100 2O9W8o5<`cI7Pb0TBCEoL0
+R7
+32
+R121
+!i10b 1
+R127
+R128
+R129
+!i113 1
+R12
+R13
+Eshift_unit
+R71
+R1
+R2
+R3
+R4
+Z130 8C:/Users/emile/Desktop/Development/Directories/mellonarchitecture/LAB3/template/vhdl/shift_unit.vhd
+Z131 FC:/Users/emile/Desktop/Development/Directories/mellonarchitecture/LAB3/template/vhdl/shift_unit.vhd
+l0
+L5
+VoYz=ZP:Rg2U9Eb=ZGo>940
+!s100 C4@E7NN0:UB89P^MW405S0
+R7
+32
+R121
+!i10b 1
+R127
+Z132 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|C:/Users/emile/Desktop/Development/Directories/mellonarchitecture/LAB3/template/vhdl/shift_unit.vhd|
+Z133 !s107 C:/Users/emile/Desktop/Development/Directories/mellonarchitecture/LAB3/template/vhdl/shift_unit.vhd|
+!i113 1
+R12
+R13
+Asynth
+R1
+R2
+R3
+Z134 DEx4 work 10 shift_unit 0 22 oYz=ZP:Rg2U9Eb=ZGo>940
+l17
+L14
+Z135 VNOiOnk]_oCJDa8RHk=_0n1
+Z136 !s100 dC3RH_ngSNidhYJX18aNc2
+R7
+32
+R121
+!i10b 1
+R127
+R132
+R133
+!i113 1
+R12
+R13
+Etb_controller
+R19
+R33
+R26
+R1
+R2
+R3
+R4
+Z137 8C:/Users/emile/Desktop/Development/Directories/mellonarchitecture/LAB3/template/testbench/tb_Controller.vhd
+Z138 FC:/Users/emile/Desktop/Development/Directories/mellonarchitecture/LAB3/template/testbench/tb_Controller.vhd
 l0
 L9
-V0>@NJz45o9SWL71JJI]AM2
+V5[W5lV9lALk`VLfB7G@O[1
 !s100 QPYMI?@zF<fA]gVd9c[kS0
 R7
-31
-Z21 !s110 1507121054
+32
+R34
 !i10b 1
-Z22 !s108 1507121054.000000
-Z23 !s90 -reportprogress|300|-93|../testbench/tb_Controller.vhd|
-Z24 !s107 ../testbench/tb_Controller.vhd|
+Z139 !s108 1634117585.000000
+Z140 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|C:/Users/emile/Desktop/Development/Directories/mellonarchitecture/LAB3/template/testbench/tb_Controller.vhd|
+Z141 !s107 C:/Users/emile/Desktop/Development/Directories/mellonarchitecture/LAB3/template/testbench/tb_Controller.vhd|
 !i113 1
-o-93
 R12
-Atestbench
 R13
-R0
-R18
+Atestbench
+R33
+R26
 R1
 R2
-DEx4 work 13 tb_controller 0 22 0>@NJz45o9SWL71JJI]AM2
+R3
+DEx4 work 13 tb_controller 0 22 5[W5lV9lALk`VLfB7G@O[1
 l102
 L15
-VGiWKHEGIT74Di1J2SFIlH1
+Vco=kRgU:DP_WHcBQJ_8332
 !s100 _WkzDDFBPd:3LHMWS[AoW2
 R7
-31
-R21
+32
+R34
 !i10b 1
-R22
-R23
-R24
+R139
+R140
+R141
 !i113 1
-o-93
 R12
+R13
+Etb_extend
+R19
+R33
+R26
+R2
+R3
+R4
+Z142 8C:/Users/emile/Desktop/Development/Directories/mellonarchitecture/LAB3/template/testbench/tb_Extend.vhd
+Z143 FC:/Users/emile/Desktop/Development/Directories/mellonarchitecture/LAB3/template/testbench/tb_Extend.vhd
+l0
+L8
+Vaaa357Ec4Z]hSVLzLa]`V0
+!s100 bW1ZJ800R3O0<C<7nO4h:1
+R7
+32
+R34
+!i10b 1
+R139
+Z144 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|C:/Users/emile/Desktop/Development/Directories/mellonarchitecture/LAB3/template/testbench/tb_Extend.vhd|
+Z145 !s107 C:/Users/emile/Desktop/Development/Directories/mellonarchitecture/LAB3/template/testbench/tb_Extend.vhd|
+!i113 1
+R12
+R13
+Atestbench
+R33
+R26
+R2
+R3
+DEx4 work 9 tb_extend 0 22 aaa357Ec4Z]hSVLzLa]`V0
+l31
+L11
+VSUC:NKCMTg8:IYKgIcGd30
+!s100 f><EEJh?:BbXgSC^g?0XG2
+R7
+32
+R34
+!i10b 1
+R139
+R144
+R145
+!i113 1
+R12
+R13
+Etb_gecko
+R19
+R2
+R3
+R4
+Z146 8C:/Users/emile/Desktop/Development/Directories/mellonarchitecture/LAB3/template/testbench/tb_GECKO.vhd
+Z147 FC:/Users/emile/Desktop/Development/Directories/mellonarchitecture/LAB3/template/testbench/tb_GECKO.vhd
+l0
+L4
+V5Tbz7Kl=147iIIz>>A8Y[3
+!s100 M92[;29_Yc:FoKCCIgj]?0
+R7
+32
+R34
+!i10b 1
+R139
+Z148 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|C:/Users/emile/Desktop/Development/Directories/mellonarchitecture/LAB3/template/testbench/tb_GECKO.vhd|
+Z149 !s107 C:/Users/emile/Desktop/Development/Directories/mellonarchitecture/LAB3/template/testbench/tb_GECKO.vhd|
+!i113 1
+R12
+R13
+Atestbench
+R65
+R2
+R3
+DEx4 work 8 tb_gecko 0 22 5Tbz7Kl=147iIIz>>A8Y[3
+l14
+L7
+V6fQEk`>ELI8^:O]bcf[0k0
+!s100 1395I=^FjK==Lo:2:Ck6c3
+R7
+32
+R34
+!i10b 1
+R139
+R148
+R149
+!i113 1
+R12
+R13
+Etb_ir
+R19
+R33
+R26
+R2
+R3
+R4
+Z150 8C:/Users/emile/Desktop/Development/Directories/mellonarchitecture/LAB3/template/testbench/tb_IR.vhd
+Z151 FC:/Users/emile/Desktop/Development/Directories/mellonarchitecture/LAB3/template/testbench/tb_IR.vhd
+l0
+L8
+VNa]DdS==`51QO9@9@NCYO3
+!s100 dO7:P:CO76Dg9T_Q>3Mi:2
+R7
+32
+R34
+!i10b 1
+R139
+Z152 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|C:/Users/emile/Desktop/Development/Directories/mellonarchitecture/LAB3/template/testbench/tb_IR.vhd|
+Z153 !s107 C:/Users/emile/Desktop/Development/Directories/mellonarchitecture/LAB3/template/testbench/tb_IR.vhd|
+!i113 1
+R12
+R13
+Atestbench
+R33
+R26
+R2
+R3
+DEx4 work 5 tb_ir 0 22 Na]DdS==`51QO9@9@NCYO3
+l32
+L11
+VFC]h]m]T]Ph2`Z>Ki^a?Z2
+!s100 g?YUbkdlEmZ2JbBY[dbba0
+R7
+32
+R34
+!i10b 1
+R139
+R152
+R153
+!i113 1
+R12
+R13
+Etb_pc
+R19
+R33
+R26
+R2
+R3
+R4
+Z154 8C:/Users/emile/Desktop/Development/Directories/mellonarchitecture/LAB3/template/testbench/tb_PC.vhd
+Z155 FC:/Users/emile/Desktop/Development/Directories/mellonarchitecture/LAB3/template/testbench/tb_PC.vhd
+l0
+L8
+VZbiH9]DK4fmMF;^e8W7zF1
+!s100 _Sjg^6a@flK7I1KVlG]Sm2
+R7
+32
+R34
+!i10b 1
+R139
+Z156 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|C:/Users/emile/Desktop/Development/Directories/mellonarchitecture/LAB3/template/testbench/tb_PC.vhd|
+Z157 !s107 C:/Users/emile/Desktop/Development/Directories/mellonarchitecture/LAB3/template/testbench/tb_PC.vhd|
+!i113 1
+R12
+R13
+Atestbench
+R33
+R26
+R2
+R3
+DEx4 work 5 tb_pc 0 22 ZbiH9]DK4fmMF;^e8W7zF1
+l42
+L11
+V;4TRg:;B=`LN4JkHFOfZH3
+!s100 gKH@n?YGO`P>Bz<MRbX@K0
+R7
+32
+R34
+!i10b 1
+R139
+R156
+R157
+!i113 1
+R12
+R13
