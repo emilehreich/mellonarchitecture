@@ -37,5 +37,103 @@ entity controller is
 end controller;
 
 architecture synth of controller is
+
+  --signals for output logic
+  signal s_read, s_en, s_signed : std_logic;
+  signal s_op_alu : std_logic_vector(5 downto 0);
+
+
+  --flags to move forward in the cycles
+  signal flag_FETCH1, flag_FETCH2, flag_DECODE : std_logic;
+
+  
+
 begin
+
+  --========================================================================
+  --FETCH1 cycle
+
+  --CHECK DESIGN: independent from clock ???
+  FETCH1 : process(reset_n)
+  begin
+    --asynchronous reset_n
+    if(reset_n = '0') then
+      s_read <= '1';
+      flag_FETCH1 <= '1';
+    end if;
+  end process;
+
+  --output logic for FETCH1 cycle
+  FETCH1_output_logic : process(s_read)
+  begin
+    read <= s_read;
+  end process;
+
+  --========================================================================
+  --FETCH2 cycle
+
+  --The process has effects after FETCH1 is done
+  FETCH2 : process(clk)
+  begin
+    if (flag_FETCH1 = '1') then
+      if (rising_edge(clk)) then
+        s_en <= '1';
+        flag_FETCH1 <= '0';
+        flag_FETCH2 <= '1';
+      end if;
+    end if;
+  end process;
+
+  --output logic for FETCH1 cycle
+  FETCH2_output_logic : process(s_en)
+  begin
+    pc_en <= s_en;
+  end process;
+  --========================================================================
+  --DECODE cycle
+
+  --reads the opcode
+  DECODE : process(clk)
+  begin
+    if (rising_edge(clk)) then
+      if (flag_FETCH2 = '1') then
+        flag_FETCH2 <= 0;
+        s_op_alu <= op;
+        --==============================
+        --I_OP
+        if (op = "011001" or op = "011010") then
+          s_signed <= '1';
+        else 
+          s_signed <= '0';
+        --==============================
+        --R_OP
+
+        --TODO
+        end if;
+      end if;
+    end if;
+  end process;
+
+  DECODE_output_logic : process(s_op_alu, s_signed)
+  begin
+    op_alu <= s_op_alu;
+    imm_signed <= s_signed;
+  end process;
+
+  --========================================================================
+  --LOAD
+
+  --TODO
+  --========================================================================
+  --STORE
+
+
+  --TODO
+
+  --========================================================================
+  --BREAK
+
+
+  --TODO
+
 end synth;
