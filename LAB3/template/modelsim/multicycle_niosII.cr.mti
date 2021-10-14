@@ -119,15 +119,6 @@ Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  
 -- Compiling entity ROM
 -- Compiling architecture synth of ROM
 
-} {} {}} ../vhdl/buttons.vhd {1 {vcom -work work -2002 -explicit -stats=none C:/Users/emile/Desktop/Development/Directories/mellonarchitecture/LAB3/template/vhdl/buttons.vhd
-Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  5 2016
--- Loading package STANDARD
--- Loading package TEXTIO
--- Loading package std_logic_1164
--- Loading package NUMERIC_STD
--- Compiling entity buttons
--- Compiling architecture synth of buttons
-
 } {} {}} ../testbench/tb_Extend.vhd {2 {vcom -work work -2002 -explicit -stats=none C:/Users/emile/Desktop/Development/Directories/mellonarchitecture/LAB3/template/testbench/tb_Extend.vhd
 Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  5 2016
 -- Loading package STANDARD
@@ -140,31 +131,14 @@ Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  
 ** Warning: C:/Users/emile/Desktop/Development/Directories/mellonarchitecture/LAB3/template/testbench/tb_Extend.vhd(40): (vcom-1194) FILE declaration was written using VHDL 1987 syntax.
 ** Warning: C:/Users/emile/Desktop/Development/Directories/mellonarchitecture/LAB3/template/testbench/tb_Extend.vhd(42): (vcom-1194) FILE declaration was written using VHDL 1987 syntax.
 
-} {} {}} ../vhdl/CPU.vhd {1 {vcom -work work -2002 -explicit -stats=none C:/Users/emile/Desktop/Development/Directories/mellonarchitecture/LAB3/template/vhdl/CPU.vhd
-Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  5 2016
--- Loading package STANDARD
--- Loading package TEXTIO
--- Loading package std_logic_1164
--- Compiling entity CPU
--- Compiling architecture bdf_type of CPU
-
-} {} {}} ../testbench/tb_GECKO.vhd {1 {vcom -work work -2002 -explicit -stats=none C:/Users/emile/Desktop/Development/Directories/mellonarchitecture/LAB3/template/testbench/tb_GECKO.vhd
-Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  5 2016
--- Loading package STANDARD
--- Loading package TEXTIO
--- Loading package std_logic_1164
--- Compiling entity tb_GECKO
--- Compiling architecture testbench of tb_GECKO
--- Loading entity GECKO
-
-} {} {}} ../vhdl/LEDs.vhd {1 {vcom -work work -2002 -explicit -stats=none C:/Users/emile/Desktop/Development/Directories/mellonarchitecture/LAB3/template/vhdl/LEDs.vhd
+} {} {}} ../vhdl/buttons.vhd {1 {vcom -work work -2002 -explicit -stats=none C:/Users/emile/Desktop/Development/Directories/mellonarchitecture/LAB3/template/vhdl/buttons.vhd
 Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  5 2016
 -- Loading package STANDARD
 -- Loading package TEXTIO
 -- Loading package std_logic_1164
 -- Loading package NUMERIC_STD
--- Compiling entity LEDs
--- Compiling architecture synth of LEDs
+-- Compiling entity buttons
+-- Compiling architecture synth of buttons
 
 } {} {}} ../vhdl/RAM.vhd {1 {vcom -work work -2002 -explicit -stats=none C:/Users/emile/Desktop/Development/Directories/mellonarchitecture/LAB3/template/vhdl/RAM.vhd
 Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  5 2016
@@ -175,13 +149,31 @@ Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  
 -- Compiling entity RAM
 -- Compiling architecture synth of RAM
 
-} {} {}} ../vhdl/mux2x32.vhd {1 {vcom -work work -2002 -explicit -stats=none C:/Users/emile/Desktop/Development/Directories/mellonarchitecture/LAB3/template/vhdl/mux2x32.vhd
+} {} {}} ../vhdl/LEDs.vhd {1 {vcom -work work -2002 -explicit -stats=none C:/Users/emile/Desktop/Development/Directories/mellonarchitecture/LAB3/template/vhdl/LEDs.vhd
 Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  5 2016
 -- Loading package STANDARD
 -- Loading package TEXTIO
 -- Loading package std_logic_1164
--- Compiling entity mux2x32
--- Compiling architecture synth of mux2x32
+-- Loading package NUMERIC_STD
+-- Compiling entity LEDs
+-- Compiling architecture synth of LEDs
+
+} {} {}} ../testbench/tb_GECKO.vhd {1 {vcom -work work -2002 -explicit -stats=none C:/Users/emile/Desktop/Development/Directories/mellonarchitecture/LAB3/template/testbench/tb_GECKO.vhd
+Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  5 2016
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Compiling entity tb_GECKO
+-- Compiling architecture testbench of tb_GECKO
+-- Loading entity GECKO
+
+} {} {}} ../vhdl/CPU.vhd {1 {vcom -work work -2002 -explicit -stats=none C:/Users/emile/Desktop/Development/Directories/mellonarchitecture/LAB3/template/vhdl/CPU.vhd
+Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  5 2016
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Compiling entity CPU
+-- Compiling architecture bdf_type of CPU
 
 } {} {}} ../vhdl/GECKO.vhd {1 {vcom -work work -2002 -explicit -stats=none C:/Users/emile/Desktop/Development/Directories/mellonarchitecture/LAB3/template/vhdl/GECKO.vhd
 Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  5 2016
@@ -190,6 +182,26 @@ Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  
 -- Loading package std_logic_1164
 -- Compiling entity GECKO
 -- Compiling architecture bdf_type of GECKO
+
+} {} {}} ../vhdl/mux2x32.vhd {1 {vcom -work work -2002 -explicit -stats=none C:/Users/emile/Desktop/Development/Directories/mellonarchitecture/LAB3/template/vhdl/mux2x32.vhd
+Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  5 2016
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Compiling entity mux2x32
+-- Compiling architecture synth of mux2x32
+
+} {} {}} ../testbench/tb_PC.vhd {2 {vcom -work work -2002 -explicit -stats=none C:/Users/emile/Desktop/Development/Directories/mellonarchitecture/LAB3/template/testbench/tb_PC.vhd
+Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  5 2016
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Loading package std_logic_textio
+-- Loading package check_functions
+-- Compiling entity tb_PC
+-- Compiling architecture testbench of tb_PC
+** Warning: C:/Users/emile/Desktop/Development/Directories/mellonarchitecture/LAB3/template/testbench/tb_PC.vhd(57): (vcom-1194) FILE declaration was written using VHDL 1987 syntax.
+** Warning: C:/Users/emile/Desktop/Development/Directories/mellonarchitecture/LAB3/template/testbench/tb_PC.vhd(59): (vcom-1194) FILE declaration was written using VHDL 1987 syntax.
 
 } {} {}} ../testbench/tb_IR.vhd {2 {vcom -work work -2002 -explicit -stats=none C:/Users/emile/Desktop/Development/Directories/mellonarchitecture/LAB3/template/testbench/tb_IR.vhd
 Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  5 2016
@@ -203,17 +215,13 @@ Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  
 ** Warning: C:/Users/emile/Desktop/Development/Directories/mellonarchitecture/LAB3/template/testbench/tb_IR.vhd(42): (vcom-1194) FILE declaration was written using VHDL 1987 syntax.
 ** Warning: C:/Users/emile/Desktop/Development/Directories/mellonarchitecture/LAB3/template/testbench/tb_IR.vhd(44): (vcom-1194) FILE declaration was written using VHDL 1987 syntax.
 
-} {} {}} ../testbench/tb_PC.vhd {2 {vcom -work work -2002 -explicit -stats=none C:/Users/emile/Desktop/Development/Directories/mellonarchitecture/LAB3/template/testbench/tb_PC.vhd
+} {} {}} ../vhdl/mux2x16.vhd {1 {vcom -work work -2002 -explicit -stats=none C:/Users/emile/Desktop/Development/Directories/mellonarchitecture/LAB3/template/vhdl/mux2x16.vhd
 Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  5 2016
 -- Loading package STANDARD
 -- Loading package TEXTIO
 -- Loading package std_logic_1164
--- Loading package std_logic_textio
--- Loading package check_functions
--- Compiling entity tb_PC
--- Compiling architecture testbench of tb_PC
-** Warning: C:/Users/emile/Desktop/Development/Directories/mellonarchitecture/LAB3/template/testbench/tb_PC.vhd(57): (vcom-1194) FILE declaration was written using VHDL 1987 syntax.
-** Warning: C:/Users/emile/Desktop/Development/Directories/mellonarchitecture/LAB3/template/testbench/tb_PC.vhd(59): (vcom-1194) FILE declaration was written using VHDL 1987 syntax.
+-- Compiling entity mux2x16
+-- Compiling architecture synth of mux2x16
 
 } {} {}} ../testbench/tb_Controller.vhd {2 {vcom -work work -2002 -explicit -stats=none C:/Users/emile/Desktop/Development/Directories/mellonarchitecture/LAB3/template/testbench/tb_Controller.vhd
 Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  5 2016
@@ -228,22 +236,6 @@ Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  
 ** Warning: C:/Users/emile/Desktop/Development/Directories/mellonarchitecture/LAB3/template/testbench/tb_Controller.vhd(129): (vcom-1194) FILE declaration was written using VHDL 1987 syntax.
 ** Warning: C:/Users/emile/Desktop/Development/Directories/mellonarchitecture/LAB3/template/testbench/tb_Controller.vhd(130): (vcom-1194) FILE declaration was written using VHDL 1987 syntax.
 
-} {} {}} ../vhdl/mux2x16.vhd {1 {vcom -work work -2002 -explicit -stats=none C:/Users/emile/Desktop/Development/Directories/mellonarchitecture/LAB3/template/vhdl/mux2x16.vhd
-Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  5 2016
--- Loading package STANDARD
--- Loading package TEXTIO
--- Loading package std_logic_1164
--- Compiling entity mux2x16
--- Compiling architecture synth of mux2x16
-
-} {} {}} ../vhdl/logic_unit.vhd {1 {vcom -work work -2002 -explicit -stats=none C:/Users/emile/Desktop/Development/Directories/mellonarchitecture/LAB3/template/vhdl/logic_unit.vhd
-Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  5 2016
--- Loading package STANDARD
--- Loading package TEXTIO
--- Loading package std_logic_1164
--- Compiling entity logic_unit
--- Compiling architecture synth of logic_unit
-
 } {} {}} ../vhdl/shift_unit.vhd {1 {vcom -work work -2002 -explicit -stats=none C:/Users/emile/Desktop/Development/Directories/mellonarchitecture/LAB3/template/vhdl/shift_unit.vhd
 Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  5 2016
 -- Loading package STANDARD
@@ -252,6 +244,14 @@ Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  
 -- Loading package NUMERIC_STD
 -- Compiling entity shift_unit
 -- Compiling architecture synth of shift_unit
+
+} {} {}} ../vhdl/logic_unit.vhd {1 {vcom -work work -2002 -explicit -stats=none C:/Users/emile/Desktop/Development/Directories/mellonarchitecture/LAB3/template/vhdl/logic_unit.vhd
+Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  5 2016
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Compiling entity logic_unit
+-- Compiling architecture synth of logic_unit
 
 } {} {}} ../vhdl/decoder.vhd {2 {vcom -work work -2002 -explicit -stats=none C:/Users/emile/Desktop/Development/Directories/mellonarchitecture/LAB3/template/vhdl/decoder.vhd
 Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  5 2016

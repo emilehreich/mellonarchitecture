@@ -1,66 +1,18 @@
-Time: 2.5 ns Input File Line: 5
-* Error: write = 'U' instead of '0'.
- During FETCH, write has to be 0.
-
-Time: 2.5 ns Input File Line: 5
-* Error: rf_wren = 'U' instead of '0'.
- During FETCH, rf_wren has to be 0.
-
-Time: 2.5 ns Input File Line: 5
-* Error: branch_op = 'U' instead of '0'.
- During FETCH, branch_op has to be 0.
-
-Time: 7.5 ns Input File Line: 7
-* Error: write = 'U' instead of '0'.
- During FETCH, write has to be 0.
-
-Time: 7.5 ns Input File Line: 7
-* Error: rf_wren = 'U' instead of '0'.
- During FETCH, rf_wren has to be 0.
-
-Time: 7.5 ns Input File Line: 7
-* Error: branch_op = 'U' instead of '0'.
- During FETCH, branch_op has to be 0.
-
 Time: 7.5 ns Input File Line: 7
 * Error: read = 'U' instead of '1'.
  Before activating ir_en, read has to be activated.
 
 Time: 12.5 ns Input File Line: 8
-* Error: write = 'U' instead of '0'.
- During DECODE, write has to be 0.
-
-Time: 12.5 ns Input File Line: 8
-* Error: rf_wren = 'U' instead of '0'.
- During DECODE, rf_wren has to be 0.
-
-Time: 12.5 ns Input File Line: 8
-* Error: branch_op = 'U' instead of '0'.
- During FETCH, branch_op has to be 0.
+* Error: PC enable count = 0 instead of 1.
+ Before the Execute states, the PC must be enabled only once.
 
 Time: 17.5 ns Input File Line: 9
-* Error: op_alu = 'UU00UU' instead of '100001'.
+* Error: op_alu = '000000' instead of '100001'.
  Verify the op_alu generation.
 
 Time: 17.5 ns Input File Line: 9
-* Error: write = 'U' instead of '0'.
- During R_OP, write has to be 0.
-
-Time: 17.5 ns Input File Line: 9
-* Error: pc_en = 'U' instead of '0'.
- During R_OP, pc_en has to be 0.
-
-Time: 17.5 ns Input File Line: 9
-* Error: ir_en = 'U' instead of '0'.
+* Error: ir_en = '1' instead of '0'.
  During R_OP, ir_en has to be 0.
-
-Time: 17.5 ns Input File Line: 9
-* Error: branch_op = 'U' instead of '0'.
- During R_OP, branch_op has to be 0.
-
-Time: 17.5 ns Input File Line: 9
-* Error: sel_mem = 'U' instead of '0'.
- During R_OP, sel_mem has to be 0.
 
 Time: 17.5 ns Input File Line: 9
 * Error: sel_pc = 'U' instead of '0'.
@@ -71,68 +23,28 @@ Time: 17.5 ns Input File Line: 9
  During R_OP, sel_ra has to be 0.
 
 Time: 17.5 ns Input File Line: 9
-* Error: rf_wren = 'U' instead of '1'.
+* Error: rf_wren = '0' instead of '1'.
  During R_OP, rf_wren has to be 1.
 
 Time: 17.5 ns Input File Line: 9
-* Error: sel_rC = 'U' instead of '1'.
+* Error: sel_rC = '0' instead of '1'.
  During R_OP, sel_rC has to be 1.
 
 Time: 17.5 ns Input File Line: 9
-* Error: sel_b = 'U' instead of '1'.
+* Error: sel_b = '0' instead of '1'.
  During R_OP, sel_b has to be 1.
 
-Time: 22.5 ns Input File Line: 11
-* Error: write = 'U' instead of '0'.
- During FETCH, write has to be 0.
-
-Time: 22.5 ns Input File Line: 11
-* Error: rf_wren = 'U' instead of '0'.
- During FETCH, rf_wren has to be 0.
-
-Time: 22.5 ns Input File Line: 11
-* Error: branch_op = 'U' instead of '0'.
- During FETCH, branch_op has to be 0.
-
-Time: 22.5 ns Input File Line: 11
-* Error: read = 'U' instead of '1'.
- Before activating ir_en, read has to be activated.
-
 Time: 27.5 ns Input File Line: 12
-* Error: write = 'U' instead of '0'.
- During DECODE, write has to be 0.
-
-Time: 27.5 ns Input File Line: 12
-* Error: rf_wren = 'U' instead of '0'.
- During DECODE, rf_wren has to be 0.
-
-Time: 27.5 ns Input File Line: 12
-* Error: branch_op = 'U' instead of '0'.
- During FETCH, branch_op has to be 0.
+* Error: PC enable count = 0 instead of 1.
+ Before the Execute states, the PC must be enabled only once.
 
 Time: 32.5 ns Input File Line: 13
-* Error: op_alu = 'UU0UUU' instead of '110011'.
+* Error: op_alu = '000000' instead of '110011'.
  Verify the op_alu generation.
 
 Time: 32.5 ns Input File Line: 13
-* Error: write = 'U' instead of '0'.
- During R_OP, write has to be 0.
-
-Time: 32.5 ns Input File Line: 13
-* Error: pc_en = 'U' instead of '0'.
- During R_OP, pc_en has to be 0.
-
-Time: 32.5 ns Input File Line: 13
-* Error: ir_en = 'U' instead of '0'.
+* Error: ir_en = '1' instead of '0'.
  During R_OP, ir_en has to be 0.
-
-Time: 32.5 ns Input File Line: 13
-* Error: branch_op = 'U' instead of '0'.
- During R_OP, branch_op has to be 0.
-
-Time: 32.5 ns Input File Line: 13
-* Error: sel_mem = 'U' instead of '0'.
- During R_OP, sel_mem has to be 0.
 
 Time: 32.5 ns Input File Line: 13
 * Error: sel_pc = 'U' instead of '0'.
@@ -143,176 +55,60 @@ Time: 32.5 ns Input File Line: 13
  During R_OP, sel_ra has to be 0.
 
 Time: 32.5 ns Input File Line: 13
-* Error: rf_wren = 'U' instead of '1'.
+* Error: rf_wren = '0' instead of '1'.
  During R_OP, rf_wren has to be 1.
 
 Time: 32.5 ns Input File Line: 13
-* Error: sel_rC = 'U' instead of '1'.
+* Error: sel_rC = '0' instead of '1'.
  During R_OP, sel_rC has to be 1.
 
 Time: 32.5 ns Input File Line: 13
-* Error: sel_b = 'U' instead of '1'.
+* Error: sel_b = '0' instead of '1'.
  During R_OP, sel_b has to be 1.
 
-Time: 37.5 ns Input File Line: 15
-* Error: write = 'U' instead of '0'.
- During FETCH, write has to be 0.
-
-Time: 37.5 ns Input File Line: 15
-* Error: rf_wren = 'U' instead of '0'.
- During FETCH, rf_wren has to be 0.
-
-Time: 37.5 ns Input File Line: 15
-* Error: branch_op = 'U' instead of '0'.
- During FETCH, branch_op has to be 0.
-
-Time: 37.5 ns Input File Line: 15
-* Error: read = 'U' instead of '1'.
- Before activating ir_en, read has to be activated.
-
 Time: 42.5 ns Input File Line: 16
-* Error: write = 'U' instead of '0'.
- During DECODE, write has to be 0.
-
-Time: 42.5 ns Input File Line: 16
-* Error: rf_wren = 'U' instead of '0'.
- During DECODE, rf_wren has to be 0.
-
-Time: 42.5 ns Input File Line: 16
-* Error: branch_op = 'U' instead of '0'.
- During FETCH, branch_op has to be 0.
+* Error: PC enable count = 0 instead of 1.
+ Before the Execute states, the PC must be enabled only once.
 
 Time: 47.5 ns Input File Line: 17
-* Error: op_alu = 'UUU000' instead of '000000'.
- Verify the op_alu generation.
-
-Time: 47.5 ns Input File Line: 17
-* Error: write = 'U' instead of '0'.
- During I_OP, write has to be 0.
-
-Time: 47.5 ns Input File Line: 17
-* Error: pc_en = 'U' instead of '0'.
- During I_OP, pc_en has to be 0.
-
-Time: 47.5 ns Input File Line: 17
-* Error: ir_en = 'U' instead of '0'.
+* Error: ir_en = '1' instead of '0'.
  During I_OP, ir_en has to be 0.
-
-Time: 47.5 ns Input File Line: 17
-* Error: branch_op = 'U' instead of '0'.
- During I_OP, branch_op has to be 0.
-
-Time: 47.5 ns Input File Line: 17
-* Error: sel_mem = 'U' instead of '0'.
- During I_OP, sel_mem has to be 0.
 
 Time: 47.5 ns Input File Line: 17
 * Error: sel_pc = 'U' instead of '0'.
  During I_OP, sel_pc has to be 0.
 
 Time: 47.5 ns Input File Line: 17
-* Error: sel_b = 'U' instead of '0'.
- During I_OP, sel_b has to be 0.
-
-Time: 47.5 ns Input File Line: 17
 * Error: sel_ra = 'U' instead of '0'.
  During I_OP, sel_ra has to be 0.
 
 Time: 47.5 ns Input File Line: 17
-* Error: sel_rC = 'U' instead of '0'.
- During I_OP, sel_rC has to be 0.
-
-Time: 47.5 ns Input File Line: 17
-* Error: imm_signed = 'U' instead of '1'.
+* Error: imm_signed = '0' instead of '1'.
  During UI_OP, imm_signed has to be 1.
 
 Time: 47.5 ns Input File Line: 17
-* Error: rf_wren = 'U' instead of '1'.
+* Error: rf_wren = '0' instead of '1'.
  During I_OP, rf_wren has to be 1.
 
-Time: 52.5 ns Input File Line: 19
-* Error: write = 'U' instead of '0'.
- During FETCH, write has to be 0.
-
-Time: 52.5 ns Input File Line: 19
-* Error: rf_wren = 'U' instead of '0'.
- During FETCH, rf_wren has to be 0.
-
-Time: 52.5 ns Input File Line: 19
-* Error: branch_op = 'U' instead of '0'.
- During FETCH, branch_op has to be 0.
-
-Time: 52.5 ns Input File Line: 19
-* Error: read = 'U' instead of '1'.
- Before activating ir_en, read has to be activated.
-
 Time: 57.5 ns Input File Line: 20
-* Error: write = 'U' instead of '0'.
- During DECODE, write has to be 0.
-
-Time: 57.5 ns Input File Line: 20
-* Error: rf_wren = 'U' instead of '0'.
- During DECODE, rf_wren has to be 0.
-
-Time: 57.5 ns Input File Line: 20
-* Error: branch_op = 'U' instead of '0'.
- During FETCH, branch_op has to be 0.
+* Error: PC enable count = 0 instead of 1.
+ Before the Execute states, the PC must be enabled only once.
 
 Time: 62.5 ns Input File Line: 21
-* Error: op_alu = 'UUU000' instead of '000000'.
- Verify the op_alu generation.
-
-Time: 62.5 ns Input File Line: 21
-* Error: write = 'U' instead of '0'.
- During LOAD1, write has to be 0.
-
-Time: 62.5 ns Input File Line: 21
-* Error: pc_en = 'U' instead of '0'.
- During LOAD1, pc_en has to be 0.
-
-Time: 62.5 ns Input File Line: 21
-* Error: ir_en = 'U' instead of '0'.
+* Error: ir_en = '1' instead of '0'.
  During LOAD1, ir_en has to be 0.
 
 Time: 62.5 ns Input File Line: 21
-* Error: branch_op = 'U' instead of '0'.
- During LOAD1, branch_op has to be 0.
-
-Time: 62.5 ns Input File Line: 21
-* Error: sel_b = 'U' instead of '0'.
- During LOAD1, sel_b has to be 0.
-
-Time: 62.5 ns Input File Line: 21
-* Error: rf_wren = 'U' instead of '0'.
- During LOAD1, rf_wren has to be 0.
-
-Time: 62.5 ns Input File Line: 21
-* Error: read = 'U' instead of '1'.
- During LOAD1, read has to be 1.
-
-Time: 62.5 ns Input File Line: 21
-* Error: sel_addr = 'U' instead of '1'.
+* Error: sel_addr = '0' instead of '1'.
  During LOAD1, sel_addr has to be 1.
 
 Time: 62.5 ns Input File Line: 21
-* Error: imm_signed = 'U' instead of '1'.
+* Error: imm_signed = '0' instead of '1'.
  During LOAD1, imm_signed has to be 1.
 
 Time: 67.5 ns Input File Line: 22
-* Error: write = 'U' instead of '0'.
- During LOAD2, write has to be 0.
-
-Time: 67.5 ns Input File Line: 22
-* Error: pc_en = 'U' instead of '0'.
- During LOAD2, pc_en has to be 0.
-
-Time: 67.5 ns Input File Line: 22
-* Error: ir_en = 'U' instead of '0'.
+* Error: ir_en = '1' instead of '0'.
  During LOAD2, ir_en has to be 0.
-
-Time: 67.5 ns Input File Line: 22
-* Error: branch_op = 'U' instead of '0'.
- During LOAD2, branch_op has to be 0.
 
 Time: 67.5 ns Input File Line: 22
 * Error: sel_pc = 'U' instead of '0'.
@@ -323,292 +119,72 @@ Time: 67.5 ns Input File Line: 22
  During LOAD2, sel_ra has to be 0.
 
 Time: 67.5 ns Input File Line: 22
-* Error: sel_rC = 'U' instead of '0'.
- During LOAD2, sel_rC has to be 0.
-
-Time: 67.5 ns Input File Line: 22
-* Error: sel_mem = 'U' instead of '1'.
+* Error: sel_mem = '0' instead of '1'.
  During LOAD2, sel_mem has to be 1.
 
 Time: 67.5 ns Input File Line: 22
-* Error: rf_wren = 'U' instead of '1'.
+* Error: rf_wren = '0' instead of '1'.
  During LOAD2, rf_wren has to be 1.
 
-Time: 72.5 ns Input File Line: 24
-* Error: write = 'U' instead of '0'.
- During FETCH, write has to be 0.
-
-Time: 72.5 ns Input File Line: 24
-* Error: rf_wren = 'U' instead of '0'.
- During FETCH, rf_wren has to be 0.
-
-Time: 72.5 ns Input File Line: 24
-* Error: branch_op = 'U' instead of '0'.
- During FETCH, branch_op has to be 0.
-
-Time: 72.5 ns Input File Line: 24
-* Error: read = 'U' instead of '1'.
- Before activating ir_en, read has to be activated.
-
 Time: 77.5 ns Input File Line: 25
-* Error: write = 'U' instead of '0'.
- During DECODE, write has to be 0.
-
-Time: 77.5 ns Input File Line: 25
-* Error: rf_wren = 'U' instead of '0'.
- During DECODE, rf_wren has to be 0.
-
-Time: 77.5 ns Input File Line: 25
-* Error: branch_op = 'U' instead of '0'.
- During FETCH, branch_op has to be 0.
+* Error: PC enable count = 0 instead of 1.
+ Before the Execute states, the PC must be enabled only once.
 
 Time: 82.5 ns Input File Line: 26
-* Error: op_alu = 'UUU000' instead of '000000'.
- Verify the op_alu generation.
-
-Time: 82.5 ns Input File Line: 26
-* Error: pc_en = 'U' instead of '0'.
- During STORE, pc_en has to be 0.
-
-Time: 82.5 ns Input File Line: 26
-* Error: ir_en = 'U' instead of '0'.
+* Error: ir_en = '1' instead of '0'.
  During STORE, ir_en has to be 0.
 
 Time: 82.5 ns Input File Line: 26
-* Error: branch_op = 'U' instead of '0'.
- During STORE, branch_op has to be 0.
-
-Time: 82.5 ns Input File Line: 26
-* Error: sel_b = 'U' instead of '0'.
- During STORE, sel_b has to be 0.
-
-Time: 82.5 ns Input File Line: 26
-* Error: rf_wren = 'U' instead of '0'.
- During STORE, rf_wren has to be 0.
-
-Time: 82.5 ns Input File Line: 26
-* Error: sel_addr = 'U' instead of '1'.
+* Error: sel_addr = '0' instead of '1'.
  During STORE, sel_addr has to be 1.
 
 Time: 82.5 ns Input File Line: 26
-* Error: imm_signed = 'U' instead of '1'.
+* Error: imm_signed = '0' instead of '1'.
  During STORE, imm_signed has to be 1.
 
 Time: 82.5 ns Input File Line: 26
-* Error: write = 'U' instead of '1'.
+* Error: write = '0' instead of '1'.
  During STORE, write has to be 1.
 
-Time: 87.5 ns Input File Line: 28
-* Error: write = 'U' instead of '0'.
- During FETCH, write has to be 0.
-
-Time: 87.5 ns Input File Line: 28
-* Error: rf_wren = 'U' instead of '0'.
- During FETCH, rf_wren has to be 0.
-
-Time: 87.5 ns Input File Line: 28
-* Error: branch_op = 'U' instead of '0'.
- During FETCH, branch_op has to be 0.
-
-Time: 87.5 ns Input File Line: 28
-* Error: read = 'U' instead of '1'.
- Before activating ir_en, read has to be activated.
-
 Time: 92.5 ns Input File Line: 29
-* Error: write = 'U' instead of '0'.
- During DECODE, write has to be 0.
-
-Time: 92.5 ns Input File Line: 29
-* Error: rf_wren = 'U' instead of '0'.
- During DECODE, rf_wren has to be 0.
-
-Time: 92.5 ns Input File Line: 29
-* Error: branch_op = 'U' instead of '0'.
- During FETCH, branch_op has to be 0.
+* Error: PC enable count = 0 instead of 1.
+ Before the Execute states, the PC must be enabled only once.
 
 Time: 97.5 ns Input File Line: 30
-* Error: write = 'U' instead of '0'.
- During BREAK, write has to be 0.
-
-Time: 97.5 ns Input File Line: 30
-* Error: ir_en = 'U' instead of '0'.
- During BREAK, ir_en has to be 0.
-
-Time: 97.5 ns Input File Line: 30
-* Error: rf_wren = 'U' instead of '0'.
- During BREAK, rf_wren has to be 0.
-
-Time: 97.5 ns Input File Line: 30
-* Error: pc_en = 'U' instead of '0'.
- During BREAK, pc_en has to be 0.
-
-Time: 97.5 ns Input File Line: 30
-* Error: branch_op = 'U' instead of '0'.
- During BREAK, branch_op has to be 0.
-
-Time: 102.5 ns Input File Line: 31
-* Error: write = 'U' instead of '0'.
- During BREAK, write has to be 0.
-
-Time: 102.5 ns Input File Line: 31
-* Error: ir_en = 'U' instead of '0'.
+* Error: ir_en = '1' instead of '0'.
  During BREAK, ir_en has to be 0.
 
 Time: 102.5 ns Input File Line: 31
-* Error: rf_wren = 'U' instead of '0'.
- During BREAK, rf_wren has to be 0.
-
-Time: 102.5 ns Input File Line: 31
-* Error: pc_en = 'U' instead of '0'.
- During BREAK, pc_en has to be 0.
-
-Time: 102.5 ns Input File Line: 31
-* Error: branch_op = 'U' instead of '0'.
- During BREAK, branch_op has to be 0.
-
-Time: 107.5 ns Input File Line: 32
-* Error: write = 'U' instead of '0'.
- During BREAK, write has to be 0.
-
-Time: 107.5 ns Input File Line: 32
-* Error: ir_en = 'U' instead of '0'.
+* Error: ir_en = '1' instead of '0'.
  During BREAK, ir_en has to be 0.
 
 Time: 107.5 ns Input File Line: 32
-* Error: rf_wren = 'U' instead of '0'.
- During BREAK, rf_wren has to be 0.
-
-Time: 107.5 ns Input File Line: 32
-* Error: pc_en = 'U' instead of '0'.
- During BREAK, pc_en has to be 0.
-
-Time: 107.5 ns Input File Line: 32
-* Error: branch_op = 'U' instead of '0'.
- During BREAK, branch_op has to be 0.
-
-Time: 112.5 ns Input File Line: 33
-* Error: write = 'U' instead of '0'.
- During BREAK, write has to be 0.
-
-Time: 112.5 ns Input File Line: 33
-* Error: ir_en = 'U' instead of '0'.
+* Error: ir_en = '1' instead of '0'.
  During BREAK, ir_en has to be 0.
 
 Time: 112.5 ns Input File Line: 33
-* Error: rf_wren = 'U' instead of '0'.
- During BREAK, rf_wren has to be 0.
-
-Time: 112.5 ns Input File Line: 33
-* Error: pc_en = 'U' instead of '0'.
- During BREAK, pc_en has to be 0.
-
-Time: 112.5 ns Input File Line: 33
-* Error: branch_op = 'U' instead of '0'.
- During BREAK, branch_op has to be 0.
-
-Time: 117.5 ns Input File Line: 34
-* Error: write = 'U' instead of '0'.
- During BREAK, write has to be 0.
-
-Time: 117.5 ns Input File Line: 34
-* Error: ir_en = 'U' instead of '0'.
+* Error: ir_en = '1' instead of '0'.
  During BREAK, ir_en has to be 0.
 
 Time: 117.5 ns Input File Line: 34
-* Error: rf_wren = 'U' instead of '0'.
- During BREAK, rf_wren has to be 0.
-
-Time: 117.5 ns Input File Line: 34
-* Error: pc_en = 'U' instead of '0'.
- During BREAK, pc_en has to be 0.
-
-Time: 117.5 ns Input File Line: 34
-* Error: branch_op = 'U' instead of '0'.
- During BREAK, branch_op has to be 0.
-
-Time: 122.5 ns Input File Line: 35
-* Error: write = 'U' instead of '0'.
- During BREAK, write has to be 0.
-
-Time: 122.5 ns Input File Line: 35
-* Error: ir_en = 'U' instead of '0'.
+* Error: ir_en = '1' instead of '0'.
  During BREAK, ir_en has to be 0.
 
 Time: 122.5 ns Input File Line: 35
-* Error: rf_wren = 'U' instead of '0'.
- During BREAK, rf_wren has to be 0.
-
-Time: 122.5 ns Input File Line: 35
-* Error: pc_en = 'U' instead of '0'.
- During BREAK, pc_en has to be 0.
-
-Time: 122.5 ns Input File Line: 35
-* Error: branch_op = 'U' instead of '0'.
- During BREAK, branch_op has to be 0.
-
-Time: 127.5 ns Input File Line: 36
-* Error: write = 'U' instead of '0'.
- During FETCH, write has to be 0.
-
-Time: 127.5 ns Input File Line: 36
-* Error: rf_wren = 'U' instead of '0'.
- During FETCH, rf_wren has to be 0.
-
-Time: 127.5 ns Input File Line: 36
-* Error: branch_op = 'U' instead of '0'.
- During FETCH, branch_op has to be 0.
-
-Time: 132.5 ns Input File Line: 38
-* Error: write = 'U' instead of '0'.
- During FETCH, write has to be 0.
-
-Time: 132.5 ns Input File Line: 38
-* Error: rf_wren = 'U' instead of '0'.
- During FETCH, rf_wren has to be 0.
-
-Time: 132.5 ns Input File Line: 38
-* Error: branch_op = 'U' instead of '0'.
- During FETCH, branch_op has to be 0.
-
-Time: 132.5 ns Input File Line: 38
-* Error: read = 'U' instead of '1'.
- Before activating ir_en, read has to be activated.
+* Error: ir_en = '1' instead of '0'.
+ During BREAK, ir_en has to be 0.
 
 Time: 137.5 ns Input File Line: 39
-* Error: write = 'U' instead of '0'.
- During DECODE, write has to be 0.
-
-Time: 137.5 ns Input File Line: 39
-* Error: rf_wren = 'U' instead of '0'.
- During DECODE, rf_wren has to be 0.
-
-Time: 137.5 ns Input File Line: 39
-* Error: branch_op = 'U' instead of '0'.
- During FETCH, branch_op has to be 0.
+* Error: PC enable count = 0 instead of 1.
+ Before the Execute states, the PC must be enabled only once.
 
 Time: 142.5 ns Input File Line: 40
-* Error: op_alu = 'UU00UU' instead of '100001'.
+* Error: op_alu = '000000' instead of '100001'.
  Verify the op_alu generation.
 
 Time: 142.5 ns Input File Line: 40
-* Error: write = 'U' instead of '0'.
- During R_OP, write has to be 0.
-
-Time: 142.5 ns Input File Line: 40
-* Error: pc_en = 'U' instead of '0'.
- During R_OP, pc_en has to be 0.
-
-Time: 142.5 ns Input File Line: 40
-* Error: ir_en = 'U' instead of '0'.
+* Error: ir_en = '1' instead of '0'.
  During R_OP, ir_en has to be 0.
-
-Time: 142.5 ns Input File Line: 40
-* Error: branch_op = 'U' instead of '0'.
- During R_OP, branch_op has to be 0.
-
-Time: 142.5 ns Input File Line: 40
-* Error: sel_mem = 'U' instead of '0'.
- During R_OP, sel_mem has to be 0.
 
 Time: 142.5 ns Input File Line: 40
 * Error: sel_pc = 'U' instead of '0'.
@@ -619,14 +195,14 @@ Time: 142.5 ns Input File Line: 40
  During R_OP, sel_ra has to be 0.
 
 Time: 142.5 ns Input File Line: 40
-* Error: rf_wren = 'U' instead of '1'.
+* Error: rf_wren = '0' instead of '1'.
  During R_OP, rf_wren has to be 1.
 
 Time: 142.5 ns Input File Line: 40
-* Error: sel_rC = 'U' instead of '1'.
+* Error: sel_rC = '0' instead of '1'.
  During R_OP, sel_rC has to be 1.
 
 Time: 142.5 ns Input File Line: 40
-* Error: sel_b = 'U' instead of '1'.
+* Error: sel_b = '0' instead of '1'.
  During R_OP, sel_b has to be 1.
 
