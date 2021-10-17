@@ -51,7 +51,9 @@ architecture synth of controller is
          s_rf_wren,
          s_sel_addr,
          s_sel_mem,
-         s_write : std_logic;
+         s_write,
+         s_sel_ra,
+         s_sel_pc: std_logic;
 
   signal s_op_alu,
          v_signed  : std_logic_vector(5 downto 0);
@@ -61,7 +63,7 @@ begin
   --Finite State Machine
   update_state : process(clk, reset_n)
   begin
-    if(reset_n = '1') then
+    if(reset_n = '0') then
       current_exec_state <= FETCH1;
     elsif (rising_edge(clk)) then
       current_exec_state <= next_state;
@@ -80,23 +82,26 @@ begin
       when DECODE =>
         --R_OP
         if (("00"&op) = x"3A") then
-          s_op_alu <= opx;
-          next_state <= R_OP;
-          v_signed <= opx;
+          if (("00"&opx) = x"34") then
+            next_state <= BREAK;
+          else
+            next_state <= R_OP;
+            v_signed <= opx;
+          end if;
         --LOAD1
         elsif (("00"&op) = x"17") then
           next_state <= LOAD1;
+          -- s_op_alu <= op;
         --STORE
         elsif (("00"&op) = x"15") then
           next_state <= STORE;
-        --BREAK
-        elsif (("00"&opx) = x"34") then
-          next_state <= BREAK;
+          -- s_op_alu <= op;
         --I_OP
-        else
-          s_op_alu <= op;
+        elsif (("00"&op) = x"04") then
+          -- s_op_alu <= op;
           next_state <= I_OP;
           v_signed <= op;
+
         end if;
       when I_OP =>
         next_state <= FETCH1;
@@ -107,7 +112,7 @@ begin
       when LOAD2 =>
         next_state <= FETCH1;
       when BREAK =>
-          null;
+        next_state <= BREAK;
     end case;
   end process;
 
@@ -119,25 +124,44 @@ begin
                     else '0';
   s_en       <= '1' when current_exec_state = FETCH2
                     else '0';
-  s_ir_en    <= '1' when current_exec_state = FETCH1 or current_exec_state = FETCH2
+  s_ir_en    <= '1' when current_exec_state = FETCH2
                     else '0';
   s_sel_b    <= '1' when current_exec_state = R_OP
                     else '0';
   s_sel_rc   <= '1' when current_exec_state = R_OP
                     else '0';
-  s_rf_wren  <= '1' when current_exec_state = LOAD2
+  s_rf_wren  <= '1' when current_exec_state = LOAD2 or current_exec_state = R_OP or current_exec_state = I_OP
                     else '0';
-  s_sel_addr <= '1' when current_exec_state = LOAD1
+  s_sel_addr <= '1' when current_exec_state = LOAD1 or current_exec_state = STORE
                     else '0';
   s_sel_mem  <= '1' when current_exec_state = LOAD2
                     else '0';
-  s_signed   <= '1' when v_signed = "011001" or v_signed = "011010"
+  s_signed   <= '1' when current_exec_state = LOAD1 or current_exec_state = STORE or current_exec_state = I_OP
                     else '0';
-
+  s_sel_pc   <= '0' when current_exec_state = R_OP or current_exec_state = I_OP or current_exec_state = LOAD2
+                    else '1';
+  s_sel_ra   <= '0' when current_exec_state = R_OP or current_exec_state = I_OP or current_exec_state = LOAD2
+                    else '1';
+  --========================================================================
+  --op_alu_generation
+  generation : process(op, opx)is
+  begin
+    if ("00"&op = x"3A") then
+      if ("00"&opx = x"0E") then
+        s_op_alu <= "100001";
+      elsif ("00"&opx = x"1B") then
+        s_op_alu <= "110011";
+      else
+        s_op_alu <= opx;
+      end if;
+    else
+      s_op_alu <= "000000";
+    end if;
+  end process;
   --========================================================================
   --Output logic
 
-  output_logic : process(s_op_alu, s_signed, s_sel_b, s_sel_rc, s_rf_wren, s_sel_addr, s_sel_mem, s_write, s_read, s_en, s_ir_en)
+  output_logic : process(s_op_alu, s_signed, s_sel_b, s_sel_rc, s_rf_wren, s_sel_addr, s_sel_mem, s_write, s_read, s_en, s_ir_en, s_sel_pc, s_sel_ra)
   begin
     op_alu <= s_op_alu;
     imm_signed <= s_signed;
@@ -154,6 +178,8 @@ begin
     pc_add_imm <='0';
     pc_sel_a   <='0';
     pc_sel_imm <='0';
+    sel_pc <= s_sel_pc;
+    sel_ra <= s_sel_ra;
   end process;
 
 end synth;
