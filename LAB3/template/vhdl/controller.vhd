@@ -39,7 +39,7 @@ end controller;
 architecture synth of controller is
 
   --Finite State Machine
-  Type exec_state is (FETCH1, FETCH2, DECODE, R_OP, STORE, BREAK, LOAD1, LOAD2, I_OP);
+  Type exec_state is (FETCH1, FETCH2, DECODE, R_OP, STORE, BREAK, LOAD1, LOAD2, I_OP, BRANCH, CALL, CALLR, JMP, JMPI);
   signal current_exec_state, next_state : exec_state;
 
   --signals for output logic
@@ -53,7 +53,11 @@ architecture synth of controller is
          s_sel_mem,
          s_write,
          s_sel_ra,
-         s_sel_pc: std_logic;
+         s_sel_pc,
+         s_branch_op,
+         s_pc_add_imm,
+         s_pc_sel_ra,
+         s_pc_sel_imm: std_logic;
 
   signal s_op_alu,
          v_signed  : std_logic_vector(5 downto 0);
@@ -91,16 +95,24 @@ begin
         --LOAD1
         elsif (("00"&op) = x"17") then
           next_state <= LOAD1;
-          -- s_op_alu <= op;
+
         --STORE
         elsif (("00"&op) = x"15") then
           next_state <= STORE;
-          -- s_op_alu <= op;
+
         --I_OP
         elsif (("00"&op) = x"04") then
-          -- s_op_alu <= op;
+
           next_state <= I_OP;
           v_signed <= op;
+
+        elsif (("00"&op) = x"15") then
+          next_state <= STORE;
+        --BRANCH
+        elsif (("00"&op) = x"06" or ("00"&op) = x"0E" or ("00"&op) = x"16"
+                                 or ("00"&op) = x"1E" or ("00"&op) = x"26"
+                                 or ("00"&op) = x"2E" or ("00"&op) = x"36") then
+          next_state <= BRANCH;
 
         end if;
       when I_OP =>
@@ -126,11 +138,11 @@ begin
                     else '0';
   s_ir_en    <= '1' when current_exec_state = FETCH2
                     else '0';
-  s_sel_b    <= '1' when current_exec_state = R_OP
+  s_sel_b    <= '1' when current_exec_state = R_OP or current_exec_state = BRANCH
                     else '0';
   s_sel_rc   <= '1' when current_exec_state = R_OP
                     else '0';
-  s_rf_wren  <= '1' when current_exec_state = LOAD2 or current_exec_state = R_OP or current_exec_state = I_OP
+  s_rf_wren  <= '1' when current_exec_state = LOAD2 or current_exec_state = R_OP or current_exec_state = I_OP or current_exec_state = CALL
                     else '0';
   s_sel_addr <= '1' when current_exec_state = LOAD1 or current_exec_state = STORE
                     else '0';
@@ -138,10 +150,16 @@ begin
                     else '0';
   s_signed   <= '1' when current_exec_state = LOAD1 or current_exec_state = STORE or current_exec_state = I_OP
                     else '0';
-  s_sel_pc   <= '0' when current_exec_state = R_OP or current_exec_state = I_OP or current_exec_state = LOAD2
+  s_sel_pc   <= '0' when current_exec_state = R_OP or current_exec_state = I_OP or current_exec_state = LOAD2 or current_exec_state = CALL
                     else '1';
   s_sel_ra   <= '0' when current_exec_state = R_OP or current_exec_state = I_OP or current_exec_state = LOAD2
                     else '1';
+  s_branch_op<= '1' when current_exec_state = BRANCH
+                    else '0';
+  s_pc_add_imm<= '1'when current_exec_state = BRANCH
+                    else '0';
+  s_pc_sel_ra <='1' when current_exec_state = CALL
+                    else '0';
   --========================================================================
   --op_alu_generation
   generation : process(op, opx)is
@@ -154,10 +172,29 @@ begin
       else
         s_op_alu <= opx;
       end if;
+    elsif ("00"&op = x"0E") then
+        -- <= signed
+        s_op_alu <= "011001";
+    elsif ("00"&op = x"16") then
+        -- > signed
+        s_op_alu <= "011010";
+    elsif ("00"&op = x"1E") then
+        -- not equal
+        s_op_alu <= "011011";
+    elsif ("00"&op = x"26" or "00"&op = x"06") then
+        -- equal
+        s_op_alu<="011100";
+    elsif ("00"&op =  x"2E") then
+        -- <= unsigned
+        s_op_alu<="011101";
+    elsif ("00"&op = x"36") then
+        -- > unsigned
+        s_op_alu<="011110";
     else
       s_op_alu <= "000000";
     end if;
   end process;
+
   --========================================================================
   --Output logic
 
@@ -174,10 +211,10 @@ begin
     read <= s_read;
     pc_en <= s_en;
     ir_en <= s_ir_en;
-    branch_op <='0';
-    pc_add_imm <='0';
-    pc_sel_a   <='0';
-    pc_sel_imm <='0';
+    branch_op <= s_branch_op;
+    pc_add_imm <= s_pc_add_imm;
+    pc_sel_a   <= s_pc_sel_ra;
+    pc_sel_imm <= s_pc_sel_imm;
     sel_pc <= s_sel_pc;
     sel_ra <= s_sel_ra;
   end process;
