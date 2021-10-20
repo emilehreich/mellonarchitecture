@@ -36,11 +36,16 @@ begin
     q => s_q
   );
 
-  --reading process
 
-  r : process(s_q)
+  --reading process
+  r : process(s_q, read, cs)
   begin
-    s_rddata <= s_q;
+    if (read = '1' and cs = '1') then
+      s_readNout <= '1';
+      s_rddata <= s_q;
+    else
+      s_readNout <= '0';
+    end if;
   end process;
   -- r : process(clk)
   -- begin
@@ -55,9 +60,9 @@ begin
   -- end process;
 
   --output logic with tristate buffer
-  o : process(s_rddata, cs, read)
+  o : process(s_rddata, s_readNout)
   begin
-    if(cs = '1' and read='1') then
+    if(s_readNout) then
       rddata <= s_rddata;
     else
        rddata <= (others => 'Z');
