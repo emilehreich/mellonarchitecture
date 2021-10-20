@@ -37,26 +37,37 @@ begin
   );
 
   --reading process
-  r : process(clk)
+
+  r : process(s_q)
   begin
-    if rising_edge(clk) then
-      if (read = '1' and cs = '1') then
-        s_readNout <= '1';
-        s_rddata <= s_q;
-      else
-        s_readNout <= '0';
-      end if;
-    end if;
+    s_rddata <= s_q;
   end process;
+  -- r : process(clk)
+  -- begin
+  --   if rising_edge(clk) then
+  --     if (read = '1' and cs = '1') then
+  --       s_readNout <= '1';
+  --       s_rddata <= s_q;
+  --     else
+  --       s_readNout <= '0';
+  --     end if;
+  --   end if;
+  -- end process;
 
   --output logic with tristate buffer
-  o : process(s_rddata, cs)
+  o : process(s_rddata, cs, read)
   begin
-    if (s_readNout = '1') then
-      rddata <= s_rddata;
-    else
-      rddata <= (others => 'Z');
+    if(cs = '1' and read='1') then
+      address <= address;
     end if;
   end process;
+  -- o : process(s_rddata, cs)
+  -- begin
+  --   if (s_readNout = '1') then
+  --     rddata <= s_rddata;
+  --   else
+  --     rddata <= (others => 'Z');
+  --   end if;
+  -- end process;
 
 end synth;
