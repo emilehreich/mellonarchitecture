@@ -52,7 +52,7 @@ begin
 
   --output logic with tristate buffer
 
-  o : process(s_rddata, cs)
+  o : process(s_rddata, s_readNout)
   begin
     if (s_readNout = '1') then
       rddata <= s_rddata;
