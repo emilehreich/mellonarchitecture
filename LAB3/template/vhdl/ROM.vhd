@@ -14,6 +14,7 @@ end ROM;
 architecture synth of ROM is
 
   signal s_q, s_rddata : std_logic_vector(31 downto 0);
+  signal s_readNout : std_logic;
 
   --ROM Block component
   component ROM_Block is
@@ -39,8 +40,11 @@ begin
   r : process(clk)
   begin
     if rising_edge(clk) then
-      if read = '1' then
+      if (read = '1' and cs = '1') then
+        s_readNout <= '1';
         s_rddata <= s_q;
+      else
+        s_readNout <= '0';
       end if;
     end if;
   end process;
@@ -48,7 +52,7 @@ begin
   --output logic with tristate buffer
   o : process(s_rddata, cs)
   begin
-    if cs = '1' then
+    if (s_readNout = '1') then
       rddata <= s_rddata;
     else
       rddata <= (others => 'Z');

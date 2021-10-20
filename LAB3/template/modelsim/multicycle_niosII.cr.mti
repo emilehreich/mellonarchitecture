@@ -102,6 +102,14 @@ Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  
 -- Compiling entity IR
 -- Compiling architecture synth of IR
 
+} {} {}} ../vhdl/controller.vhd {1 {vcom -work work -2002 -explicit -stats=none C:/Users/emile/Desktop/Development/Directories/mellonarchitecture/LAB3/template/vhdl/controller.vhd
+Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  5 2016
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Compiling entity controller
+-- Compiling architecture synth of controller
+
 } {} {}} ../vhdl/register_file.vhd {1 {vcom -work work -2002 -explicit -stats=none C:/Users/emile/Desktop/Development/Directories/mellonarchitecture/LAB3/template/vhdl/register_file.vhd
 Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  5 2016
 -- Loading package STANDARD
@@ -110,14 +118,6 @@ Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  
 -- Loading package NUMERIC_STD
 -- Compiling entity register_file
 -- Compiling architecture synth of register_file
-
-} {} {}} ../vhdl/ROM.vhd {1 {vcom -work work -2002 -explicit -stats=none C:/Users/emile/Desktop/Development/Directories/mellonarchitecture/LAB3/template/vhdl/ROM.vhd
-Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  5 2016
--- Loading package STANDARD
--- Loading package TEXTIO
--- Loading package std_logic_1164
--- Compiling entity ROM
--- Compiling architecture synth of ROM
 
 } {} {}} ../vhdl/buttons.vhd {1 {vcom -work work -2002 -explicit -stats=none C:/Users/emile/Desktop/Development/Directories/mellonarchitecture/LAB3/template/vhdl/buttons.vhd
 Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  5 2016
