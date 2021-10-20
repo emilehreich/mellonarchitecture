@@ -13,21 +13,13 @@ end IR;
 architecture synth of IR is
 
   signal s_register : std_logic_vector(31 downto 0);
-  signal flag : std_logic := '0';
 
 begin
 
-  writeNext : process(clk)
+  writeNext : process(clk, enable)
   begin
-    if rising_edge(clk) then
-      if flag = '1' then
+    if (rising_edge(clk) and enable='1') then
           s_register <= D;
-          flag <= '0';
-      end if;
-
-      if enable = '1' then
-          flag <= '1';
-      end if;
     end if;
   end process;
 
