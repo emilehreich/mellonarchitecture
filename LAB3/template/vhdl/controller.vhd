@@ -138,6 +138,16 @@ begin
         next_state <= FETCH1;
       when BREAK =>
         next_state <= BREAK;
+      when BRANCH =>
+        next_state <= FETCH1;
+      when CALL =>
+        next_state <= FETCH1;
+      when CALLR =>
+        next_state <= FETCH1;
+      when JMP =>
+        next_state <= FETCH1;
+      when JMPI =>
+        next_state <= FETCH1;
     end case;
   end process;
 
@@ -219,7 +229,7 @@ begin
   --========================================================================
   --Output logic
 
-  output_logic : process(s_op_alu, s_signed, s_sel_b, s_sel_rc, s_rf_wren, s_sel_addr, s_sel_mem, s_write, s_read, s_en, s_ir_en, s_sel_pc, s_sel_ra)
+  output_logic : process(s_op_alu, s_signed, s_sel_b, s_sel_rc, s_rf_wren, s_sel_addr, s_sel_mem, s_write, s_read, s_en, s_ir_en, s_sel_pc, s_sel_ra, s_branch_op, s_pc_add_imm, s_pc_sel_a, s_pc_sel_imm)
   begin
     op_alu <= s_op_alu;
     imm_signed <= s_signed;
