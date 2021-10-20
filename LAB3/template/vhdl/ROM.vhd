@@ -58,7 +58,7 @@ begin
   o : process(s_rddata, cs, read)
   begin
     if(cs = '1' and read='1') then
-      address <= address;
+      rddata <= s_rddata;
     end if;
   end process;
   -- o : process(s_rddata, cs)
