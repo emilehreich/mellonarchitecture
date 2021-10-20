@@ -33,48 +33,32 @@ begin
   port map(
     address => address,
     clock => clk,
-    q => s_q
+    q => s_rddata
   );
 
 
-  --reading process
-  r : process(s_q, read, cs)
+
+  r : process(clk)
   begin
-    if (read = '1' and cs = '1') then
-      s_readNout <= '1';
-      s_rddata <= s_q;
-    else
-      s_readNout <= '0';
+    if rising_edge(clk) then
+      if (read = '1' and cs = '1') then
+        s_readNout <= '1';
+        -- s_rddata <= s_q;
+      else
+        s_readNout <= '0';
+      end if;
     end if;
   end process;
-  -- r : process(clk)
-  -- begin
-  --   if rising_edge(clk) then
-  --     if (read = '1' and cs = '1') then
-  --       s_readNout <= '1';
-  --       s_rddata <= s_q;
-  --     else
-  --       s_readNout <= '0';
-  --     end if;
-  --   end if;
-  -- end process;
 
   --output logic with tristate buffer
-  o : process(s_rddata, s_readNout)
+
+  o : process(s_rddata, cs)
   begin
-    if(s_readNout = '1') then
+    if (s_readNout = '1') then
       rddata <= s_rddata;
     else
-       rddata <= (others => 'Z');
+      rddata <= (others => 'Z');
     end if;
   end process;
-  -- o : process(s_rddata, cs)
-  -- begin
-  --   if (s_readNout = '1') then
-  --     rddata <= s_rddata;
-  --   else
-  --     rddata <= (others => 'Z');
-  --   end if;
-  -- end process;
 
 end synth;
