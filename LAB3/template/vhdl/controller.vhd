@@ -157,13 +157,13 @@ begin
                     else '0';
   s_read     <= '1' when current_exec_state = FETCH1 or current_exec_state = LOAD1
                     else '0';
-  s_en       <= '1' when current_exec_state = FETCH2 or current_exec_state = CALLR or current_exec_state = JMP or current_exec_state = JMPI
+  s_en       <= '1' when current_exec_state = FETCH2 or current_exec_state = CALLR or current_exec_state = JMP or current_exec_state = JMPI or current_exec_state = CALL
                     else '0';
   s_ir_en    <= '1' when current_exec_state = FETCH2
                     else '0';
   s_sel_b    <= '1' when current_exec_state = R_OP or current_exec_state = BRANCH
                     else '0';
-  s_sel_rc   <= '1' when current_exec_state = R_OP
+  s_sel_rc   <= '1' when current_exec_state = R_OP or current_exec_state = CALLR
                     else '0';
   s_rf_wren  <= '1' when current_exec_state = LOAD2 or current_exec_state = R_OP or current_exec_state = I_OP or current_exec_state = CALL or current_exec_state = CALLR
                     else '0';
@@ -173,15 +173,17 @@ begin
                     else '0';
   s_signed   <= '1' when current_exec_state = LOAD1 or current_exec_state = STORE or current_exec_state = I_OP
                     else '0';
-  s_sel_pc   <= '0' when current_exec_state = R_OP or current_exec_state = I_OP or current_exec_state = LOAD2 or current_exec_state = CALL or current_exec_state = CALLR
+  s_sel_pc   <= '0' when current_exec_state = R_OP or current_exec_state = I_OP or current_exec_state = LOAD2 
                     else '1';
   s_sel_ra   <= '0' when current_exec_state = R_OP or current_exec_state = I_OP or current_exec_state = LOAD2 or current_exec_state = CALLR
                     else '1';
-  s_branch_op<= '1' when current_exec_state = BRANCH
+  s_branch_op  <= '1' when current_exec_state = BRANCH
                     else '0';
-  s_pc_add_imm<= '1'when current_exec_state = BRANCH
+  s_pc_add_imm <= '1'when current_exec_state = BRANCH
                     else '0';
-  s_pc_sel_a <='1' when current_exec_state = CALL or current_exec_state = CALLR or current_exec_state = JMP or current_exec_state = JMPI
+  s_pc_sel_a   <= '1' when current_exec_state = CALLR or current_exec_state = JMP or current_exec_state = JMPI
+                    else '0';
+  s_pc_sel_imm <= '1' when current_exec_state = CALL
                     else '0';
   --========================================================================
   --op_alu_generation
