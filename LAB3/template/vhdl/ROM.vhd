@@ -14,7 +14,7 @@ end ROM;
 architecture synth of ROM is
 
   signal s_q, s_rddata : std_logic_vector(31 downto 0);
-  signal s_target : std_logic(9 downto 0);
+  signal s_target : std_logic_vector(9 downto 0);
   signal s_readNout : std_logic;
 
   --ROM Block component
