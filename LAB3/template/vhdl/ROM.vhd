@@ -14,6 +14,7 @@ end ROM;
 architecture synth of ROM is
 
   signal s_q, s_rddata : std_logic_vector(31 downto 0);
+  signal s_target : std_logic(9 downto 0);
   signal s_readNout : std_logic;
 
   --ROM Block component
@@ -31,7 +32,7 @@ begin
   --instantiation of a ROM_Block
   rom : ROM_Block
   port map(
-    address => address,
+    address => s_target,
     clock => clk,
     q => s_rddata
   );
@@ -43,6 +44,7 @@ begin
     if rising_edge(clk) then
       if (read = '1' and cs = '1') then
         s_readNout <= '1';
+        s_target <= address;
         -- s_rddata <= s_q;
       else
         s_readNout <= '0';
