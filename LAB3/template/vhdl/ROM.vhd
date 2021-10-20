@@ -59,6 +59,8 @@ begin
   begin
     if(cs = '1' and read='1') then
       rddata <= s_rddata;
+    else
+       rddata <= (others => 'Z');
     end if;
   end process;
   -- o : process(s_rddata, cs)
