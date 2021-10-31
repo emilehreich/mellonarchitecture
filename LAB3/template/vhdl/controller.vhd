@@ -39,7 +39,7 @@ end controller;
 architecture synth of controller is
 
   --Finite State Machine
-  Type exec_state is (FETCH1, FETCH2, DECODE, R_OP, STORE, BREAK, LOAD1, LOAD2, I_OP, BRANCH, CALL, CALLR, JMP, JMPI);
+  Type exec_state is (FETCH1, FETCH2, DECODE, R_OP, STORE, BREAK, LOAD1, LOAD2, I_OP, BRANCH, CALL, CALLR, JMP, JMPI, UNSIGNEDI, IMM5);
   signal current_exec_state, next_state : exec_state;
 
   --signals for output logic
@@ -95,6 +95,8 @@ begin
             --JMP
           elsif (("00"&opx = x"05") or ("00"&opx = x"0D")) then
             next_state <= JMP;
+          elsif (("00"&opx) = x"12" or ("00"&opx) = x"1A" or ("00"&opx) = x"3A" or ("00"&opx) = x"02") then
+            next_state <= IMM5;
             --R_OP
           else
             next_state <= R_OP;
@@ -127,6 +129,13 @@ begin
           --JMPI
         elsif (("00"&op) = x"01") then
           next_state <= JMPI;
+
+        elsif (("00"&op) = x"0C" or ("00"&op) = x"14" or ("00"&op) = x"1C" or ("00"&op) = x"28" or ("00"&op) = x"30") then
+          next_state <= UNSIGNEDI;
+
+        elsif (("00"&op) = x"08" or ("00"&op) = x"10" or ("00"&op) = x"18" or ("00"&op) = x"20") then
+          next_state <= I_OP;
+
         end if;
       when I_OP =>
         next_state <= FETCH1;
@@ -148,6 +157,10 @@ begin
         next_state <= FETCH1;
       when JMPI =>
         next_state <= FETCH1;
+      when UNSIGNEDI =>
+        next_state <= FETCH1;
+      when IMM5 =>
+        next_state <= FETCH1;
     end case;
   end process;
 
@@ -163,9 +176,9 @@ begin
                     else '0';
   s_sel_b    <= '1' when current_exec_state = R_OP or current_exec_state = BRANCH
                     else '0';
-  s_sel_rc   <= '1' when current_exec_state = R_OP or current_exec_state = CALLR
+  s_sel_rc   <= '1' when current_exec_state = R_OP  or current_exec_state = IMM5
                     else '0';
-  s_rf_wren  <= '1' when current_exec_state = LOAD2 or current_exec_state = R_OP or current_exec_state = I_OP or current_exec_state = CALL or current_exec_state = CALLR
+  s_rf_wren  <= '1' when current_exec_state = LOAD2 or current_exec_state = R_OP or current_exec_state = I_OP or current_exec_state = CALL or current_exec_state = CALLR or current_exec_state = IMM5 or current_exec_state = UNSIGNEDI
                     else '0';
   s_sel_addr <= '1' when current_exec_state = LOAD1 or current_exec_state = STORE
                     else '0';
@@ -173,31 +186,97 @@ begin
                     else '0';
   s_signed   <= '1' when current_exec_state = LOAD1 or current_exec_state = STORE or current_exec_state = I_OP
                     else '0';
-  s_sel_pc   <= '0' when current_exec_state = R_OP or current_exec_state = I_OP or current_exec_state = LOAD2 
+  s_sel_pc   <= '0' when current_exec_state = R_OP or current_exec_state = I_OP or current_exec_state = LOAD2 or current_exec_state = IMM5 or current_exec_state = UNSIGNEDI
                     else '1';
-  s_sel_ra   <= '0' when current_exec_state = R_OP or current_exec_state = I_OP or current_exec_state = LOAD2 or current_exec_state = CALLR
+  s_sel_ra   <= '0' when current_exec_state = R_OP or current_exec_state = I_OP or current_exec_state = LOAD2  or current_exec_state = IMM5 or current_exec_state = UNSIGNEDI
                     else '1';
   s_branch_op  <= '1' when current_exec_state = BRANCH
                     else '0';
   s_pc_add_imm <= '1'when current_exec_state = BRANCH
                     else '0';
-  s_pc_sel_a   <= '1' when current_exec_state = CALLR or current_exec_state = JMP or current_exec_state = JMPI
+  s_pc_sel_a   <= '1' when current_exec_state = CALLR or current_exec_state = JMP
                     else '0';
-  s_pc_sel_imm <= '1' when current_exec_state = CALL
+  s_pc_sel_imm <= '1' when current_exec_state = CALL or current_exec_state = UNSIGNEDI or current_exec_state = JMPI
                     else '0';
   --========================================================================
   --op_alu_generation
   generation : process(op, opx)is
   begin
+    --===================================================
     if ("00"&op = x"3A") then
+      --
       if ("00"&opx = x"0E") then
         s_op_alu <= "100001";
+
+      -- elsif ("00"&opx = x"1B") then
+      --   s_op_alu <= "110111";
+        --add
+      elsif ("00"&opx = x"31") then
+        s_op_alu <= "000000";
+        --sub
+      elsif ("00"&opx = x"39") then
+        s_op_alu <= "001000";
+        --cmple
+      elsif ("00"&opx = x"08") then
+        s_op_alu <= "011001";
+        --cmpgt
+      elsif ("00"&opx = x"10") then
+        s_op_alu <= "011010";
+        --nor
+      elsif ("00"&opx = x"06") then
+        s_op_alu <= "100000";
+        --and
+      elsif ("00"&opx = x"0E") then
+        s_op_alu <= "100001";
+        --or
+      elsif ("00"&opx = x"16") then
+        s_op_alu <= "100010";
+        --xnor
+      elsif ("00"&opx = x"1E") then
+        s_op_alu <= "100011";
+        --sll
+      elsif ("00"&opx = x"13") then
+        s_op_alu <= "110010";
+        --srl
       elsif ("00"&opx = x"1B") then
         s_op_alu <= "110011";
+        --sra
+      elsif ("00"&opx = x"3B") then
+        s_op_alu <= "110111";
+        --slli
+      elsif ("00"&opx = x"12") then
+        s_op_alu <= "110010";
+        --srli
+      elsif ("00"&opx = x"1A") then
+        s_op_alu <= "110011";
+        --srai
+      elsif ("00"&opx = x"3A") then
+        s_op_alu <= "110111";
+        --cmpne
+      elsif ("00"&opx = x"18") then
+        s_op_alu <= "011011";
+        --cmpeq
+      elsif ("00"&opx = x"20") then
+        s_op_alu <= "011100";
+        --cmpleu
+      elsif ("00"&opx = x"28") then
+        s_op_alu <= "011101";
+        --cmpgtu
+      elsif ("00"&opx = x"30") then
+        s_op_alu <= "011110";
+        --rol
+      elsif ("00"&opx = x"03") then
+        s_op_alu <= "110000";
+        --ror
+      elsif ("00"&opx = x"0B") then
+        s_op_alu <= "110001";
+        --roli
+      elsif ("00"&opx = x"02") then
+        s_op_alu <= "110000";
       else
         s_op_alu <= opx;
       end if;
-
+    --======================================================
     elsif ("00"&op = x"0E") then
         -- <= signed
         s_op_alu <= "011001";
@@ -206,21 +285,44 @@ begin
         -- > signed
         s_op_alu <= "011010";
 
-    elsif ("00"&op = x"1E") then
+    elsif ("00"&op = x"1E" or "00"&op = x"18") then
         -- not equal
         s_op_alu <= "011011";
 
-    elsif ("00"&op = x"26" or "00"&op = x"06") then
+    elsif ("00"&op = x"26" or "00"&op = x"06" or "00"&op = x"20") then
         -- equal
         s_op_alu<="011100";
 
-    elsif ("00"&op =  x"2E") then
+    elsif ("00"&op =  x"2E" or "00"&op = x"28") then
         -- <= unsigned
         s_op_alu<="011101";
 
-    elsif ("00"&op = x"36") then
+    elsif ("00"&op = x"36" or "00"&op = x"30") then
         -- > unsigned
         s_op_alu<="011110";
+
+    elsif ("00"&op = x"04") then
+        s_op_alu <= "000000";
+
+        --and
+    elsif ("00"&op = x"0C") then
+        s_op_alu <= "100001";
+
+        --or
+    elsif ("00"&op = x"14") then
+        s_op_alu <= "100010";
+
+        --xnor
+    elsif ("00"&op = x"1C") then
+        s_op_alu <= "100011";
+
+        --<= signed
+    elsif ("00"&op = x"08") then
+        s_op_alu <= "011001";
+
+        --> signed
+    elsif ("00"&op = x"10") then
+        s_op_alu <= "011010";
 
     else
       s_op_alu <= "000000";
