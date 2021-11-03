@@ -30,26 +30,39 @@ addi    sp, zero, LEDS
 ;     This procedure should never return.
 main:
     ; TODO: Finish this procedure.
-
+    call clear_leds
+    addi a0, zero, 1
+    addi a1, zero, 0
+    call set_pixel
     ret
 
 
 ; BEGIN: clear_leds
 clear_leds:
-  addi t1, zero, LEDS
-  stw zero, 0(t1)
-  stw zero, 4(t1)
-  stw zero, 8(t1)
+  stw zero, LEDS(zero)
+  stw zero, LEDS+4(zero)
+  stw zero, LEDS+8(zero)
+  ret
 ; END: clear_leds
 
 
 ; BEGIN: set_pixel
 set_pixel:
-  addi t1, zero, 1
-  sll t2, t1, a1
-  ldb t3, LEDS(a0)
-  xor t3, t2, t3
-  stb t3, LEDS(a0)
+  ;mask to load word
+  andi t1, a0, 12
+  ldw t2, LEDS(t1)
+
+  ;mask to set pixel
+  addi t3, zero, 1 ;mask initialize
+  andi t4, a0, 3
+  slli t4, t4, 8
+  add t5, t4, a1
+
+  ;store word
+  sll t5, t3, t5
+  or t6, t5, t2
+  stw t6, LEDS(t1)
+  ret
 ; END: set_pixel
 
 
