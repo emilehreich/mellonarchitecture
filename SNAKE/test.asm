@@ -31,8 +31,9 @@ addi    sp, zero, LEDS
 main:
     ; TODO: Finish this procedure.
     call clear_leds
-    addi a0, zero, 1
-    addi a1, zero, 0
+
+    addi a0, zero, 0
+    addi a1, zero, 1
     call set_pixel
     ret
 
@@ -42,28 +43,36 @@ clear_leds:
   stw zero, LEDS(zero)
   stw zero, LEDS+4(zero)
   stw zero, LEDS+8(zero)
-  ret
 ; END: clear_leds
 
 
 ; BEGIN: set_pixel
 set_pixel:
-  ;mask to load word
+
+  ; compute which of the 3 LEDS word to access
   andi t1, a0, 12
+
+  ; load the word into register
   ldw t2, LEDS(t1)
 
-  ;mask to set pixel
-  addi t3, zero, 1 ;mask initialize
-  andi t4, a0, 3
-  slli t4, t4, 8
-  add t5, t4, a1
+  ; compute the mask
+  addi t3, zero, 1 ; compute the mask given Y
+  sll t3, t3, a1
 
-  ;store word
-  sll t5, t3, t5
-  or t6, t5, t2
-  stw t6, LEDS(t1)
+  andi t4, a0, 3    ; prepare the X shift
+  slli t4, t4, 8
+
+  sll t3, t3, t4 ; complete mask
+
+  ; apply mask
+  or t2, t2, t3
+
+  ; push word into memory
+  stw t2, LEDS(t1)
   ret
 ; END: set_pixel
+
+
 
 
 ; BEGIN: display_score
