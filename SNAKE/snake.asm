@@ -36,7 +36,9 @@ main:
 
 ; BEGIN: clear_leds
 clear_leds:
-
+  stw $zero, LEDS($zero)
+  stw $zero, LEDS+4($zero)
+  stw $zero, LEDS+8($zero)
 ; END: clear_leds
 
 
