@@ -35,6 +35,7 @@ main:
     addi a0, zero, 0
     addi a1, zero, 1
     call set_pixel
+
     ret
 
 
@@ -43,20 +44,21 @@ clear_leds:
   stw zero, LEDS(zero)
   stw zero, LEDS+4(zero)
   stw zero, LEDS+8(zero)
+  ret
 ; END: clear_leds
 
 
 ; BEGIN: set_pixel
 set_pixel:
 
-  ; compute which of the tree leds word to access
+  ; compute which of the three LEDS word to access
   andi t1, a0, 12
 
   ; load the word into register
   ldw t2, LEDS(t1)
 
   ; compute the mask
-  addi t3, zero, 1  ; compute the mask given Y
+  addi t3, zero, 1 ; compute the mask given Y
   sll t3, t3, a1
 
   andi t4, a0, 3    ; prepare the X shift

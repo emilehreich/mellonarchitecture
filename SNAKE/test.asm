@@ -33,8 +33,9 @@ main:
     call clear_leds
 
     addi a0, zero, 0
-    addi a1, zero, 1
+    addi a1, zero, 3
     call set_pixel
+
     ret
 
 
@@ -43,13 +44,14 @@ clear_leds:
   stw zero, LEDS(zero)
   stw zero, LEDS+4(zero)
   stw zero, LEDS+8(zero)
+  ret
 ; END: clear_leds
 
 
 ; BEGIN: set_pixel
 set_pixel:
 
-  ; compute which of the 3 LEDS word to access
+  ; compute which of the three LEDS word to access
   andi t1, a0, 12
 
   ; load the word into register
