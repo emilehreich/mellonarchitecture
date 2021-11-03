@@ -32,7 +32,7 @@ main:
     ; TODO: Finish this procedure.
     call clear_leds
 
-    addi a0, zero, 0
+    addi a0, zero, 3
     addi a1, zero, 3
     call set_pixel
 
@@ -58,11 +58,11 @@ set_pixel:
   ldw t2, LEDS(t1)
 
   ; compute the mask
-  addi t3, zero, 1 ; compute the mask given Y
+  addi t3, zero, 1 ; compute the mask given y
   sll t3, t3, a1
 
   andi t4, a0, 3    ; prepare the X shift
-  slli t4, t4, 8
+  slli t4, t4, 3
 
   sll t3, t3, t4 ; complete mask
 
@@ -71,6 +71,7 @@ set_pixel:
 
   ; push word into memory
   stw t2, LEDS(t1)
+
   ret
 ; END: set_pixel
 
