@@ -157,39 +157,45 @@ get_input:
   ldw t3, HEAD_Y(zero) ;snakeHeadY
   slli t2, t2, 5
   slli t3, t3, 2
-  add t4, t3, t2  ;address of X, Y in GSA
-  ldw t5, 0(t4)   ;gsa value at the head
+  add t4, t3, t2  ; address of X, Y in GSA
+  ldw t5, 0(t4)   ; gsa value at the head
 
   ; loop through each button
-  ldw v0, 0(zero) ;initial return value set to 0
-  addi t6, zero, 0 ;current iteration number
-  addi t7, zero, 5 ;maximum of iteration
-  addi t3, zero, 1
+  addi v0, zero, 0    ;initial return value set to 0
+  addi t6, zero, 4    ;current iteration number
   loop:
     ; look if iteration button is active or not
     srl t2, t1, t6
     andi t2, t2, 1
+    addi t3, zero, 1
     beq t2, t3, activateButton
     br reloop
-
   reloop:
     ; update cursor and loop control
-    addi t6, t6, 1
-    blt t6, t7, loop
+    addi t3, zero, 1
+    sub t6, t6, t3
+    bge t6, zero, loop
     ret
 
+  ; activated button part
   activateButton:
-    beq t6, zero, checkpointTrigger
+    addi t7, zero, BUTTON_CHECKPOINT
+    addi t3, t6, 1                    ;maps the buttonNumber with the direction
+    beq t3, t7, checkpointTrigger
     br buttonTrigger
-
   checkpointTrigger:
-    stw v0, BUTTON_CHECKPOINT(zero)
+    addi v0, zero, BUTTON_CHECKPOINT
     ret
-
   buttonTrigger:
-    ; toDo look for complementarity
-    stw v0, t6
+    add t7, t3, t5
+    addi t2, zero, 5  ;compute currentDirection and newDirection sum
+    bne t7, t2, setButton  ; if the sum is different from 5 they are opposite
     br reloop
+  setButton:
+    ;set button
+    stw t3, 0(t4)
+    addi v0, t3, 0
+    ret
 
 ; END: get_input
 

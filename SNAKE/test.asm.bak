@@ -1,4 +1,4 @@
-;	set game state memory location
+;    set game state memory location
 .equ    HEAD_X,         0x1000  ; Snake head's position on x
 .equ    HEAD_Y,         0x1004  ; Snake head's position on y
 .equ    TAIL_X,         0x1008  ; Snake tail's position on x
@@ -19,6 +19,30 @@
 .equ    RANDOM_NUM,     0x2010  ; Random number generator address
 .equ    BUTTONS,        0x2030  ; Buttons addresses
 
+; button state
+.equ    BUTTON_NONE,    0
+.equ    BUTTON_LEFT,    1
+.equ    BUTTON_UP,      2
+.equ    BUTTON_DOWN,    3
+.equ    BUTTON_RIGHT,   4
+.equ    BUTTON_CHECKPOINT,    5
+
+; array state
+.equ    DIR_LEFT,       1       ; leftward direction
+.equ    DIR_UP,         2       ; upward direction
+.equ    DIR_DOWN,       3       ; downward direction
+.equ    DIR_RIGHT,      4       ; rightward direction
+.equ    FOOD,           5       ; food
+
+; constants
+.equ    NB_ROWS,        8       ; number of rows
+.equ    NB_COLS,        12      ; number of columns
+.equ    NB_CELLS,       96      ; number of cells in GSA
+.equ    RET_ATE_FOOD,   1       ; return value for hit_test when food was eaten
+.equ    RET_COLLISION,  2       ; return value for hit_test when a collision was detected
+.equ    ARG_HUNGRY,     0       ; a0 argument for move_snake when food wasn't eaten
+.equ    ARG_FED,        1       ; a0 argument for move_snake when food was eaten
+
 ; initialize stack pointer
 addi    sp, zero, LEDS
 
@@ -35,6 +59,9 @@ main:
     addi a0, zero, 0
     addi a1, zero, 0
     call set_pixel
+
+    addi t1, zero, 6
+    ; stw t1, RANDOM_NUM(zero)
 
     ret
 
@@ -65,13 +92,10 @@ set_pixel:
   slli t4, t4, 3
 
   sll t3, t3, t4 ; complete mask
-
   ; apply mask
   or t2, t2, t3
-
   ; push word into memory
   stw t2, LEDS(t1)
-
   ret
 ; END: set_pixel
 
@@ -92,7 +116,24 @@ init_game:
 
 ; BEGIN: create_food
 create_food:
+;loop till a valid value to create food is generated
+  ;read random value from RANDOM_NUM
+  load_word:
 
+  ldw t1, RANDOM_NUM(zero)
+  ;mask of 8 LSB bits to extract the last byte
+  addi t2, zero, 1
+  slli t2, t2, 8
+  and t3, t2, t1
+  addi t4, zero, 96 ; offset
+
+  bltu t3, t4, set_value
+  jmpi load_word
+
+  set_value:
+  addi t5, zero, 5
+  stw t5, GSA(t3)
+  ret
 ; END: create_food
 
 
@@ -106,42 +147,73 @@ hit_test:
 ; return value v0, which button is pressed
 get_input:
 
-  ; updates snake head with analysing the edgecapture
-  ; It should check each bit of the edgecapture and find
-  ; the pressed button
-
-  ; get the button state array
+  ; get button state array and reset
   ldw t1, BUTTONS+4(zero)
   andi t1, t1, 31
-
-  ; reset button state array to zero
   stw zero, BUTTONS+4(zero)
 
-  ; look for reset to checkpoint first
-  ; checkpoint with an other button => only checkpoints
+  ; position of head in GSA
+  ldw t2, HEAD_X(zero) ;snakeHeadX
+  ldw t3, HEAD_Y(zero) ;snakeHeadY
+  slli t2, t2, 5
+  slli t3, t3, 2
+  add t4, t3, t2  ; address of X, Y in GSA
+  ldw t5, 0(t4)   ; gsa value at the head
 
+  ; usefull variable
+  addi t3, zero, 1
 
-  ; look for an active button otherwhise
-  ; bit i is set to 1 until it is explicitely clearead
+  ; loop through each button
+  addi v0, zero, 0    ;initial return value set to 0
+  addi t6, zero, 4    ;current iteration number
+  loop:
+    ; look if iteration button is active or not
+    srl t2, t1, t6
+    andi t2, t2, 1
+    beq t2, t3, activateButton
+    br reloop
+  reloop:
+    ; update cursor and loop control
+    sub t6, t6, t3
+    bge t6, zero, loop
+    ret
 
-  ; direction button => change direction if, current direction is not opposite
-  ; oneway checker
-  ; When grading, we don’t consider the case where multiple direction buttons
-  ; were pressed
-  ; otherwhise propose something nice, deduce the movability
+  ; activated button part
+  activateButton:
+    addi t7, zero, BUTTON_CHECKPOINT
+    addi t8, t6, 1                    ;maps the buttonNumber with the direction
+    beq t8, t7, checkpointTrigger
+    br buttonTrigger
+  checkpointTrigger:
+    addi v0, zero, BUTTON_CHECKPOINT
+    ret
+  buttonTrigger:
+    add t7, t8, t5
+    addi t2, zero, 5  ;compute currentDirection and newDirection sum
+    bne t7, t2, setButton  ; if the sum is different from 5 they are opposite
+    br reloop
+  setButton:
+    ;set button
+    stw t8, 0(t4)
+    addi v0, t8, 0
+    ret
 
-
-  ; conditional if : checkpoint : checkpoint
-
-
-  ; modify direction value
-
-  ret
 ; END: get_input
 
 
 ; BEGIN: draw_array
 draw_array:
+
+  iterate:;argument a3, index in GSM
+  ;compute x and y arguments
+  andi a1, a3, 7
+  sub t2, a3, a1
+  srai a0, t2, 3
+  bge a1, zero, set_pixel
+  addi a3, a3, 1
+  addi t1, zero, 96
+  bltu a3, t1, iterate
+  ret
 
 ; END: draw_array
 
