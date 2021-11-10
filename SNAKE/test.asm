@@ -32,8 +32,8 @@ main:
     ; TODO: Finish this procedure.
     call clear_leds
 
-    addi a0, zero, 3
-    addi a1, zero, 3
+    addi a0, zero, 0
+    addi a1, zero, 0
     call set_pixel
 
     ret
@@ -103,8 +103,40 @@ hit_test:
 
 
 ; BEGIN: get_input
+; return value v0, which button is pressed
 get_input:
 
+  ; updates snake head with analysing the edgecapture
+  ; It should check each bit of the edgecapture and find
+  ; the pressed button
+
+  ; get the button state array
+  ldw t1, BUTTONS+4(zero)
+  andi t1, t1, 31
+
+  ; reset button state array to zero
+  stw zero, BUTTONS+4(zero)
+
+  ; look for reset to checkpoint first
+  ; checkpoint with an other button => only checkpoints
+
+
+  ; look for an active button otherwhise
+  ; bit i is set to 1 until it is explicitely clearead
+
+  ; direction button => change direction if, current direction is not opposite
+  ; oneway checker
+  ; When grading, we don’t consider the case where multiple direction buttons
+  ; were pressed
+  ; otherwhise propose something nice, deduce the movability
+
+
+  ; conditional if : checkpoint : checkpoint
+
+
+  ; modify direction value
+
+  ret
 ; END: get_input
 
 

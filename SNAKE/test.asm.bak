@@ -32,8 +32,8 @@ main:
     ; TODO: Finish this procedure.
     call clear_leds
 
-    addi a0, zero, 0
-    addi a1, zero, 0
+    addi a0, zero, 3
+    addi a1, zero, 3
     call set_pixel
 
     ret

@@ -109,27 +109,34 @@ get_input:
   ; updates snake head with analysing the edgecapture
   ; It should check each bit of the edgecapture and find
   ; the pressed button
-  lwi t1, BUTTONS+4(zero)
 
+  ; get the button state array
+  ldw t1, BUTTONS+4(zero)
+  andi t1, t1, 31
+
+  ; reset button state array to zero
+  stw zero, BUTTONS+4(zero)
+
+  ; look for reset to checkpoint first
+  ; checkpoint with an other button => only checkpoints
+
+
+  ; look for an active button otherwhise
   ; bit i is set to 1 until it is explicitely clearead
 
   ; direction button => change direction if, current direction is not opposite
-  ; oneway checker 
-
-  ; when you move something regardless of the value
-  ; in the button memory, all bits are cleared
+  ; oneway checker
   ; When grading, we don’t consider the case where multiple direction buttons
   ; were pressed
-
-  ; checkpoint with an other button => only checkpoints
+  ; otherwhise propose something nice, deduce the movability
 
 
   ; conditional if : checkpoint : checkpoint
 
 
-  ; otherwhise propose something nice, deduce the movability
+  ; modify direction value
 
-
+  ret
 ; END: get_input
 
 
