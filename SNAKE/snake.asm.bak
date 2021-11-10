@@ -31,9 +31,11 @@ addi    sp, zero, LEDS
 main:
     ; TODO: Finish this procedure.
     call clear_leds
-    addi a0, zero, 1
+
+    addi a0, zero, 0
     addi a1, zero, 0
     call set_pixel
+
     ret
 
 
@@ -48,22 +50,32 @@ clear_leds:
 
 ; BEGIN: set_pixel
 set_pixel:
-  ;mask to load word
+
+  ; compute which of the three LEDS word to access
   andi t1, a0, 12
+
+  ; load the word into register
   ldw t2, LEDS(t1)
 
-  ;mask to set pixel
-  addi t3, zero, 1 ;mask initialize
-  andi t4, a0, 3
-  slli t4, t4, 8
-  add t5, t4, a1
+  ; compute the mask
+  addi t3, zero, 1 ; compute the mask given y
+  sll t3, t3, a1
 
-  ;store word
-  sll t5, t3, t5
-  or t6, t5, t2
-  stw t6, LEDS(t1)
+  andi t4, a0, 3    ; prepare the X shift
+  slli t4, t4, 3
+
+  sll t3, t3, t4 ; complete mask
+
+  ; apply mask
+  or t2, t2, t3
+
+  ; push word into memory
+  stw t2, LEDS(t1)
+
   ret
 ; END: set_pixel
+
+
 
 
 ; BEGIN: display_score
@@ -91,7 +103,32 @@ hit_test:
 
 
 ; BEGIN: get_input
+; return value v0, which button is pressed
 get_input:
+
+  ; updates snake head with analysing the edgecapture
+  ; It should check each bit of the edgecapture and find
+  ; the pressed button
+  lwi t1, BUTTONS+4(zero)
+
+  ; bit i is set to 1 until it is explicitely clearead
+
+  ; direction button => change direction if, current direction is not opposite
+  ; one
+
+  ; when you move something regardless of the value
+  ; in the button memory, all bits are cleared
+  ; When grading, we don’t consider the case where multiple direction buttons
+  ; were pressed
+
+  ; checkpoint with an other button => only checkpoints
+
+
+  ; conditional if : checkpoint : checkpoint
+
+
+  ; otherwhise propose something nice, deduce the movability
+
 
 ; END: get_input
 
