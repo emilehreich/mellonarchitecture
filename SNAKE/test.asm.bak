@@ -100,8 +100,6 @@ set_pixel:
 ; END: set_pixel
 
 
-
-
 ; BEGIN: display_score
 display_score:
 
@@ -160,9 +158,6 @@ get_input:
   add t4, t3, t2  ; address of X, Y in GSA
   ldw t5, 0(t4)   ; gsa value at the head
 
-  ; usefull variable
-  addi t3, zero, 1
-
   ; loop through each button
   addi v0, zero, 0    ;initial return value set to 0
   addi t6, zero, 4    ;current iteration number
@@ -170,10 +165,11 @@ get_input:
     ; look if iteration button is active or not
     srl t2, t1, t6
     andi t2, t2, 1
+    addi t3, zero, 1
     beq t2, t3, activateButton
-    br reloop
   reloop:
     ; update cursor and loop control
+    addi t3, zero, 1
     sub t6, t6, t3
     bge t6, zero, loop
     ret
@@ -181,21 +177,21 @@ get_input:
   ; activated button part
   activateButton:
     addi t7, zero, BUTTON_CHECKPOINT
-    addi t8, t6, 1                    ;maps the buttonNumber with the direction
-    beq t8, t7, checkpointTrigger
+    addi t3, t6, 1                    ;maps the buttonNumber with the direction
+    beq t3, t7, checkpointTrigger
     br buttonTrigger
   checkpointTrigger:
     addi v0, zero, BUTTON_CHECKPOINT
     ret
   buttonTrigger:
-    add t7, t8, t5
+    add t7, t3, t5
     addi t2, zero, 5  ;compute currentDirection and newDirection sum
     bne t7, t2, setButton  ; if the sum is different from 5 they are opposite
     br reloop
   setButton:
     ;set button
-    stw t8, 0(t4)
-    addi v0, t8, 0
+    stw t3, 0(t4)
+    addi v0, t3, 0
     ret
 
 ; END: get_input
@@ -220,6 +216,65 @@ draw_array:
 
 ; BEGIN: move_snake
 move_snake:
+
+  ldw t1, HEAD_X(zero)  ; snakeHeadX
+  ldw t2, HEAD_Y(zero)  ; snakeHeadY
+  
+  addi t7, zero, ra     ; put rA in a space we won't touch
+  call GSAconversion
+  ldw t4, 0(t3)         ; direction value at the head
+  call updateXY
+  call GSAconversion
+  stw t4, 0(t3)         ; store old head direction in the new head GSA word
+  stw t1, HEAD_X(zero)  ; update the head X
+  stw t2, HEAD_Y(zero)  ; update the head Y
+  addi ra, zero, t7     ; restore rA
+
+  beq a0, zero, moveTail  ; if a0 == 0, then the tail should be updated
+  ret
+
+  moveTail:
+    ldw t1, TAIL_X(zero) ;snakeTailX
+    ldw t2, TAIL_Y(zero) ;snakeTailY
+
+    addi t7, zero, ra     ; put rA in a space we won't touch
+    call GSAconversion
+    stw zero, 0(t3)       ; remove the tail
+    call updateXY
+    stw t1, TAIL_X(zero)  ; update the tail X
+    stw t2, TAIL_Y(zero)  ; update the tail Y
+    addi ra, zero, t7     ; restore rA
+    ret
+
+  GSAconversion:
+    slli t1, t1, 5
+    slli t2, t2, 2
+    add t3, t2, t1      ; address of X, Y in GSA format
+    ret
+
+  updateXY:
+    addi t5, zero, 1
+    beq t4, t5, moveLeft
+    addi t5, zero, 2
+    beq t4, t5, moveTop
+    addi t5, zero, 3
+    beq t4, t5, moveDown
+    addi t5, zero, 4
+    beq t4, t5, moveRight
+    moveLeft:
+      addi t6, zero, 1
+      sub t1, t1, t6
+      ret
+    moveTop:
+      addi t6, zero, 1
+      sub t2, t2, t6 
+      ret
+    moveDown:
+      addi t2, t2, 1
+      ret
+    moveRight:
+      addi t1, t1, 1
+      ret
 
 ; END: move_snake
 
