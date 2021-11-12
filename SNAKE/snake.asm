@@ -53,18 +53,35 @@ addi    sp, zero, LEDS
 ; return values
 ;     This procedure should never return.
 main:
-    ; TODO: Finish this procedure.
-    call clear_leds
+  ; TODO: Finish this procedure.
 
-    addi a0, zero, 0
-    addi a1, zero, 0
-    call set_pixel
+  ; @toDO : put this subsection in the game initialization method :
+  ; initalize Snake head X, Y to 0, 0 and direction to rightward
+  stw zero, HEAD_X(zero)
+  stw zero, HEAD_Y(zero)
+  addi t1, zero, 4
+  stw t1, GSA(zero)
+  ; initialize Snake tail X, Y to 0, 0
+  stw zero, TAIL_X(zero)
+  stw zero, TAIL_Y(zero)
 
-    addi t1, zero, 6
-    ; stw t1, RANDOM_NUM(zero)
+  ;gameLoop:
+    ;call clear_leds
+    ;call get_input
 
-    ret
+    ; @toDo : add collision testing
 
+    ; @toDo : generate new food if precedent one has been eaten
+
+    call move_snake
+    ;call draw_array
+
+    ; @toDO : add the wait procedure
+
+    ; @toDO : add conditional end of the game
+    ;call gameLoop
+
+  ret
 
 ; BEGIN: clear_leds
 clear_leds:
@@ -134,7 +151,6 @@ create_food:
   ret
 ; END: create_food
 
-
 ; BEGIN: hit_test
 hit_test:
 
@@ -152,11 +168,12 @@ get_input:
 
   ; position of head in GSA
   ldw t2, HEAD_X(zero) ;snakeHeadX
-  ldw t3, HEAD_Y(zero) ;snakeHeadY
   slli t2, t2, 5
+  ldw t3, HEAD_Y(zero) ;snakeHeadY
   slli t3, t3, 2
-  add t4, t3, t2  ; address of X, Y in GSA
-  ldw t5, 0(t4)   ; gsa value at the head
+  add t4, t3, t2
+  addi t4, t4, GSA ;address of X, Y in GSA
+  ldw t5, 0(t4)    ; gsa value at the head
 
   ; loop through each button
   addi v0, zero, 0    ;initial return value set to 0
@@ -185,7 +202,7 @@ get_input:
     ret
   buttonTrigger:
     add t7, t3, t5
-    addi t2, zero, 5  ;compute currentDirection and newDirection sum
+    addi t2, zero, 5       ;compute currentDirection and newDirection sum
     bne t7, t2, setButton  ; if the sum is different from 5 they are opposite
     br reloop
   setButton:
@@ -193,14 +210,13 @@ get_input:
     stw t3, 0(t4)
     addi v0, t3, 0
     ret
-
 ; END: get_input
 
 
 ; BEGIN: draw_array
 draw_array:
 
-  iterate:;argument a3, index in GSM
+  iterate:  ;argument a3, index in GSM
   ;compute x and y arguments
   andi a1, a3, 7
   sub t2, a3, a1
@@ -224,10 +240,11 @@ move_snake:
   call GSAconversion
   ldw t4, 0(t3)         ; direction value at the head
   call updateXY
-  call GSAconversion
-  stw t4, 0(t3)         ; store old head direction in the new head GSA word
   stw t1, HEAD_X(zero)  ; update the head X
   stw t2, HEAD_Y(zero)  ; update the head Y
+  call GSAconversion
+  stw t4, 0(t3)         ; store old head direction in the new head GSA word
+
   addi ra, t7, 0        ; restore rA
 
   beq a0, zero, moveTail  ; if a0 == 0, then the tail should be updated
@@ -249,7 +266,8 @@ move_snake:
   GSAconversion:
     slli t1, t1, 5
     slli t2, t2, 2
-    add t3, t2, t1      ; address of X, Y in GSA format
+    add t3, t2, t1
+    addi t3, t3, GSA  ; address of X, Y in GSA format
     ret
 
   updateXY:
