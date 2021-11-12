@@ -55,6 +55,8 @@ addi    sp, zero, LEDS
 main:
   ; TODO: Finish this procedure.
 
+  ; please commente le tout si tu veux faire tes propres tests
+
   ; @toDO : put this subsection in the game initialization method :
   ; initalize Snake head X, Y to 0, 0 and direction to rightward
   stw zero, HEAD_X(zero)
@@ -65,9 +67,9 @@ main:
   stw zero, TAIL_X(zero)
   stw zero, TAIL_Y(zero)
 
-  ;gameLoop:
-    ;call clear_leds
-    ;call get_input
+  gameLoop:
+    call clear_leds
+    call get_input
 
     ; @toDo : add collision testing
 
@@ -79,8 +81,8 @@ main:
     ; @toDO : add the wait procedure
 
     ; @toDO : add conditional end of the game
-    ;call gameLoop
 
+    call gameLoop
   ret
 
 ; BEGIN: clear_leds
@@ -168,16 +170,16 @@ get_input:
 
   ; position of head in GSA
   ldw t2, HEAD_X(zero) ;snakeHeadX
-  slli t2, t2, 5
   ldw t3, HEAD_Y(zero) ;snakeHeadY
+  slli t2, t2, 5
   slli t3, t3, 2
   add t4, t3, t2
-  addi t4, t4, GSA ;address of X, Y in GSA
-  ldw t5, 0(t4)    ; gsa value at the head
+  addi t4, t4, GSA ; address of X, Y in GSA format
+  ldw t5, 0(t4)    ; direction value at the head in GSA
 
   ; loop through each button
-  addi v0, zero, 0    ;initial return value set to 0
-  addi t6, zero, 4    ;current iteration number
+  addi v0, zero, 0    ; initial return value set to 0
+  addi t6, zero, 4    ; current iteration number
   loop:
     ; look if iteration button is active or not
     srl t2, t1, t6
@@ -185,7 +187,7 @@ get_input:
     addi t3, zero, 1
     beq t2, t3, activateButton
   reloop:
-    ; update cursor and loop control
+    ; update cursor and reloop if necessarily
     addi t3, zero, 1
     sub t6, t6, t3
     bge t6, zero, loop
@@ -203,7 +205,7 @@ get_input:
   buttonTrigger:
     add t7, t3, t5
     addi t2, zero, 5       ;compute currentDirection and newDirection sum
-    bne t7, t2, setButton  ; if the sum is different from 5 they are opposite
+    bne t7, t2, setButton  ; if the sum is equal 5 they are opposite
     br reloop
   setButton:
     ;set button
@@ -240,10 +242,10 @@ move_snake:
   call GSAconversion
   ldw t4, 0(t3)         ; direction value at the head
   call updateXY
-  call GSAconversion
-  stw t4, 0(t3)         ; store old head direction in the new head GSA word
   stw t1, HEAD_X(zero)  ; update the head X
   stw t2, HEAD_Y(zero)  ; update the head Y
+  call GSAconversion
+  stw t4, 0(t3)         ; store old head direction in the new head GSA word
   addi ra, t7, 0        ; restore rA
 
   beq a0, zero, moveTail  ; if a0 == 0, then the tail should be updated
