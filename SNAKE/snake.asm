@@ -75,7 +75,7 @@ main:
 
     ; @toDo : generate new food if precedent one has been eaten
 
-    call move_snake
+     call move_snake
 
     ; call draw_array
 
@@ -156,7 +156,52 @@ create_food:
 
 ; BEGIN: hit_test
 hit_test:
+  ldw t1, HEAD_X(zero) ; snakeHeadX
+  ldw t2, HEAD_Y(zero) ; snakeHeadY
+  slli t1, t1, 5
+  slli t2, t2, 2
+  add t4, t2, t1
+  addi t4, t1, GSA ; address of X, Y in GSA format
+  ldw t5, 0(t4)    ; direction value at the head in GSA
 
+  ; @toDO : modulariser en creant une methode contenant la partie bis repetita
+  call updateXY
+  ; @toDO : ajouter les parametres, pour l'instant ca ne fonctionne pas
+
+  addi t3, zero, NB_COLS        ; check for out of range X
+  bge t1, t3, deadCollision
+  addi t3, zero, 0
+  blt t1, t3, deadCollision
+
+  addi t3, zero, NB_ROWS        ; check for out of range Y
+  bge t2, t3, deadCollision
+  addi t3, zero, 0
+  blt t2, t3, deadCollision
+
+  ; otherwhise check if the cell is empty or not
+  slli t1, t1, 5
+  slli t2, t2, 2
+  add t4, t2, t1
+  addi t4, t4, GSA ; address in GSA format of the cell following the current head
+  ldw t5, 0(t4)    ; direction value at the next cell
+
+  addi t3, zero, 1
+  bge t5, t3, collision
+
+  addi v0, zero, ARG_HUNGRY ; if no collision the snake is fine
+  ret
+
+  deadCollision:
+    addi v0, zero, RET_COLLISION
+    ret
+  collision:
+    ; determine the kind of collision
+    addi t3, zero, FOOD
+    beq t5, t3, foodCollision
+    br deadCollision
+  foodCollision:
+    addi v0, zero, RET_ATE_FOOD
+    ret
 ; END: hit_test
 
 
