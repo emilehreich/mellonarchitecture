@@ -67,7 +67,14 @@ main:
   ; stw zero, TAIL_X(zero)
   ; stw zero, TAIL_Y(zero)
   call clear_leds
+
+  addi t1, zero, 4
+  stw t1, GSA+4(zero)
+
+  call create_food
+
   call draw_array
+
 
   gameLoop:
     call clear_leds
@@ -142,17 +149,22 @@ create_food:
 
   ldw t1, RANDOM_NUM(zero)
   ;mask of 8 LSB bits to extract the last byte
-  addi t2, zero, 1
-  slli t2, t2, 8
+  addi t2, zero, 0x00FF
   and t3, t2, t1
   addi t4, zero, 96 ; offset
 
-  bltu t3, t4, set_value
+  bltu t3, t4, check_content
+  jmpi load_word
+
+  check_content:
+  slli t3, t3, 2
+  ldw t5, GSA(t3)
+  beq t5, zero, set_value
   jmpi load_word
 
   set_value:
-  addi t5, zero, 5
-  stw t5, GSA(t3)
+  addi t6, zero, FOOD
+  stw t6, GSA(t3)
   ret
 ; END: create_food
 
@@ -167,7 +179,9 @@ hit_test:
   ldw t5, 0(t4)    ; direction value at the head in GSA
 
   ; @toDO : modulariser en creant une methode contenant la partie bis repetita
+
   call updateXY
+
   ; @toDO : ajouter les parametres, pour l'instant ca ne fonctionne pas
 
   addi t3, zero, NB_COLS        ; check for out of range X
@@ -266,20 +280,24 @@ get_input:
 ; BEGIN: draw_array
 draw_array:
 
-  iterate:  
+  iterate:
 
     ;compute x and y arguments
     andi a1, t7, 7
     sub t2, t7, a1
     srai a0, t2, 3
-    bge a1, zero, call_set_pixel
-  
+    add t6, zero, t7
+    slli t6, t6, 2
+    ldw t3, GSA(t6)
+    addi t4, zero, 1
+    bge t3, t4, call_set_pixel
+
   iteration_termination:
     addi t7, t7, 1
     addi t1, zero, 96
     bltu t7, t1, iterate
     ret
-  
+
   call_set_pixel:
   ;need a call
     call set_pixel
@@ -327,7 +345,9 @@ move_snake:
     addi t3, t3, GSA  ; address of X, Y in GSA format
     ret
 
-  updateXY:
+  ; toDO : encapsulation propre, abstraction depuis l'exterieur
+  updateXY: ; modification on t1 and t2 (X, Y)
+            ; usage of t4, t5, t6
     addi t5, zero, 1
     beq t4, t5, moveLeft
     addi t5, zero, 2
