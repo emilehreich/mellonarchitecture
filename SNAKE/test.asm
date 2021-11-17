@@ -44,7 +44,7 @@
 .equ    ARG_FED,        1       ; a0 argument for move_snake when food was eaten
 
 ; initialize stack pointer
-addi    sp, zero, LEDS
+addi sp, zero, LEDS
 
 ; main
 ; arguments
@@ -55,36 +55,33 @@ addi    sp, zero, LEDS
 main:
   ; TODO: Finish this procedure.
 
-  ; please commente le tout si tu veux faire tes propres tests
-
-  ; @toDO : put this subsection in the game initialization method :
-  ; initalize Snake head X, Y to 0, 0 and direction to rightward
-  stw zero, HEAD_X(zero)
-  stw zero, HEAD_Y(zero)
-  addi t1, zero, 4
-  stw t1, GSA(zero)
-  ; initialize Snake tail X, Y to 0, 0
-  stw zero, TAIL_X(zero)
-  stw zero, TAIL_Y(zero)
+  call init_game
+  call create_food
 
   gameLoop:
     call clear_leds
+    call draw_array
     call get_input
+      ; @toDO : add checkpoint test
 
-    ; @toDo : add collision testing
+    call hit_test
+    addi t1, zero, RET_ATE_FOOD
+    beq v0, t1, createFood    ; generate new food if precedent one has been eaten
+    addi t1, zero, RET_COLLISION
+    beq v0, t1, deadEnd    ; dead end if collision (just to test)
+    br continue   ; continue if none of the two previous condition
 
-    ; @toDo : generate new food if precedent one has been eaten
+    createFood:
+      call create_food
+    continue:
+      call move_snake
+      call clear_leds
+      call draw_array
+      ; @toDO : add the wait procedure
+      br gameLoop
 
-     call move_snake
-
-    ; call draw_array
-
-    ; @toDO : add the wait procedure
-
-    ; @toDO : add conditional end of the game
-
-    call gameLoop
-  ret
+    deadEnd:        ; provisoire pour tester la fin du jeu
+      br deadEnd
 
 ; BEGIN: clear_leds
 clear_leds:
@@ -97,7 +94,6 @@ clear_leds:
 
 ; BEGIN: set_pixel
 set_pixel:
-
   ; compute which of the three LEDS word to access
   andi t1, a0, 12
 
@@ -119,16 +115,45 @@ set_pixel:
   ret
 ; END: set_pixel
 
+;digit_map:
+;.word 0xFC ; 0
+;.word 0x60 ; 1
+;.word 0xDA ; 2
+;.word 0xF2 ; 3
+;.word 0x66 ; 4
+;.word 0xB6 ; 5
+;.word 0xBE ; 6
+;.word 0xE0 ; 7
+;.word 0xFE ; 8
+;.word 0xF6 ; 9
 
 ; BEGIN: display_score
 display_score:
+  ;load word SCORE
+  ;ldw t1, SCORE(zero)
 
+  ;substract 10 until score <10
+  ;digit 1 : number of times we substract 10
+  ;digit 2 : the result of the substraction
+
+  ;t3 counts the number of substraction
+  ;t2 takes the value of the substraction
+  ;ret
 ; END: display_score
 
 
 ; BEGIN: init_game
 init_game:
-
+  ;initialize Snake head X, Y to 0, 0
+  stw zero, HEAD_X(zero)
+  stw zero, HEAD_Y(zero)
+  ;initialize Snake head direction to rightWard
+  addi t1, zero, DIR_RIGHT
+  stw t1, GSA(zero)
+  ;initialize Snake tail X, Y to 0, 0
+  stw zero, TAIL_X(zero)
+  stw zero, TAIL_Y(zero)
+  ret
 ; END: init_game
 
 
@@ -137,68 +162,89 @@ create_food:
 ;loop till a valid value to create food is generated
   ;read random value from RANDOM_NUM
   load_word:
+    ldw t1, RANDOM_NUM(zero)
+    ;mask of 8 LSB bits to extract the last byte
+    addi t2, zero, 0x00FF
+    and t3, t2, t1
+    addi t4, zero, NB_CELLS ; offset
 
-  ldw t1, RANDOM_NUM(zero)
-  ;mask of 8 LSB bits to extract the last byte
-  addi t2, zero, 1
-  slli t2, t2, 8
-  and t3, t2, t1
-  addi t4, zero, 96 ; offset
+    bltu t3, t4, check_content
+    jmpi load_word
 
-  bltu t3, t4, set_value
-  jmpi load_word
+  check_content:
+    slli t3, t3, 2
+    ldw t5, GSA(t3)
+    beq t5, zero, set_value
+    jmpi load_word
 
   set_value:
-  addi t5, zero, 5
-  stw t5, GSA(t3)
-  ret
+    addi t6, zero, FOOD
+    stw t6, GSA(t3)
+    ret
 ; END: create_food
 
 ; BEGIN: hit_test
 hit_test:
   ldw t1, HEAD_X(zero) ; snakeHeadX
   ldw t2, HEAD_Y(zero) ; snakeHeadY
-  slli t1, t1, 5
-  slli t2, t2, 2
-  add t4, t2, t1
-  addi t4, t1, GSA ; address of X, Y in GSA format
-  ldw t5, 0(t4)    ; direction value at the head in GSA
+  slli t3, t1, 5
+  slli t4, t2, 2
+  add t3, t3, t4
+  addi t3, t3, GSA ; address of X, Y in GSA format
+  ldw t3, 0(t3)    ; direction value at the head in GSA
 
-  ; @toDO : modulariser en creant une methode contenant la partie bis repetita
-  call updateXY
-  ; @toDO : ajouter les parametres, pour l'instant ca ne fonctionne pas
+  addi t4, zero, DIR_LEFT
+  beq t3, t4, leftCheck
+  addi t4, zero, DIR_UP
+  beq t3, t4, upCheck
+  addi t4, zero, DIR_DOWN
+  beq t3, t4, downCheck
+  addi t4, zero, DIR_RIGHT
+  beq t3, t4, rightCheck
+  leftCheck:
+    addi t4, zero, 1
+    sub t1, t1, t4
+    addi t4, zero, 0
+    blt t1, t4, deadCollision   ; check for out of range X
+    br checkNextCell
+  upCheck:
+    addi t4, zero, 1
+    sub t2, t2, t4
+    addi t4, zero, 0
+    blt t2, t4, deadCollision   ; check for out of range Y
+    br checkNextCell
+  downCheck:
+    addi t2, t2, 1
+    addi t4, zero, NB_ROWS
+    bge t2, t4, deadCollision   ; check for out of range Y
+    br checkNextCell
+  rightCheck:
+    addi t1, t1, 1
+    addi t4, zero, NB_COLS
+    bge t1, t4, deadCollision   ; check for out of range X
+    br checkNextCell
 
-  addi t3, zero, NB_COLS        ; check for out of range X
-  bge t1, t3, deadCollision
-  addi t3, zero, 0
-  blt t1, t3, deadCollision
+  checkNextCell:
+    slli t3, t1, 5
+    slli t4, t2, 2
+    add t3, t3, t4
+    addi t3, t3, GSA ; address of X, Y in GSA format
+    ldw t3, 0(t3)    ; direction value at the head in GSA
 
-  addi t3, zero, NB_ROWS        ; check for out of range Y
-  bge t2, t3, deadCollision
-  addi t3, zero, 0
-  blt t2, t3, deadCollision
+    addi t4, zero, 1
+    bge t3, t4, collision  ; collision encountered
+    addi v0, zero, ARG_HUNGRY
+    ret
 
-  ; otherwhise check if the cell is empty or not
-  slli t1, t1, 5
-  slli t2, t2, 2
-  add t4, t2, t1
-  addi t4, t4, GSA ; address in GSA format of the cell following the current head
-  ldw t5, 0(t4)    ; direction value at the next cell
+  collision:
+    ; determine the kind of collision
 
-  addi t3, zero, 1
-  bge t5, t3, collision
-
-  addi v0, zero, ARG_HUNGRY ; if no collision the snake is fine
-  ret
-
+    addi t4, zero, FOOD
+    beq t3, t4, foodCollision
+    br deadCollision
   deadCollision:
     addi v0, zero, RET_COLLISION
     ret
-  collision:
-    ; determine the kind of collision
-    addi t3, zero, FOOD
-    beq t5, t3, foodCollision
-    br deadCollision
   foodCollision:
     addi v0, zero, RET_ATE_FOOD
     ret
@@ -264,16 +310,38 @@ get_input:
 ; BEGIN: draw_array
 draw_array:
 
-  iterate:  ;argument a3, index in GSM
-  ;compute x and y arguments
-  andi a1, a3, 7
-  sub t2, a3, a1
-  srai a0, t2, 3
-  bge a1, zero, set_pixel
-  addi a3, a3, 1
-  addi t1, zero, 96
-  bltu a3, t1, iterate
-  ret
+  addi t7, zero, 0
+
+  iterate:
+    ;compute x and y arguments
+    andi a1, t7, 7
+    sub t2, t7, a1
+    srai a0, t2, 3
+    add t6, zero, t7
+    slli t6, t6, 2
+    ldw t3, GSA(t6)
+    addi t4, zero, 1
+    bge t3, t4, call_set_pixel
+
+  iteration_termination:
+    addi t7, t7, 1
+    addi t1, zero, 96
+    bltu t7, t1, iterate
+    ret
+
+  call_set_pixel:
+    addi sp, sp, -4
+    stw ra, 0(sp)         ; put rA in the stack
+    addi sp, sp, -4
+    stw t7, 0(sp)           ; put t7 in the stack
+
+    call set_pixel
+
+    ldw t7, 0(sp)        ; get t7 from the stack
+    addi sp, sp, 4
+    ldw ra, 0(sp)        ; get rA from the stack
+    addi sp, sp, 4
+    br iteration_termination
 
 ; END: draw_array
 
@@ -284,15 +352,19 @@ move_snake:
   ldw t1, HEAD_X(zero)  ; snakeHeadX
   ldw t2, HEAD_Y(zero)  ; snakeHeadY
 
-  addi t7, ra, 0        ; put rA in a space we won't touch
+  addi sp, sp, -4
+  stw ra, 0(sp)        ; put rA in the stack
+
   call GSAconversion
-  ldw t4, 0(t3)         ; direction value at the head
+  ldw t5, 0(t3)         ; direction value at the head
   call updateXY
   stw t1, HEAD_X(zero)  ; update the head X
   stw t2, HEAD_Y(zero)  ; update the head Y
   call GSAconversion
-  stw t4, 0(t3)         ; store old head direction in the new head GSA word
-  addi ra, t7, 0        ; restore rA
+  stw t5, 0(t3)         ; store old head direction in the new head GSA word
+
+  ldw ra, 0(sp)        ; get rA from the stack
+  addi sp, sp, 4
 
   beq a0, zero, moveTail  ; if a0 == 0, then the tail should be updated
   ret
@@ -301,31 +373,39 @@ move_snake:
     ldw t1, TAIL_X(zero) ;snakeTailX
     ldw t2, TAIL_Y(zero) ;snakeTailY
 
-    addi t7, ra, 0     ; put rA in a space we won't touch
+    addi sp, sp, -4
+    stw ra, 0(sp)        ; put rA in the stack
+
     call GSAconversion
+
+    ldw t5, 0(t3)         ; get old GSA word at the tail
     stw zero, 0(t3)       ; remove the tail
+
     call updateXY
+
     stw t1, TAIL_X(zero)  ; update the tail X
     stw t2, TAIL_Y(zero)  ; update the tail Y
-    addi ra, t7, 0        ; restore rA
+
+    ldw ra, 0(sp)        ; get rA from the stack
+    addi sp, sp, 4
     ret
 
   GSAconversion:
-    slli t1, t1, 5
-    slli t2, t2, 2
-    add t3, t2, t1
+    slli t3, t1, 5
+    slli t4, t2, 2
+    add t3, t3, t4
     addi t3, t3, GSA  ; address of X, Y in GSA format
     ret
 
   updateXY:
-    addi t5, zero, 1
-    beq t4, t5, moveLeft
-    addi t5, zero, 2
-    beq t4, t5, moveTop
-    addi t5, zero, 3
-    beq t4, t5, moveDown
-    addi t5, zero, 4
-    beq t4, t5, moveRight
+    addi t6, zero, DIR_LEFT
+    beq t5, t6, moveLeft
+    addi t6, zero, DIR_UP
+    beq t5, t6, moveTop
+    addi t6, zero, DIR_DOWN
+    beq t5, t6, moveDown
+    addi t6, zero, DIR_RIGHT
+    beq t5, t6, moveRight
     moveLeft:
       addi t6, zero, 1
       sub t1, t1, t6
@@ -340,7 +420,6 @@ move_snake:
     moveRight:
       addi t1, t1, 1
       ret
-
 ; END: move_snake
 
 
