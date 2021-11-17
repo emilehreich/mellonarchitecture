@@ -59,13 +59,15 @@ main:
 
   ; @toDO : put this subsection in the game initialization method :
   ; initalize Snake head X, Y to 0, 0 and direction to rightward
-  stw zero, HEAD_X(zero)
-  stw zero, HEAD_Y(zero)
-  addi t1, zero, 4
-  stw t1, GSA(zero)
+  ; stw zero, HEAD_X(zero)
+  ; stw zero, HEAD_Y(zero)
+  ; addi t1, zero, 4
+  ; stw t1, GSA(zero)
   ; initialize Snake tail X, Y to 0, 0
-  stw zero, TAIL_X(zero)
-  stw zero, TAIL_Y(zero)
+  ; stw zero, TAIL_X(zero)
+  ; stw zero, TAIL_Y(zero)
+  call clear_leds
+  call draw_array
 
   gameLoop:
     call clear_leds
@@ -264,16 +266,24 @@ get_input:
 ; BEGIN: draw_array
 draw_array:
 
-  iterate:  ;argument a3, index in GSM
-  ;compute x and y arguments
-  andi a1, a3, 7
-  sub t2, a3, a1
-  srai a0, t2, 3
-  bge a1, zero, set_pixel
-  addi a3, a3, 1
-  addi t1, zero, 96
-  bltu a3, t1, iterate
-  ret
+  iterate:  
+
+    ;compute x and y arguments
+    andi a1, t7, 7
+    sub t2, t7, a1
+    srai a0, t2, 3
+    bge a1, zero, call_set_pixel
+  
+  iteration_termination:
+    addi t7, t7, 1
+    addi t1, zero, 96
+    bltu t7, t1, iterate
+    ret
+  
+  call_set_pixel:
+  ;need a call
+    call set_pixel
+    br iteration_termination
 
 ; END: draw_array
 
