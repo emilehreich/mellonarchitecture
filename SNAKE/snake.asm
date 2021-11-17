@@ -57,14 +57,15 @@ main:
 
   call init_game
   call create_food
-
+  call draw_array
   gameLoop:
     call clear_leds
-    ;call draw_array
-    ;call get_input
+    call draw_array
+    call get_input
       ; @toDO : add checkpoint test
 
     call hit_test
+    add a0, v0, zero
     addi t1, zero, RET_ATE_FOOD
     beq v0, t1, createFood    ; generate new food if precedent one has been eaten
     addi t1, zero, RET_COLLISION
@@ -77,7 +78,9 @@ main:
       call move_snake
       call clear_leds
       call draw_array
-      ; @toDO : add the wait procedure
+
+      call wait
+
       br gameLoop
 
     deadEnd:        ; provisoire pour tester la fin du jeu
@@ -90,6 +93,30 @@ clear_leds:
   stw zero, LEDS+8(zero)
   ret
 ; END: clear_leds
+
+; BEGIN: clear_leds
+
+wait:
+  addi t1, zero, 7071
+  addi t2, zero, 0
+  addi t3, zero, 442
+  addi t4, zero, 0
+
+  iter:
+    addi t2, t2, 1
+    beq t2, t1, nextIteration
+  relp:
+    br iter
+
+  nextIteration:
+    addi t4, t4, 1
+    addi t2, zero, 0
+    beq t4, t3, return
+    br iter
+
+  return:
+    ret
+; END: wait
 
 
 ; BEGIN: set_pixel
