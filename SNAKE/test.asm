@@ -46,6 +46,9 @@
 ; initialize stack pointer
 addi sp, zero, LEDS
 
+; initialize CP_Valid to be zero
+stw zero, CP_VALID(zero)
+
 ; main
 ; arguments
 ;     none
@@ -60,23 +63,47 @@ main:
   gameLoop:
     call wait
     call get_input
-      ; @toDO : add checkpoint test
+    addi t1, zero, BUTTON_CHECKPOINT
+    beq v0, t1, checkpointButton
+    br noreset
 
-    call hit_test
-    add a0, v0, zero
-    addi t1, zero, RET_ATE_FOOD
-    beq v0, t1, createFoodNupdateScore    ; generate new food if precedent one has been eaten
-    addi t1, zero, RET_COLLISION
-    beq v0, t1, deadEnd   ; reset game if collision
-    br continue   ; continue if none of the two previous condition
+    checkpointButton:
+      call restore_checkpoint
+
+      addi t1, zero, 1
+      beq t1, v0, blinkRestore
+      br gameLoop
+
+      blinkRestore:
+        ;@toDO : add led blinking
+        br gameLoop
+
+    noreset:
+      call hit_test
+      add a0, v0, zero
+      addi t1, zero, RET_COLLISION
+      beq v0, t1, deadEnd   ; reset game if collision
+      call move_snake
+      addi t1, zero, RET_ATE_FOOD
+      beq v0, t1, createFoodNupdateScore    ; generate new food if precedent one has been eaten
+      br continue   ; continue if none of the two previous condition
 
     createFoodNupdateScore:
       call create_food
       ldw t1, SCORE(zero)
       addi t1, t1, 1
       stw t1, SCORE(zero)
+
+      call save_checkpoint
+      addi t1, zero, 1
+      beq v0, t1, blinkLedsNewCheckpoint
+      br continue
+
+      blinkLedsNewCheckpoint:
+        ;@toDO : add led blinking
+        br continue
+
     continue:
-      call move_snake
       call clear_leds
       call draw_array
       br gameLoop
@@ -92,8 +119,7 @@ clear_leds:
   ret
 ; END: clear_leds
 
-; BEGIN: clear_leds
-
+; BEGIN: wait
 wait:
   addi t1, zero, 7071
   addi t2, zero, 0
@@ -475,12 +501,113 @@ move_snake:
 
 ; BEGIN: save_checkpoint
 save_checkpoint:
+  ldw t1, SCORE(zero)
+
+  ; we assume the score not to be bigger thant 100
+  addi t2, zero, 10
+  beq t1, t2, valid
+  addi t2, zero, 20
+  beq t1, t2, valid
+  addi t2, zero, 30
+  beq t1, t2, valid
+  addi t2, zero, 40
+  beq t1, t2, valid
+  addi t2, zero, 50
+  beq t1, t2, valid
+  addi t2, zero, 60
+  beq t1, t2, valid
+  addi t2, zero, 70
+  beq t1, t2, valid
+  addi t2, zero, 80
+  beq t1, t2, valid
+  addi t2, zero, 90
+  beq t1, t2, valid
+  addi v0, zero, 0
+  ret
+
+  valid:
+    ; return value set to 1
+    addi v0, zero, 1
+
+    ; save score
+    stw t1, CP_SCORE(zero)
+
+    ; set CP_VALID to one
+    addi t1, zero, 1
+    stw t1, CP_VALID(zero)
+
+    ; save head and tail
+    ldw t1, HEAD_X(zero)
+    stw t1, CP_HEAD_X(zero)
+    ldw t1, HEAD_Y(zero)
+    stw t1, CP_HEAD_Y(zero)
+    ldw t1, TAIL_X(zero)
+    stw t1, CP_TAIL_X(zero)
+    ldw t1, TAIL_Y(zero)
+    stw t1, CP_TAIL_Y(zero)
+
+    ; copy GSA array
+    addi t1, zero, NB_CELLS
+    addi t2, zero, 0
+    gsaCopyLoop:
+      slli t3, t2, 2
+      ldw t4, GSA(t3)
+      stw t4, CP_GSA(t3)
+      addi t2, t2, 1
+      beq t2, t1, returnValidCheckPoint
+      br gsaCopyLoop
+
+    returnValidCheckPoint:
+      ret
 
 ; END: save_checkpoint
 
 
 ; BEGIN: restore_checkpoint
 restore_checkpoint:
+  ldw t1, CP_VALID(zero)
+  addi t2, zero, 1
+  beq t1, t2, resetCheckPoint
+  addi v0, zero, 0
+  ret
+
+  resetCheckPoint:
+    ; return value set to 1
+    addi v0, zero, 1
+
+    ; reset score
+    ldw t1, CP_SCORE(zero)
+    stw t1, SCORE(zero)
+
+    ; reset head and tail
+    ldw t1, CP_HEAD_X(zero)
+    stw t1, HEAD_X(zero)
+    ldw t1, CP_HEAD_Y(zero)
+    stw t1, HEAD_Y(zero)
+    ldw t1, CP_TAIL_X(zero)
+    stw t1, TAIL_X(zero)
+    ldw t1, CP_TAIL_Y(zero)
+    stw t1, TAIL_Y(zero)
+
+    ; reset GSA array
+    addi t1, zero, NB_CELLS
+    addi t2, zero, 0
+    gsaCPCopyLoop:
+      slli t3, t2, 2
+      ldw t4, CP_GSA(t3)
+      stw t4, GSA(t3)
+      addi t2, t2, 1
+      beq t2, t1, returnResetDone
+      br gsaCPCopyLoop
+
+    returnResetDone:
+      addi sp, sp, -4
+      stw ra, 0(sp)        ; put rA in the stack
+      call clear_leds
+      call draw_array
+      ldw ra, 0(sp)        ; get rA from the stack
+      addi sp, sp, 4
+      ret
 
 ; END: restore_checkpoint
 
