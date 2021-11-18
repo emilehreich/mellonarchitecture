@@ -56,35 +56,33 @@ main:
   ; TODO: Finish this procedure.
 
   call init_game
-  call create_food
-  call draw_array
+
   gameLoop:
-    call clear_leds
-    call draw_array
+    call wait
     call get_input
       ; @toDO : add checkpoint test
 
     call hit_test
     add a0, v0, zero
     addi t1, zero, RET_ATE_FOOD
-    beq v0, t1, createFood    ; generate new food if precedent one has been eaten
+    beq v0, t1, createFoodNupdateScore    ; generate new food if precedent one has been eaten
     addi t1, zero, RET_COLLISION
-    beq v0, t1, deadEnd    ; dead end if collision (just to test)
+    beq v0, t1, deadEnd   ; reset game if collision
     br continue   ; continue if none of the two previous condition
 
-    createFood:
+    createFoodNupdateScore:
       call create_food
+      ldw t1, SCORE(zero)
+      addi t1, t1, 1
+      stw t1, SCORE(zero)
     continue:
       call move_snake
       call clear_leds
       call draw_array
-
-      call wait
-
       br gameLoop
-
-    deadEnd:        ; provisoire pour tester la fin du jeu
-      br deadEnd
+    deadEnd:
+      call wait
+      br main
 
 ; BEGIN: clear_leds
 clear_leds:
@@ -174,13 +172,38 @@ init_game:
   ;initialize Snake head X, Y to 0, 0
   stw zero, HEAD_X(zero)
   stw zero, HEAD_Y(zero)
+
   ;initialize Snake head direction to rightWard
   addi t1, zero, DIR_RIGHT
   stw t1, GSA(zero)
+
   ;initialize Snake tail X, Y to 0, 0
   stw zero, TAIL_X(zero)
   stw zero, TAIL_Y(zero)
-  ret
+
+  ;initialize score to be 0
+  stw zero, SCORE(zero)
+
+  ; reinitialize GSA score to be full of 0 (erase precedent game data)
+  addi t1, zero, NB_CELLS
+  addi t2, zero, 1
+  resetLoop:
+    slli t3, t2, 2
+    stw zero, GSA(t3)
+    addi t2, t2, 1
+    addi t4, zero, NB_CELLS
+    beq t2, t4, finishInit
+    br resetLoop
+  finishInit:
+    addi sp, sp, -4
+    stw ra, 0(sp)         ; put ra in the stack
+    call set_pixel
+    call create_food
+    call clear_leds
+    call draw_array
+    ldw ra, 0(sp)         ; get ra from the stack
+    addi sp, sp, 4
+    ret
 ; END: init_game
 
 
