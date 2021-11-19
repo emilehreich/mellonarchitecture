@@ -121,9 +121,9 @@ clear_leds:
 
 ; BEGIN: wait
 wait:
-  addi t1, zero, 7071
+  addi t1, zero, 7070
   addi t2, zero, 0
-  addi t3, zero, 442
+  addi t3, zero, 200
   addi t4, zero, 0
 
   iter:
