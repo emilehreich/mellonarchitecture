@@ -188,30 +188,19 @@ display_score:
     ;substract 10 until score <10
     ;digit 1 : number of times we substract 10
     ;digit 2 : the result of the substraction
-    bltu t2, t1, display_switch
+    bltu t2, t1, load_display
     sub t3, t2, t1 ; removes 10 from the number
     addi t4, zero, 1 ; encountered
     jmpi check
 
-  display_switch:
-    addi t5, zero, 0
-
-    beq t3, t5, display_switch_1
-    addi t5, t5, 1
-
-    beq t3, t5, display_switch_1
-    addi t5, t5, 1
-
-    beq t3, t5, display_switch_1
-    addi t5, t5, 1
-
-    beq t3, t5, display_switch_1
-
-  display_switch_1:
-
-
-
-
+  load_display:
+    ldw t5, digit_map(t3);units
+    ldw t6, digit_map(t4);tens
+    addi t6, zero, digit_map(zero)
+    stw t5, SEVEN_SEGS+12(zero)
+    stw t4, SEVEN_SEGS+8(zero)
+    stw t6, SEVEN_SEGS+4(zero)
+    stw t6, SEVEN_SEGS(zero)
 
   ret
 ; END: display_score
@@ -638,5 +627,13 @@ restore_checkpoint:
 
 ; BEGIN: blink_score
 blink_score:
+
+  ;clear SEVEN_SEGS
+  stw zero, SEVEN_SEGS+12(zero)
+  stw zero, SEVEN_SEGS+8(zero)
+  stw zero, SEVEN_SEGS+4(zero)
+  stw zero, SEVEN_SEGS(zero)
+  call wait
+  call display_score
 
 ; END: blink_score
