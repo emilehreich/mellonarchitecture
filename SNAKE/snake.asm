@@ -142,30 +142,54 @@ set_pixel:
   ret
 ; END: set_pixel
 
-;digit_map:
-;.word 0xFC ; 0
-;.word 0x60 ; 1
-;.word 0xDA ; 2
-;.word 0xF2 ; 3
-;.word 0x66 ; 4
-;.word 0xB6 ; 5
-;.word 0xBE ; 6
-;.word 0xE0 ; 7
-;.word 0xFE ; 8
-;.word 0xF6 ; 9
+digit_map:
+.word 0xFC ; 0
+.word 0x60 ; 1
+.word 0xDA ; 2
+.word 0xF2 ; 3
+.word 0x66 ; 4
+.word 0xB6 ; 5
+.word 0xBE ; 6
+.word 0xE0 ; 7
+.word 0xFE ; 8
+.word 0xF6 ; 9
 
 ; BEGIN: display_score
 display_score:
   ;load word SCORE
-  ;ldw t1, SCORE(zero)
+  addi t1, zero, 10 ;10
+  ldw t2, SCORE(zero)
 
-  ;substract 10 until score <10
-  ;digit 1 : number of times we substract 10
-  ;digit 2 : the result of the substraction
+  check:
+    ;substract 10 until score <10
+    ;digit 1 : number of times we substract 10
+    ;digit 2 : the result of the substraction
+    bltu t2, t1, display_switch
+    sub t3, t2, t1 ; removes 10 from the number
+    addi t4, zero, 1 ; encountered
+    jmpi check
 
-  ;t3 counts the number of substraction
-  ;t2 takes the value of the substraction
-  ;ret
+  display_switch:
+    addi t5, zero, 0
+
+    beq t3, t5, display_switch_1
+    addi t5, t5, 1
+
+    beq t3, t5, display_switch_1
+    addi t5, t5, 1
+
+    beq t3, t5, display_switch_1
+    addi t5, t5, 1
+
+    beq t3, t5, display_switch_1
+
+  display_switch_1:
+
+
+
+
+
+  ret
 ; END: display_score
 
 
