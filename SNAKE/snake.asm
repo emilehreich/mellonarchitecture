@@ -69,13 +69,12 @@ main:
 
     checkpointButton:
       call restore_checkpoint
-
       addi t1, zero, 1
       beq t1, v0, blinkRestore
       br gameLoop
 
       blinkRestore:
-        ;@toDO : add led blinking
+        call blink_score
         br gameLoop
 
     noreset:
@@ -97,10 +96,11 @@ main:
       call save_checkpoint
       addi t1, zero, 1
       beq v0, t1, blinkLedsNewCheckpoint
+      call display_score
       br continue
 
       blinkLedsNewCheckpoint:
-        ;@toDO : add led blinking
+        call blink_score
         br continue
 
     continue:
@@ -184,23 +184,32 @@ display_score:
   addi t1, zero, 10 ;10
   ldw t2, SCORE(zero)
 
+  ; initialization of the digits
+  ; digit 0 : the result of the substraction
+  add t3, zero, t2  ; units
+
+  ; digit 1 : number of times we substract 10
+  addi t4, zero, 0  ; tens
+
   check:
-    ;substract 10 until score <10
-    ;digit 1 : number of times we substract 10
-    ;digit 2 : the result of the substraction
-    bltu t2, t1, load_display
-    sub t3, t2, t1 ; removes 10 from the number
-    addi t4, zero, 1 ; encountered
-    jmpi check
+    ;substract 10 until score < 10
+    blt t2, t1, load_display
+    sub t2, t2, t1
+    addi t3, t2, 0
+    addi t4, t4, 1  ; update tens number by 1
+    br check
 
   load_display:
-    ldw t5, digit_map(t3);units
-    ldw t6, digit_map(t4);tens
-    addi t6, zero, digit_map(zero)
-    stw t5, SEVEN_SEGS+12(zero)
+    slli t3, t3, 2
+    slli t4, t4, 2
+    ldw t3, digit_map(t3)   ; units
+    ldw t4, digit_map(t4)   ; tens
+    ldw t5, digit_map(zero) ; zero
+
+    stw t3, SEVEN_SEGS+12(zero)
     stw t4, SEVEN_SEGS+8(zero)
-    stw t6, SEVEN_SEGS+4(zero)
-    stw t6, SEVEN_SEGS(zero)
+    stw t5, SEVEN_SEGS+4(zero)
+    stw t5, SEVEN_SEGS(zero)
 
   ret
 ; END: display_score
@@ -240,6 +249,7 @@ init_game:
     call create_food
     call clear_leds
     call draw_array
+    call display_score
     ldw ra, 0(sp)         ; get ra from the stack
     addi sp, sp, 4
     ret
@@ -628,6 +638,9 @@ restore_checkpoint:
 ; BEGIN: blink_score
 blink_score:
 
+  addi sp, sp, -4
+  stw ra, 0(sp)        ; put rA in the stack
+
   ;clear SEVEN_SEGS
   stw zero, SEVEN_SEGS+12(zero)
   stw zero, SEVEN_SEGS+8(zero)
@@ -635,5 +648,15 @@ blink_score:
   stw zero, SEVEN_SEGS(zero)
   call wait
   call display_score
+  call wait
+  stw zero, SEVEN_SEGS+12(zero)
+  stw zero, SEVEN_SEGS+8(zero)
+  stw zero, SEVEN_SEGS+4(zero)
+  stw zero, SEVEN_SEGS(zero)
+  call wait
+  call display_score
 
+  ldw ra, 0(sp)         ; get rA back from the stack
+  addi sp, sp, 4
+  ret
 ; END: blink_score
