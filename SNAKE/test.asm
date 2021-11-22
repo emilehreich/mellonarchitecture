@@ -74,6 +74,8 @@ main:
       br gameLoop
 
       blinkRestore:
+        call clear_leds
+        call draw_array
         call blink_score
         br gameLoop
 
@@ -111,15 +113,15 @@ main:
       call wait
       br main
 
-; BEGIN: clear_leds
+; BEGIN:clear_leds
 clear_leds:
   stw zero, LEDS(zero)
   stw zero, LEDS+4(zero)
   stw zero, LEDS+8(zero)
   ret
-; END: clear_leds
+; END:clear_leds
 
-; BEGIN: wait
+; BEGIN:wait
 wait:
   addi t1, zero, 7070
   addi t2, zero, 0
@@ -140,10 +142,10 @@ wait:
 
   return:
     ret
-; END: wait
+; END:wait
 
 
-; BEGIN: set_pixel
+; BEGIN:set_pixel
 set_pixel:
   ; compute which of the three LEDS word to access
   andi t1, a0, 12
@@ -164,7 +166,7 @@ set_pixel:
   ; push word into memory
   stw t2, LEDS(t1)
   ret
-; END: set_pixel
+; END:set_pixel
 
 digit_map:
 .word 0xFC ; 0
@@ -178,7 +180,7 @@ digit_map:
 .word 0xFE ; 8
 .word 0xF6 ; 9
 
-; BEGIN: display_score
+; BEGIN:display_score
 display_score:
   ;load word SCORE
   addi t1, zero, 10 ;10
@@ -212,10 +214,10 @@ display_score:
     stw t5, SEVEN_SEGS(zero)
 
   ret
-; END: display_score
+; END:display_score
 
 
-; BEGIN: init_game
+; BEGIN:init_game
 init_game:
   ;initialize Snake head X, Y to 0, 0
   stw zero, HEAD_X(zero)
@@ -253,10 +255,10 @@ init_game:
     ldw ra, 0(sp)         ; get ra from the stack
     addi sp, sp, 4
     ret
-; END: init_game
+; END:init_game
 
 
-; BEGIN: create_food
+; BEGIN:create_food
 create_food:
 ;loop till a valid value to create food is generated
   ;read random value from RANDOM_NUM
@@ -280,9 +282,9 @@ create_food:
     addi t6, zero, FOOD
     stw t6, GSA(t3)
     ret
-; END: create_food
+; END:create_food
 
-; BEGIN: hit_test
+; BEGIN:hit_test
 hit_test:
   ldw t1, HEAD_X(zero) ; snakeHeadX
   ldw t2, HEAD_Y(zero) ; snakeHeadY
@@ -347,10 +349,10 @@ hit_test:
   foodCollision:
     addi v0, zero, RET_ATE_FOOD
     ret
-; END: hit_test
+; END:hit_test
 
 
-; BEGIN: get_input
+; BEGIN:get_input
 ; return value v0, which button is pressed
 get_input:
 
@@ -403,10 +405,10 @@ get_input:
     stw t3, 0(t4)
     addi v0, t3, 0
     ret
-; END: get_input
+; END:get_input
 
 
-; BEGIN: draw_array
+; BEGIN:draw_array
 draw_array:
 
   addi t7, zero, 0
@@ -442,10 +444,10 @@ draw_array:
     addi sp, sp, 4
     br iteration_termination
 
-; END: draw_array
+; END:draw_array
 
 
-; BEGIN: move_snake
+; BEGIN:move_snake
 move_snake:
 
   ldw t1, HEAD_X(zero)  ; snakeHeadX
@@ -519,10 +521,10 @@ move_snake:
     moveRight:
       addi t1, t1, 1
       ret
-; END: move_snake
+; END:move_snake
 
 
-; BEGIN: save_checkpoint
+; BEGIN:save_checkpoint
 save_checkpoint:
   ldw t1, SCORE(zero)
 
@@ -583,10 +585,10 @@ save_checkpoint:
     returnValidCheckPoint:
       ret
 
-; END: save_checkpoint
+; END:save_checkpoint
 
 
-; BEGIN: restore_checkpoint
+; BEGIN:restore_checkpoint
 restore_checkpoint:
   ldw t1, CP_VALID(zero)
   addi t2, zero, 1
@@ -626,16 +628,14 @@ restore_checkpoint:
     returnResetDone:
       addi sp, sp, -4
       stw ra, 0(sp)        ; put rA in the stack
-      call clear_leds
-      call draw_array
       ldw ra, 0(sp)        ; get rA from the stack
       addi sp, sp, 4
       ret
 
-; END: restore_checkpoint
+; END:restore_checkpoint
 
 
-; BEGIN: blink_score
+; BEGIN:blink_score
 blink_score:
 
   addi sp, sp, -4
@@ -659,4 +659,4 @@ blink_score:
   ldw ra, 0(sp)         ; get rA back from the stack
   addi sp, sp, 4
   ret
-; END: blink_score
+; END:blink_score
